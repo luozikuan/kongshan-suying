@@ -15,6 +15,9 @@ local fonts = import 'Fonts.libsonnet';
 
   toolbar: {
     height: 40,
+    insets: {
+      top: 5,
+    },
   },
 
   candidateStyle: {
@@ -84,6 +87,19 @@ local fonts = import 'Fonts.libsonnet';
       },
     },
 
+  floatingKeyboard: {
+    floatTargetScale: {
+      portrait: { x: 0.7, y: 0.55 },
+      landscape: { x: 0.45, y: 0.8 },
+    },
+    insets: {
+      top: 12,
+      left: 12,
+      bottom: 10,
+      right: 12,
+    },
+  },
+
   keyboard: {
     height: {
       iPhone: {
@@ -95,6 +111,9 @@ local fonts = import 'Fonts.libsonnet';
         landscape: 414,  // 86 * 4 + 70
       },
     },
+
+    // 是否使用类似 PC 键盘的布局，如果是，则 ZXCVBNM 这一行会向左移半个键位宽度
+    usePCLayout: true,
 
     button: {
       backgroundInsets: {

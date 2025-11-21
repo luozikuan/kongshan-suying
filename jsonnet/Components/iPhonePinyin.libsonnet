@@ -230,12 +230,15 @@ local newKeyLayout(isDark=false, isPortrait=true) =
   + basicStyle.newSystemButton(
     params.keyboard.shiftButton.name,
     isDark,
-    {
-      size:
-        { width: '168.75/1125' },
-      bounds:
-        { width: '151/168.75', alignment: 'left' },
-    }
+    (
+      if params.keyboard.usePCLayout then portraitNormalButtonSize else
+      {
+        size:
+          { width: '168.75/1125' },
+        bounds:
+          { width: '151/168.75', alignment: 'left' },
+      }
+    )
     + params.keyboard.shiftButton.params
     + {
       uppercasedStateForegroundStyle: params.keyboard.shiftButton.name + 'UppercasedForegroundStyle',
@@ -289,12 +292,23 @@ local newKeyLayout(isDark=false, isPortrait=true) =
   + basicStyle.newSystemButton(
     params.keyboard.backspaceButton.name,
     isDark,
-    {
-      size:
-        { width: '168.75/1125' },
-      bounds:
-        { width: '151/168.75', alignment: 'right' },
-    } + params.keyboard.backspaceButton.params,
+    (
+      if params.keyboard.usePCLayout then
+      {
+        size:
+          { width: '225/1125' },
+        bounds:
+          { width: '200/225', alignment: 'right' },
+      }
+      else
+      {
+        size:
+          { width: '168.75/1125' },
+        bounds:
+          { width: '151/168.75', alignment: 'right' },
+      }
+    )
+    + params.keyboard.backspaceButton.params,
   )
 
   // Fourth Row
@@ -343,7 +357,7 @@ local newKeyLayout(isDark=false, isPortrait=true) =
     + basicStyle.newAlphabeticHintBackgroundStyle(isDark, { cornerRadius: 10 })
     + newKeyLayout(isDark, isPortrait)
     + basicStyle.newEnterButtonForegroundStyle(isDark, params.keyboard.enterButton.params)
-    + basicStyle.newCommitCandidateForegroundStyle(isDark, { text: '选定' })
+    + basicStyle.newCommitCandidateForegroundStyle(isDark, { text: '$rimeCandidate' })
     // Notifications
     + basicStyle.returnKeyboardTypeChangedNotification
     + basicStyle.preeditChangedForEnterButtonNotification

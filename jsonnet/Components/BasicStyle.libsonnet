@@ -32,6 +32,18 @@ local newKeyboardBackgroundStyle(isDark=false, params={}) = {
   } + params, isDark),
 };
 
+// 浮动键盘按钮背景样式
+local floatingKeyboardButtonBackgroundStyleName = 'floatingKeyboardButtonBackgroundStyle';
+local newFloatingKeyboardButtonBackgroundStyle(isDark=false, params={}) = {
+  [floatingKeyboardButtonBackgroundStyleName]: utils.newGeometryStyle({
+    normalColor: colors.systemButtonBackgroundColor,
+    highlightColor: colors.systemButtonHighlightedBackgroundColor,
+    cornerRadius: buttonCornerRadius,
+    normalLowerEdgeColor: colors.lowerEdgeOfButtonNormalColor,
+    highlightLowerEdgeColor: colors.lowerEdgeOfButtonHighlightColor,
+  } + params, isDark),
+};
+
 // 字母键按钮背景样式
 local alphabeticButtonBackgroundStyleName = 'alphabeticButtonBackgroundStyle';
 local newAlphabeticButtonBackgroundStyle(isDark=false, params={}) = {
@@ -171,6 +183,55 @@ local newImageSystemButtonForegroundStyle(isDark=false, params={}) =
     fontSize: fonts.systemButtonImageFontSize,
   } + params, isDark);
 
+
+local newFloatingKeyboardButton(name, isDark=false, params={}) =
+  {
+    [name]: utils.newBackgroundStyle(style=floatingKeyboardButtonBackgroundStyleName)
+            +
+            {
+              foregroundStyle: [
+                name + 'ForegroundStyleSystemImage',
+                name + 'ForegroundStyleText',
+              ],
+            }
+            + utils.extractProperties(
+              params,
+              [
+                'size',
+                'action',
+              ]
+            ),
+    [name + 'ForegroundStyleSystemImage']: utils.newSystemImageStyle({
+      normalColor: colors.systemButtonForegroundColor,
+      highlightColor: colors.systemButtonHighlightedForegroundColor,
+      fontSize: fonts.systemButtonImageFontSize,
+      center: { y: 0.4 }
+    } + params, isDark),
+    [name + 'ForegroundStyleText']: utils.newTextStyle({
+      normalColor: colors.systemButtonForegroundColor,
+      highlightColor: colors.systemButtonHighlightedForegroundColor,
+      fontSize: fonts.systemButtonTextFontSize,
+      center: { y: 0.7 }
+    } + params, isDark),
+  };
+
+local newToolbarButton(name, isDark=false, params={}) =
+  {
+    [name]: utils.newForegroundStyle(style=name + 'ForegroundStyle')
+            + utils.extractProperties(
+              params,
+              [
+                'action',
+                'size',
+              ]
+            ),
+    [name + 'ForegroundStyle']:
+      utils.newSystemImageStyle({
+        normalColor: colors.toolbarButtonForegroundColor,
+        highlightColor: colors.toolbarButtonHighlightedForegroundColor,
+        fontSize: fonts.toolbarButtonImageFontSize,
+      } + params, isDark),
+  };
 
 local newAlphabeticButton(name, isDark=false, params={}, needHint=true) =
   {
@@ -329,6 +390,9 @@ local newCommitCandidateForegroundStyle(isDark=false, params={}) = {
   keyboardBackgroundStyleName: keyboardBackgroundStyleName,
   newKeyboardBackgroundStyle: newKeyboardBackgroundStyle,
 
+  floatingKeyboardButtonBackgroundStyleName: floatingKeyboardButtonBackgroundStyleName,
+  newFloatingKeyboardButtonBackgroundStyle: newFloatingKeyboardButtonBackgroundStyle,
+
   alphabeticButtonBackgroundStyleName: alphabeticButtonBackgroundStyleName,
   newAlphabeticButtonBackgroundStyle: newAlphabeticButtonBackgroundStyle,
 
@@ -352,6 +416,9 @@ local newCommitCandidateForegroundStyle(isDark=false, params={}) = {
 
   newTextSystemButtonForegroundStyle: newTextSystemButtonForegroundStyle,
   newImageSystemButtonForegroundStyle: newImageSystemButtonForegroundStyle,
+
+  newFloatingKeyboardButton: newFloatingKeyboardButton,
+  newToolbarButton: newToolbarButton,
 
   newAlphabeticButton: newAlphabeticButton,
 

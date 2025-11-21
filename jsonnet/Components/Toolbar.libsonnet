@@ -198,11 +198,134 @@ local newVerticalCandidateBackspaceButtonStyle(isDark) = {
 };
 
 
+local toolbarKeyboard = {
+  toolbarMenuButton: {
+    name: 'toolbarMenuButton',
+    params: {
+      action: { floatKeyboardType: 'panel', },
+      systemImageName: 'hexagon.righthalf.filled',
+    },
+  },
+  toolbarDismissButton: {
+    name: 'toolbarDismissButton',
+    params: {
+      action: 'dismissKeyboard',
+      systemImageName: 'chevron.down',
+    },
+  },
+  toolbarPerformanceButton: {
+    name: 'toolbarPerformanceButton',
+    params: {
+      action: { shortcut: '#keyboardPerformance' },
+      systemImageName: 'speedometer',
+    },
+  },
+  toolbarPhraseButton: {
+    name: 'toolbarPhraseButton',
+    params: {
+      action: { shortcut: '#showPhraseView' },
+      systemImageName: 'heart',
+    },
+  },
+  toolbarScriptButton: {
+    name: 'toolbarScriptButton',
+    params: {
+      action: { shortcut: '#toggleScriptView' },
+      systemImageName: 'apple.terminal',
+    },
+  },
+  toolbarClipboardButton: {
+    name: 'toolbarClipboardButton',
+    params: {
+      action: { shortcut: '#showPasteboardView' },
+      systemImageName: 'clipboard',
+    },
+  },
+  toolbarRimeSwitcherButton: {
+    name: 'toolbarRimeSwitcherButton',
+    params: {
+      action: { shortcut: '#方案切换' },
+      systemImageName: 'switch.2',
+    },
+  },
+};
+
+local toolbarKeyboardLayout = [
+  {
+    HStack: {
+      subviews: [
+        {
+          Cell: toolbarKeyboard.toolbarMenuButton.name,
+        },
+        {
+          Cell: toolbarKeyboard.toolbarPerformanceButton.name,
+        },
+        {
+          Cell: toolbarKeyboard.toolbarRimeSwitcherButton.name,
+        },
+        {
+          Cell: toolbarKeyboard.toolbarScriptButton.name,
+        },
+        {
+          Cell: toolbarKeyboard.toolbarPhraseButton.name,
+        },
+        {
+          Cell: toolbarKeyboard.toolbarClipboardButton.name,
+        },
+        {
+          Cell: toolbarKeyboard.toolbarDismissButton.name,
+        },
+      ],
+    },
+  },
+];
+
+local newButtons(isDark=false) =
+  basicStyle.newToolbarButton(
+    toolbarKeyboard.toolbarMenuButton.name,
+    isDark,
+    toolbarKeyboard.toolbarMenuButton.params,
+  )
+  + basicStyle.newToolbarButton(
+    toolbarKeyboard.toolbarPerformanceButton.name,
+    isDark,
+    toolbarKeyboard.toolbarPerformanceButton.params,
+  )
+  + basicStyle.newToolbarButton(
+    toolbarKeyboard.toolbarRimeSwitcherButton.name,
+    isDark,
+    toolbarKeyboard.toolbarRimeSwitcherButton.params,
+  )
+  + basicStyle.newToolbarButton(
+    toolbarKeyboard.toolbarScriptButton.name,
+    isDark,
+    toolbarKeyboard.toolbarScriptButton.params,
+  )
+  + basicStyle.newToolbarButton(
+    toolbarKeyboard.toolbarPhraseButton.name,
+    isDark,
+    toolbarKeyboard.toolbarPhraseButton.params,
+  )
+  + basicStyle.newToolbarButton(
+    toolbarKeyboard.toolbarClipboardButton.name,
+    isDark,
+    toolbarKeyboard.toolbarClipboardButton.params,
+  )
+  + basicStyle.newToolbarButton(
+    toolbarKeyboard.toolbarDismissButton.name,
+    isDark,
+    toolbarKeyboard.toolbarDismissButton.params,
+  );
+
+
 local newToolbar(isDark=false, params={}) =
   {
     toolbarHeight: keyboardParams.toolbar.height,
-    toolbarStyle: utils.newBackgroundStyle(style=toolbarBackgroundStyleName),
-    toolbarLayout: {},
+    toolbarStyle: {
+             insets: keyboardParams.toolbar.insets,
+           }
+           + utils.newBackgroundStyle(style=toolbarBackgroundStyleName),
+    toolbarLayout: toolbarKeyboardLayout,
     horizontalCandidatesStyle:
       utils.extractProperties(keyboardParams.horizontalCandidateStyle + params, ['insets'])
       {
@@ -216,13 +339,13 @@ local newToolbar(isDark=false, params={}) =
       },
     verticalCandidatesLayout: verticalCandidatesLayout,
     candidateContextMenu: [
-      // TODO: 长按候选字菜单
-      // {
-      //   name: '空格',
-      //   action: 'space',
-      // },
+      {
+        name: '复制',
+        action: '#copy',
+      },
     ],
   }
+  + newButtons(isDark)
   + newHorizontalCandidatesCollectionView(isDark)
   + newExpandButton(isDark)
   + newVerticalCandidateCollectionStyle(isDark)
