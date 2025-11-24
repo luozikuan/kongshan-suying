@@ -244,7 +244,7 @@ local toolbarKeyboard = {
   toolbarRimeSwitcherButton: {
     name: 'toolbarRimeSwitcherButton',
     params: {
-      action: { shortcut: '#方案切换' },
+      action: { shortcut: '#RimeSwitcher' },
       systemImageName: 'switch.2',
     },
   },

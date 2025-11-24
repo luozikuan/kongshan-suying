@@ -18,7 +18,7 @@ local keyboard = {
   switcherButton: {
     name: 'switcherButton',
     params: {
-      action: { shortcut: '#RimeSwitcher' },
+      action: { shortcut: '#方案切换' },
       systemImageName: 'switch.2',
       text: '方案切换'
     },
