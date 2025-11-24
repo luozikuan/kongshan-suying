@@ -51,9 +51,9 @@ local newButtonAnimation() = {
   [buttonAnimationName]: {
     animationType: 'scale',
     isAutoReverse: true,
-    scale: 0.95,
-    pressDuration: 0.85,
-    releaseDuration: 0.1,
+    scale: 0.87,
+    pressDuration: 60,
+    releaseDuration: 80,
   },
 };
 
@@ -164,6 +164,24 @@ local asciiModeButtonForegroundStyle = [
     conditionKey: 'rime$ascii_mode',
     conditionValue: true,
   },
+];
+
+local spaceButtonForegroundStyleName = 'spaceButtonForegroundStyle';
+
+local spaceButtonRimeSchemaForegroundStyleName = 'spaceButtonRimeSchemaForegroundStyle';
+local newSpaceButtonRimeSchemaForegroundStyle(isDark=false) = {
+  [spaceButtonRimeSchemaForegroundStyleName]: utils.newTextStyle({
+    text: '$rimeSchemaName',
+    fontSize: 8,
+    center: { x: 0.17, y: 0.2 },
+    normalColor: colors.labelColor.secondary,
+    highlightColor: colors.labelColor.secondary,
+  }, isDark),
+};
+
+local spaceButtonForegroundStyle = [
+  spaceButtonForegroundStyleName,
+  spaceButtonRimeSchemaForegroundStyleName,
 ];
 
 // 蓝色功能键按钮背景样式
@@ -397,6 +415,62 @@ local newSystemButton(name, isDark=false, params={}) =
     ),
   };
 
+local newSpaceButton(name, isDark=false, params={}) =
+  {
+    [name]: utils.newBackgroundStyle(style=alphabeticButtonBackgroundStyleName)
+            + (
+              if std.objectHas(params, 'foregroundStyle') then
+                { foregroundStyle: params.foregroundStyle }
+              else
+                utils.newForegroundStyle(style=name + 'ForegroundStyle')
+            )
+            + (
+              if std.objectHas(params, 'uppercasedStateAction') then
+                utils.newForegroundStyle('uppercasedStateForegroundStyle', name + 'UppercaseForegroundStyle')
+              else {}
+            )
+            + utils.newAnimation(animation=[buttonAnimationName])
+            + utils.extractProperties(
+              params,
+              [
+                'size',
+                'bounds',
+                'action',
+                'uppercasedStateAction',
+                'repeatAction',
+                'preeditStateAction',
+                'swipeUpAction',
+                'swipeDownAction',
+                'swipeLeftAction',
+                'swipeRightAction',
+                'capsLockedStateForegroundStyle',
+                'preeditStateForegroundStyle',
+                'notification',
+              ]
+            ),
+  }
+  + {
+    [spaceButtonForegroundStyleName]: newAlphabeticButtonForegroundStyle(isDark, params),
+    [spaceButtonRimeSchemaForegroundStyleName]: newSpaceButtonRimeSchemaForegroundStyle(isDark),
+  }
+  + (
+    if std.objectHas(params, 'uppercasedStateAction') then
+      {
+        [name + 'UppercaseForegroundStyle']: newAlphabeticButtonUppercaseForegroundStyle(isDark, params) + getKeyboardActionText(params, 'uppercasedStateAction'),
+      }
+    else {}
+  );
+
+
+local rimeSchemaChangedNotification = {
+  rimeSchemaChangedNotification: {
+    notificationType: 'rime',
+    rimeNotificationType: 'schemaChanged',
+    backgroundStyle: alphabeticButtonBackgroundStyleName,
+    foregroundStyle: spaceButtonForegroundStyle,
+  },
+};
+
 
 local asciiModeChangedNotification = {
   asciiModeChangedNotification: {
@@ -484,6 +558,11 @@ local newCommitCandidateForegroundStyle(isDark=false, params={}) = {
 
   newSystemButton: newSystemButton,
 
+  newSpaceButton: newSpaceButton,
+  spaceButtonForegroundStyle: spaceButtonForegroundStyle,
+  spaceButtonRimeSchemaForegroundStyleName: spaceButtonRimeSchemaForegroundStyleName,
+  newSpaceButtonRimeSchemaForegroundStyle: newSpaceButtonRimeSchemaForegroundStyle,
+
   asciiModeButtonForegroundStyleName: asciiModeButtonForegroundStyleName,
   newAsciiModeButtonForegroundStyle: newAsciiModeButtonForegroundStyle,
   asciiModeButtonEnglishStateForegroundStyleName: asciiModeButtonEnglishStateForegroundStyleName,
@@ -496,6 +575,7 @@ local newCommitCandidateForegroundStyle(isDark=false, params={}) = {
   newCommitCandidateForegroundStyle: newCommitCandidateForegroundStyle,
 
   // notification
+  rimeSchemaChangedNotification: rimeSchemaChangedNotification,
   asciiModeChangedNotification: asciiModeChangedNotification,
   returnKeyboardTypeChangedNotification: returnKeyboardTypeChangedNotification,
   preeditChangedForEnterButtonNotification: preeditChangedForEnterButtonNotification,
