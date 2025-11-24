@@ -18,122 +18,119 @@ local chineseSymbolicOffset = {
   center: { x: 0.65 },
 };
 
-// 标准26键布局
-local alphabeticKeyboardLayout = {
+local symbols = {
+  name: 'symbols',
+  values: {
+    symbols: [
+      '+', '-', { label: '×', action: { character: "*" } }, '/', '=', '(', ')',
+      '%', '^', '&', '!', '>', '<', '{', '}', '[', ']', '~',
+    ],
+  },
+};
+
+local collection = {
+  name: 'collection',
+  params: {
+    type: 'symbols',
+    size: { height: '3/4' },
+    dataSource: symbols.name,
+    useRimeEngine: false,
+  }
+};
+
+local numericSideColumnStyleName = 'numericSideColumnStyle';
+local numericMiddleColumnStyleName = 'numericMiddleColumnStyle';
+
+local numericKeyboardLayout = {
+  [numericSideColumnStyleName]: {
+    width: '29/183',
+  },
+  [numericMiddleColumnStyleName]: {
+    width: '125/549',
+  },
   keyboardLayout: [
     {
-      HStack: {
+      VStack: {
+        style: numericSideColumnStyleName,
+        subviews: [
+          {
+            Cell: collection.name,
+          },
+          {
+            Cell: params.keyboard.goBackButton.name,
+          },
+        ],
+      },
+    },
+    {
+      VStack: {
+        style: numericMiddleColumnStyleName,
         subviews: [
           {
             Cell: params.keyboard.oneButton.name,
           },
           {
-            Cell: params.keyboard.twoButton.name,
-          },
-          {
-            Cell: params.keyboard.threeButton.name,
-          },
-          {
             Cell: params.keyboard.fourButton.name,
-          },
-          {
-            Cell: params.keyboard.fiveButton.name,
-          },
-          {
-            Cell: params.keyboard.sixButton.name,
           },
           {
             Cell: params.keyboard.sevenButton.name,
           },
           {
+            Cell: params.keyboard.symbolicButton.name,
+          }
+        ],
+      },
+    },
+    {
+      VStack: {
+        style: numericMiddleColumnStyleName,
+        subviews: [
+          {
+            Cell: params.keyboard.twoButton.name,
+          },
+          {
+            Cell: params.keyboard.fiveButton.name,
+          },
+          {
             Cell: params.keyboard.eightButton.name,
+          },
+          {
+            Cell: params.keyboard.zeroButton.name,
+          }
+        ],
+      },
+    },
+    {
+      VStack: {
+        style: numericMiddleColumnStyleName,
+        subviews: [
+          {
+            Cell: params.keyboard.threeButton.name,
+          },
+          {
+            Cell: params.keyboard.sixButton.name,
           },
           {
             Cell: params.keyboard.nineButton.name,
           },
           {
-            Cell: params.keyboard.zeroButton.name,
-          },
+            Cell: params.keyboard.dotButton.name,
+          }
         ],
       },
     },
     {
-      HStack: {
+      VStack: {
+        style: numericSideColumnStyleName,
         subviews: [
-          {
-            Cell: params.keyboard.hyphenButton.name,
-          },
-          {
-            Cell: params.keyboard.forwardSlashButton.name,
-          },
-          {
-            Cell: params.keyboard.chineseColonButton.name,
-          },
-          {
-            Cell: params.keyboard.chineseSemicolonButton.name,
-          },
-          {
-            Cell: params.keyboard.leftParenthesisButton.name,
-          },
-          {
-            Cell: params.keyboard.rightParenthesisButton.name,
-          },
-          {
-            Cell: params.keyboard.dollarButton.name,
-          },
-          {
-            Cell: params.keyboard.atButton.name,
-          },
-          {
-            Cell: params.keyboard.leftCurlyQuoteButton.name,
-          },
-          {
-            Cell: params.keyboard.rightCurlyQuoteButton.name,
-          },
-        ],
-      },
-    },
-    {
-      HStack: {
-        subviews: [
-          {
-            Cell: params.keyboard.symbolicButton.name,
-          },
-          {
-            Cell: params.keyboard.chinesePeriodButton.name,
-          },
-          {
-            Cell: params.keyboard.chineseCommaButton.name,
-          },
-          {
-            Cell: params.keyboard.ideographicCommaButton.name,
-          },
-          {
-            Cell: params.keyboard.hashButton.name,
-          },
-          {
-            Cell: params.keyboard.chineseQuestionMarkButton.name,
-          },
-          {
-            Cell: params.keyboard.chineseExclamationMarkButton.name,
-          },
-          {
-            Cell: params.keyboard.periodButton.name,
-          },
           {
             Cell: params.keyboard.backspaceButton.name,
           },
-        ],
-      },
-    },
-    {
-      HStack: {
-        subviews: [
           {
-            Cell: params.keyboard.pinyinButton.name,
+            Cell: params.keyboard.numericSpaceButton.name,
           },
           {
-            Cell: params.keyboard.spaceButton.name,
+            Cell: params.keyboard.numericColonButton.name,
           },
           {
             Cell: params.keyboard.enterButton.name,
@@ -153,8 +150,8 @@ local newKeyLayout(isDark=false, isPortrait=false) =
     keyboardHeight: keyboardHeight,
     keyboardStyle: utils.newBackgroundStyle(style=basicStyle.keyboardBackgroundStyleName),
   }
-  + alphabeticKeyboardLayout
-  // First Row
+  + numericKeyboardLayout
+  // number Buttons
   + basicStyle.newAlphabeticButton(
     params.keyboard.oneButton.name,
     isDark,
@@ -206,163 +203,52 @@ local newKeyLayout(isDark=false, isPortrait=false) =
     portraitNormalButtonSize + params.keyboard.zeroButton.params + hintStyle
   )
 
-  // Second Row
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.hyphenButton.name,
+  // First Column
+  + basicStyle.newSymbolicCollection(
+    collection.name,
     isDark,
-    portraitNormalButtonSize + params.keyboard.hyphenButton.params + hintStyle,
+    collection.params
   )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.forwardSlashButton.name,
+  + symbols.values
+  + basicStyle.newSystemButton(
+    params.keyboard.goBackButton.name,
     isDark,
-    portraitNormalButtonSize + params.keyboard.forwardSlashButton.params + hintStyle
+    params.keyboard.goBackButton.params
   )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.chineseColonButton.name,
-    isDark,
-    portraitNormalButtonSize
-    + chineseSymbolicOffset
-    + params.keyboard.chineseColonButton.params
-    + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.chineseSemicolonButton.name,
-    isDark,
-    portraitNormalButtonSize
-    + chineseSymbolicOffset
-    + params.keyboard.chineseSemicolonButton.params
-    + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.leftParenthesisButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.leftParenthesisButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.rightParenthesisButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.rightParenthesisButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.dollarButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.dollarButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.atButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.atButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.leftCurlyQuoteButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.leftCurlyQuoteButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.rightCurlyQuoteButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.rightCurlyQuoteButton.params + hintStyle
-  )
-
-  // Third Row
+  // Second Column
   + basicStyle.newSystemButton(
     params.keyboard.symbolicButton.name,
     isDark,
-    {
-      size:
-        { width: '168.75/1125' },
-      bounds:
-        { width: '151/168.75', alignment: 'left' },
-    }
-    + params.keyboard.symbolicButton.params
+    params.keyboard.symbolicButton.params
   )
 
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.chineseQuestionMarkButton.name,
+  // Fourth Column
+  + basicStyle.newSystemButton(
+    params.keyboard.dotButton.name,
     isDark,
-    portraitNormalButtonSize
-    + chineseSymbolicOffset
-    + params.keyboard.chineseQuestionMarkButton.params
-    + hintStyle
+    params.keyboard.dotButton.params
   )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.chineseExclamationMarkButton.name,
-    isDark,
-    portraitNormalButtonSize
-    + chineseSymbolicOffset
-    + params.keyboard.chineseExclamationMarkButton.params
-    + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.hashButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.hashButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.ideographicCommaButton.name,
-    isDark,
-    portraitNormalButtonSize
-    + chineseSymbolicOffset
-    + params.keyboard.ideographicCommaButton.params
-    + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.chineseCommaButton.name,
-    isDark,
-    portraitNormalButtonSize
-    + chineseSymbolicOffset
-    + params.keyboard.chineseCommaButton.params
-    + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.chinesePeriodButton.name,
-    isDark,
-    portraitNormalButtonSize
-    + chineseSymbolicOffset
-    + params.keyboard.chinesePeriodButton.params
-    + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.periodButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.periodButton.params + hintStyle
-  )
+
+  // Last Column
   + basicStyle.newSystemButton(
     params.keyboard.backspaceButton.name,
     isDark,
-    {
-      size:
-        { width: '168.75/1125' },
-      bounds:
-        { width: '151/168.75', alignment: 'right' },
-    } + params.keyboard.backspaceButton.params,
+    params.keyboard.backspaceButton.params,
   )
-
-  // Fourth Row
   + basicStyle.newSystemButton(
-    params.keyboard.pinyinButton.name,
+    params.keyboard.numericSpaceButton.name,
     isDark,
-    {
-      size:
-        { width: '280/1125' },
-    } + params.keyboard.pinyinButton.params
+    params.keyboard.numericSpaceButton.params
   )
-
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.spaceButton.name,
+  + basicStyle.newSystemButton(
+    params.keyboard.numericColonButton.name,
     isDark,
-    params.keyboard.spaceButton.params,
-    needHint=false
+    params.keyboard.numericColonButton.params
   )
-
   + basicStyle.newSystemButton(
     params.keyboard.enterButton.name,
     isDark,
-    {
-      size: { width: '280/1125' },
-      backgroundStyle: basicStyle.enterButtonBackgroundStyle,
-      foregroundStyle: basicStyle.enterButtonForegroundStyle,
-    } + params.keyboard.enterButton.params
+    params.keyboard.enterButton.params
   );
 
 local extraParams = {

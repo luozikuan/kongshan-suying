@@ -378,7 +378,6 @@ local newSystemButton(name, isDark=false, params={}) =
                 { backgroundStyle: params.backgroundStyle }
               else
                 utils.newBackgroundStyle(style=systemButtonBackgroundStyleName)
-
             )
             + (
               if std.objectHas(params, 'foregroundStyle') then
@@ -460,6 +459,30 @@ local newSpaceButton(name, isDark=false, params={}) =
       }
     else {}
   );
+
+local newSymbolicCollection(name, isDark=false, params={}) =
+  {
+    [name]: utils.newBackgroundStyle(style=systemButtonBackgroundStyleName)
+            + { cellStyle: name + 'CellStyle' }
+            + utils.extractProperties(
+              params,
+              [
+                'type',
+                'size',
+                'insets',
+                'dataSource',
+                'useRimeEngine',
+              ]
+            ),
+    [name + 'CellStyle']:
+            // utils.newBackgroundStyle(style=systemButtonBackgroundStyleName)+
+            utils.newForegroundStyle(style=name + 'CellForegroundStyle'),
+    [name + 'CellForegroundStyle']: utils.newTextStyle({
+      normalColor: colors.systemButtonForegroundColor,
+      highlightColor: colors.systemButtonHighlightedForegroundColor,
+      fontSize: fonts.systemButtonTextFontSize,
+    } + params, isDark),
+  };
 
 
 local rimeSchemaChangedNotification = {
@@ -557,6 +580,8 @@ local newCommitCandidateForegroundStyle(isDark=false, params={}) = {
   newAlphabeticButton: newAlphabeticButton,
 
   newSystemButton: newSystemButton,
+
+  newSymbolicCollection: newSymbolicCollection,
 
   newSpaceButton: newSpaceButton,
   spaceButtonForegroundStyle: spaceButtonForegroundStyle,

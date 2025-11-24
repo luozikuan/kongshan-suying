@@ -456,6 +456,15 @@ local fonts = import 'Fonts.libsonnet';
       },
     },
 
+    // 数字键盘空格
+    numericSpaceButton: {
+      name: 'numericSpaceButton',
+      params: {
+        action: 'space',
+        systemImageName: 'space',
+      },
+    },
+
     tabButton: {
       name: 'tabButton',
       params: {
@@ -551,6 +560,14 @@ local fonts = import 'Fonts.libsonnet';
       },
     },
 
+    goBackButton: {
+      name: 'goBackButton',
+      params: {
+        action: 'returnLastKeyboard',
+        systemImageName: 'arrow.uturn.backward',
+      },
+    },
+
     // 标点符号键
 
     // 连接号(减号)
@@ -574,6 +591,13 @@ local fonts = import 'Fonts.libsonnet';
       name: 'colonButton',
       params: {
         action: { character: ':' },
+      },
+    },
+    // 数字键盘冒号
+    numericColonButton: {
+      name: 'numericColonButton',
+      params: {
+        action: { symbol: ':' },
       },
     },
 
@@ -699,6 +723,7 @@ local fonts = import 'Fonts.libsonnet';
         swipeUpAction: { character: ',' },
       },
     },
+
     // 顿号(只在中文中使用)
     ideographicCommaButton: {
       name: 'ideographicCommaButton',
@@ -970,6 +995,14 @@ local fonts = import 'Fonts.libsonnet';
       name: 'ampersandButton',
       params: {
         action: { symbol: '&' },
+      },
+    },
+
+    // . 小数点符号
+    dotButton: {
+      name: 'dotButton',
+      params: {
+        action: { symbol: '.' },
       },
     },
 
