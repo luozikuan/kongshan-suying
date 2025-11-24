@@ -450,6 +450,7 @@ local fonts = import 'Fonts.libsonnet';
         action: 'space',
         systemImageName: 'space',
         notification: [
+          'rimeSchemaChangedNotification',
           'preeditChangedForSpaceButtonNotification',
         ],
       },

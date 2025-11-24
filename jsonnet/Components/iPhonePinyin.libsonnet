@@ -331,11 +331,13 @@ local newKeyLayout(isDark=false, isPortrait=true) =
     isDark,
     portraitNormalButtonSize + params.keyboard.commaButton.params
   )
-  + basicStyle.newAlphabeticButton(
+  + basicStyle.newSpaceButton(
     params.keyboard.spaceButton.name,
     isDark,
-    params.keyboard.spaceButton.params,
-    needHint=false
+    {
+      foregroundStyle: basicStyle.spaceButtonForegroundStyle,
+    }
+    + params.keyboard.spaceButton.params
   )
   + basicStyle.newSystemButton(
     params.keyboard.asciiModeButton.name,
@@ -374,11 +376,13 @@ local newKeyLayout(isDark=false, isPortrait=true) =
     + basicStyle.newAlphabeticHintBackgroundStyle(isDark, { cornerRadius: 10 })
     + basicStyle.newButtonAnimation()
     + newKeyLayout(isDark, isPortrait)
+    + basicStyle.newSpaceButtonRimeSchemaForegroundStyle(isDark)
     + basicStyle.newAsciiModeButtonForegroundStyle(isDark, params.keyboard.asciiModeButton.params)
     + basicStyle.newAsciiModeButtonEnglishStateForegroundStyle(isDark, params.keyboard.asciiModeButton.params)
     + basicStyle.newEnterButtonForegroundStyle(isDark, params.keyboard.enterButton.params)
     + basicStyle.newCommitCandidateForegroundStyle(isDark, { text: '$rimeCandidate' })
     // Notifications
+    + basicStyle.rimeSchemaChangedNotification
     // + basicStyle.asciiModeChangedNotification // 这个通知要或不要，没有看出区别
     + basicStyle.returnKeyboardTypeChangedNotification
     + basicStyle.preeditChangedForEnterButtonNotification
