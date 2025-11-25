@@ -480,6 +480,7 @@ local fonts = import 'Fonts.libsonnet';
         repeatAction: 'backspace',
         systemImageName: 'delete.left',
         highlightSystemImageName: 'delete.left.fill',
+        swipeUpAction: { shortcut: '#重输'},
       },
     },
 
@@ -519,6 +520,7 @@ local fonts = import 'Fonts.libsonnet';
       name: 'enterButton',
       params: {
         action: 'enter',
+        swipeDownAction: { shortcut: '#换行' },
         text: '$returnKeyType',
         notification: [
           'returnKeyTypeChangedNotification',
