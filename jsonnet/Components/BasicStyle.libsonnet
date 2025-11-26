@@ -1,9 +1,15 @@
 local colors = import '../Constants/Colors.libsonnet';
 local fonts = import '../Constants/Fonts.libsonnet';
 local keyboardParams = import '../Constants/Keyboard.libsonnet';
+local config = import '../Constants/Config.libsonnet';
 local utils = import 'Utils.libsonnet';
 
 local buttonCornerRadius = 8.5;
+
+local swipeTextCenter = {
+  up: { x: 0.28, y: 0.28 },
+  down: { x: 0.72, y: 0.28 },
+};
 
 local getKeyboardActionText(params={}, key='action', isUppercase=false) =
   if std.objectHas(params, 'text') then
@@ -83,6 +89,21 @@ local newAlphabeticButtonForegroundStyle(isDark=false, params={}) =
       normalColor: colors.standardButtonForegroundColor,
       highlightColor: colors.standardButtonHighlightedForegroundColor,
       fontSize: fonts.standardButtonTextFontSize,
+    } + params, isDark) + getKeyboardActionText(params);
+
+// 字母键按钮上下划提示前景样式
+local newAlphabeticButtonAlternativeForegroundStyle(isDark=false, params={}) =
+  if std.objectHas(params, 'systemImageName') then
+    utils.newSystemImageStyle({
+      normalColor: colors.alternativeForegroundColor,
+      highlightColor: colors.alternativeHighlightedForegroundColor,
+      fontSize: fonts.alternativeImageFontSize,
+    } + params, isDark)
+  else
+    utils.newTextStyle({
+      normalColor: colors.alternativeForegroundColor,
+      highlightColor: colors.alternativeHighlightedForegroundColor,
+      fontSize: fonts.alternativeTextFontSize,
     } + params, isDark) + getKeyboardActionText(params);
 
 // 大写字母键按钮前景样式
@@ -169,20 +190,30 @@ local asciiModeButtonForegroundStyle = [
 local spaceButtonForegroundStyleName = 'spaceButtonForegroundStyle';
 
 local spaceButtonRimeSchemaForegroundStyleName = 'spaceButtonRimeSchemaForegroundStyle';
-local newSpaceButtonRimeSchemaForegroundStyle(isDark=false) = {
-  [spaceButtonRimeSchemaForegroundStyleName]: utils.newTextStyle({
-    text: '$rimeSchemaName',
-    fontSize: 8,
-    center: { x: 0.17, y: 0.2 },
-    normalColor: colors.labelColor.secondary,
-    highlightColor: colors.labelColor.secondary,
-  }, isDark),
-};
+local newSpaceButtonRimeSchemaForegroundStyle(isDark=false) =
+  if config.spaceButtonShowSchema then
+  {
+    [spaceButtonRimeSchemaForegroundStyleName]: utils.newTextStyle({
+      text: '$rimeSchemaName',
+      fontSize: fonts.alternativeTextFontSize,
+      center: { x: 0.17, y: 0.2 },
+      normalColor: colors.alternativeForegroundColor,
+      highlightColor: colors.alternativeHighlightedForegroundColor,
+    }, isDark),
+  }
+  else
+  {};
 
 local spaceButtonForegroundStyle = [
   spaceButtonForegroundStyleName,
-  spaceButtonRimeSchemaForegroundStyleName,
-];
+]
++ (
+  if config.spaceButtonShowSchema then
+    [
+      spaceButtonRimeSchemaForegroundStyleName,
+    ]
+  else []
+  );
 
 // 蓝色功能键按钮背景样式
 local blueButtonBackgroundStyleName = 'blueButtonBackgroundStyle';
@@ -298,25 +329,35 @@ local newToolbarButton(name, isDark=false, params={}) =
   };
 
 local newAlphabeticButton(name, isDark=false, params={}, needHint=false) =
+  local swipeUpStyle = if std.objectHas(params, 'swipeUp') && config.showSwipeUpText then [name + 'SwipeUpForegroundStyle'] else [];
+  local swipeDownStyle = if std.objectHas(params, 'swipeDown') && config.showSwipeDownText then [name + 'SwipeDownForegroundStyle'] else [];
   {
     [name]: utils.newBackgroundStyle(style=alphabeticButtonBackgroundStyleName)
             + (
               if std.objectHas(params, 'foregroundStyleName') then
                 { foregroundStyle: params.foregroundStyleName }
               else
-                utils.newForegroundStyle(style=name + 'ForegroundStyle')
+                utils.newForegroundStyle(style=[name + 'ForegroundStyle'] + swipeUpStyle + swipeDownStyle)
             )
             + (
               if std.objectHas(params, 'uppercasedStateAction') then
-                utils.newForegroundStyle('uppercasedStateForegroundStyle', name + 'UppercaseForegroundStyle')
+                utils.newForegroundStyle('uppercasedStateForegroundStyle', [name + 'UppercaseForegroundStyle'] + swipeUpStyle + swipeDownStyle)
               else {}
             )
             + (
               if needHint then
                 utils.newForegroundStyle('hintStyle', name + 'HintStyle')
-              else {
-
-              }
+              else {}
+            )
+            + (
+              if std.objectHas(params, 'swipeUp') then
+                { swipeUpAction: params.swipeUp.action }
+              else {}
+            )
+            + (
+              if std.objectHas(params, 'swipeDown') then
+                { swipeDownAction: params.swipeDown.action }
+              else {}
             )
             + utils.newAnimation(animation=[buttonAnimationName])
             + utils.extractProperties(
@@ -328,8 +369,6 @@ local newAlphabeticButton(name, isDark=false, params={}, needHint=false) =
                 'uppercasedStateAction',
                 'repeatAction',
                 'preeditStateAction',
-                'swipeUpAction',
-                'swipeDownAction',
                 'capsLockedStateForegroundStyle',
                 'preeditStateForegroundStyle',
                 'notification',
@@ -343,9 +382,24 @@ local newAlphabeticButton(name, isDark=false, params={}, needHint=false) =
       { [name + 'ForegroundStyle']: newAlphabeticButtonForegroundStyle(isDark, params) }
   )
   + (
+    if std.objectHas(params, 'swipeUp') && config.showSwipeUpText then
+      {
+        [name + 'SwipeUpForegroundStyle']: newAlphabeticButtonAlternativeForegroundStyle(isDark,
+          { center: swipeTextCenter.up } + params.swipeUp),
+      }
+    else {}
+  )
+  + (
+    if std.objectHas(params, 'swipeDown') && config.showSwipeDownText then
+      {
+        [name + 'SwipeDownForegroundStyle']: newAlphabeticButtonAlternativeForegroundStyle(isDark,
+          { center: swipeTextCenter.down } + params.swipeDown),
+      }
+    else {}
+  )
+  + (
     if std.objectHas(params, 'uppercasedStateAction') then
       {
-
         [name + 'UppercaseForegroundStyle']: newAlphabeticButtonUppercaseForegroundStyle(isDark, params) + getKeyboardActionText(params, 'uppercasedStateAction'),
       }
     else {}
@@ -444,8 +498,14 @@ local newSpaceButton(name, isDark=false, params={}) =
   }
   + {
     [spaceButtonForegroundStyleName]: newAlphabeticButtonForegroundStyle(isDark, params),
-    [spaceButtonRimeSchemaForegroundStyleName]: newSpaceButtonRimeSchemaForegroundStyle(isDark),
   }
+  + (
+    if config.spaceButtonShowSchema then
+      {
+        [spaceButtonRimeSchemaForegroundStyleName]: newSpaceButtonRimeSchemaForegroundStyle(isDark),
+      }
+    else {}
+  )
   + (
     if std.objectHas(params, 'uppercasedStateAction') then
       {
@@ -479,14 +539,18 @@ local newSymbolicCollection(name, isDark=false, params={}) =
   };
 
 
-local rimeSchemaChangedNotification = {
-  rimeSchemaChangedNotification: {
-    notificationType: 'rime',
-    rimeNotificationType: 'schemaChanged',
-    backgroundStyle: alphabeticButtonBackgroundStyleName,
-    foregroundStyle: spaceButtonForegroundStyle,
-  },
-};
+local rimeSchemaChangedNotification =
+  if config.spaceButtonShowSchema then
+  {
+    rimeSchemaChangedNotification: {
+      notificationType: 'rime',
+      rimeNotificationType: 'schemaChanged',
+      backgroundStyle: alphabeticButtonBackgroundStyleName,
+      foregroundStyle: spaceButtonForegroundStyle,
+    },
+  }
+  else
+  {};
 
 
 local asciiModeChangedNotification = {

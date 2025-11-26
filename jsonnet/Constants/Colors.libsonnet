@@ -47,6 +47,10 @@ local standardButtonForegroundColor = labelColor.primary;
 
 local standardButtonHighlightedForegroundColor = standardButtonForegroundColor;
 
+// 标准按键备用色，用于显示上下划提示等
+local alternativeForegroundColor = labelColor.secondary;
+local alternativeHighlightedForegroundColor = alternativeForegroundColor;
+
 // 标准按键阴影颜色
 local standardButtonShadowColor = {
   light: '#898A8D',
@@ -143,6 +147,8 @@ local candidateSeparatorColor = separatorColor;
   standardButtonHighlightedBackgroundColor: standardButtonHighlightedBackgroundColor,
   standardButtonForegroundColor: standardButtonForegroundColor,
   standardButtonHighlightedForegroundColor: standardButtonHighlightedForegroundColor,
+  alternativeForegroundColor: alternativeForegroundColor,
+  alternativeHighlightedForegroundColor: alternativeHighlightedForegroundColor,
   standardButtonShadowColor: standardButtonShadowColor,
   systemButtonBackgroundColor: systemButtonBackgroundColor,
   systemButtonHighlightedBackgroundColor: systemButtonHighlightedBackgroundColor,
