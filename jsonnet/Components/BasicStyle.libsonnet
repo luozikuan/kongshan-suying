@@ -1,7 +1,7 @@
 local colors = import '../Constants/Colors.libsonnet';
 local fonts = import '../Constants/Fonts.libsonnet';
 local keyboardParams = import '../Constants/Keyboard.libsonnet';
-local config = import '../Constants/Config.libsonnet';
+local settings = import '../Constants/Settings.libsonnet';
 local utils = import 'Utils.libsonnet';
 
 local buttonCornerRadius = 8.5;
@@ -191,7 +191,7 @@ local spaceButtonForegroundStyleName = 'spaceButtonForegroundStyle';
 
 local spaceButtonRimeSchemaForegroundStyleName = 'spaceButtonRimeSchemaForegroundStyle';
 local newSpaceButtonRimeSchemaForegroundStyle(isDark=false) =
-  if config.spaceButtonShowSchema then
+  if settings.spaceButtonShowSchema then
   {
     [spaceButtonRimeSchemaForegroundStyleName]: utils.newTextStyle({
       text: '$rimeSchemaName',
@@ -208,7 +208,7 @@ local spaceButtonForegroundStyle = [
   spaceButtonForegroundStyleName,
 ]
 + (
-  if config.spaceButtonShowSchema then
+  if settings.spaceButtonShowSchema then
     [
       spaceButtonRimeSchemaForegroundStyleName,
     ]
@@ -329,8 +329,8 @@ local newToolbarButton(name, isDark=false, params={}) =
   };
 
 local newAlphabeticButton(name, isDark=false, params={}, needHint=false) =
-  local swipeUpStyle = if std.objectHas(params, 'swipeUp') && config.showSwipeUpText then [name + 'SwipeUpForegroundStyle'] else [];
-  local swipeDownStyle = if std.objectHas(params, 'swipeDown') && config.showSwipeDownText then [name + 'SwipeDownForegroundStyle'] else [];
+  local swipeUpStyle = if std.objectHas(params, 'swipeUp') && settings.showSwipeUpText then [name + 'SwipeUpForegroundStyle'] else [];
+  local swipeDownStyle = if std.objectHas(params, 'swipeDown') && settings.showSwipeDownText then [name + 'SwipeDownForegroundStyle'] else [];
   {
     [name]: utils.newBackgroundStyle(style=alphabeticButtonBackgroundStyleName)
             + (
@@ -382,7 +382,7 @@ local newAlphabeticButton(name, isDark=false, params={}, needHint=false) =
       { [name + 'ForegroundStyle']: newAlphabeticButtonForegroundStyle(isDark, params) }
   )
   + (
-    if std.objectHas(params, 'swipeUp') && config.showSwipeUpText then
+    if std.objectHas(params, 'swipeUp') && settings.showSwipeUpText then
       {
         [name + 'SwipeUpForegroundStyle']: newAlphabeticButtonAlternativeForegroundStyle(isDark,
           { center: swipeTextCenter.up } + params.swipeUp),
@@ -390,7 +390,7 @@ local newAlphabeticButton(name, isDark=false, params={}, needHint=false) =
     else {}
   )
   + (
-    if std.objectHas(params, 'swipeDown') && config.showSwipeDownText then
+    if std.objectHas(params, 'swipeDown') && settings.showSwipeDownText then
       {
         [name + 'SwipeDownForegroundStyle']: newAlphabeticButtonAlternativeForegroundStyle(isDark,
           { center: swipeTextCenter.down } + params.swipeDown),
@@ -500,7 +500,7 @@ local newSpaceButton(name, isDark=false, params={}) =
     [spaceButtonForegroundStyleName]: newAlphabeticButtonForegroundStyle(isDark, params),
   }
   + (
-    if config.spaceButtonShowSchema then
+    if settings.spaceButtonShowSchema then
       {
         [spaceButtonRimeSchemaForegroundStyleName]: newSpaceButtonRimeSchemaForegroundStyle(isDark),
       }
@@ -540,7 +540,7 @@ local newSymbolicCollection(name, isDark=false, params={}) =
 
 
 local rimeSchemaChangedNotification =
-  if config.spaceButtonShowSchema then
+  if settings.spaceButtonShowSchema then
   {
     rimeSchemaChangedNotification: {
       notificationType: 'rime',

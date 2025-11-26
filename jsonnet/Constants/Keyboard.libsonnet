@@ -1,6 +1,6 @@
 local colors = import 'Colors.libsonnet';
 local fonts = import 'Fonts.libsonnet';
-local config = import 'Config.libsonnet';
+local settings = import '../Constants/Settings.libsonnet';
 
 {
   local root = self,
@@ -440,7 +440,7 @@ local config = import 'Config.libsonnet';
         notification: [
           'preeditChangedForSpaceButtonNotification',
         ] + (
-          if config.spaceButtonShowSchema then
+          if settings.spaceButtonShowSchema then
             ['rimeSchemaChangedNotification']
           else []
         ),
@@ -699,8 +699,7 @@ local config = import 'Config.libsonnet';
       name: 'commaButton',
       params: {
         action: { character: ',' },
-        swipeUp: { action: { character: '.' } },
-        foregroundStyleName: 'commaButtonForegroundStyle',
+        swipeUp: { action: { character: '.' }, text: '' },
       },
     },
     chinesePeriodButton: {

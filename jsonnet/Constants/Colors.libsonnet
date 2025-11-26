@@ -6,7 +6,7 @@ local labelColor = {
   },
   secondary: {
     light: '#3c3c4399',
-    dark: '#ebebf599',
+    dark: '#b6b7b9',
   },
   tertiary: {
     light: '#3c3c434d',

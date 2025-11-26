@@ -1,5 +1,5 @@
 local params = import '../Constants/Keyboard.libsonnet';
-local config = import '../Constants/Config.libsonnet';
+local settings = import '../Constants/Settings.libsonnet';
 local basicStyle = import 'BasicStyle.libsonnet';
 local preedit = import 'Preedit.libsonnet';
 local toolbar = import 'Toolbar.libsonnet';
@@ -238,7 +238,7 @@ local newKeyLayout(isDark=false, isPortrait=true) =
     params.keyboard.shiftButton.name,
     isDark,
     (
-      if config.usePCLayout then portraitNormalButtonSize else
+      if settings.usePCLayout then portraitNormalButtonSize else
       {
         size:
           { width: '168.75/1125' },
@@ -300,7 +300,7 @@ local newKeyLayout(isDark=false, isPortrait=true) =
     params.keyboard.backspaceButton.name,
     isDark,
     (
-      if config.usePCLayout then
+      if settings.usePCLayout then
       {
         size:
           { width: '225/1125' },

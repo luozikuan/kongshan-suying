@@ -7,5 +7,5 @@
 
   // 是否显示上下滑动提示
   showSwipeUpText: true,
-  showSwipeDownText: true,
+  showSwipeDownText: false,
 }
