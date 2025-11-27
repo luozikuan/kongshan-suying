@@ -26,6 +26,7 @@ zxcvbnm 按键
 
   + `usePCLayout`: 是否使用 PC 布局，启用后 zxcv 行按键左移半格。
   + `spaceButtonShowSchema`: 空格键上是否显示当前输入方案名称。
+  + `spaceButtonSchemaNameCenter`: 方案名称在空格键上的位置，有的方案名称较长，需要调整 x 值以免超出按键。
   + `showSwipeUpText`: 是否显示按键的上划文字显示。
   + `showSwipeDownText`: 是否显示按键的下划文字显示。
 
@@ -40,5 +41,5 @@ zxcvbnm 按键
 ## PC 端编译
 
 ```shell
-jsonnet -S -m . .\jsonnet\main.jsonnet
+jsonnet -S -m . --tla-code debug=true .\jsonnet\main.jsonnet
 ```

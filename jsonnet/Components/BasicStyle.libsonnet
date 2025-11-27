@@ -196,7 +196,7 @@ local newSpaceButtonRimeSchemaForegroundStyle(isDark=false) =
     [spaceButtonRimeSchemaForegroundStyleName]: utils.newTextStyle({
       text: '$rimeSchemaName',
       fontSize: fonts.alternativeTextFontSize,
-      center: { x: 0.17, y: 0.2 },
+      center: settings.spaceButtonSchemaNameCenter,
       normalColor: colors.alternativeForegroundColor,
       highlightColor: colors.alternativeHighlightedForegroundColor,
     }, isDark),
