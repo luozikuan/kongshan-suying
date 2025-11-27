@@ -3,98 +3,22 @@ local basicStyle = import 'BasicStyle.libsonnet';
 local utils = import 'Utils.libsonnet';
 
 
-local keyboard = {
-
-  // 浮动键盘里的按键
-  hamster3Button: {
-    name: 'hamster3Button',
-    params: {
-      action: 'settings',
-      systemImageName: 'keyboard',
-      text: '元书',
-    },
-  },
-
-  switcherButton: {
-    name: 'switcherButton',
-    params: {
-      action: { shortcut: '#方案切换' },
-      systemImageName: 'switch.2',
-      text: '方案切换'
-    },
-  },
-
-  feedbackButton: {
-    name: 'feedbackButton',
-    params: {
-      action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/feedback' },
-      systemImageName: 'iphone.radiowaves.left.and.right',
-      text: '按键震动',
-    },
-  },
-
-  finderButton: {
-    name: 'finderButton',
-    params: {
-      action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/finder' },
-      systemImageName: 'folder',
-      text: '文件管理',
-    },
-  },
-
-  skinButton: {
-    name: 'skinButton',
-    params: {
-      action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/keyboardSkins' },
-      systemImageName: 'tshirt',
-      text: '键盘皮肤',
-    },
-  },
-
-  uploadButton: {
-    name: 'uploadButton',
-    params: {
-      action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/wifi' },
-      systemImageName: 'wifi',
-      text: '无线传输',
-    },
-  },
-
-  deployButton: {
-    name: 'deployButton',
-    params: {
-      action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/rime?action=deploy' },
-      systemImageName: 'slider.horizontal.2.arrow.trianglehead.counterclockwise',
-      text: 'Rime部署',
-    },
-  },
-
-  toggleEmbeddedButton: {
-    name: 'toggleEmbeddedButton',
-    params: {
-      action: { shortcut: '#toggleEmbeddedInputMode' },
-      systemImageName: 'square.and.pencil',
-      text: '内嵌开关',
-    },
-  },
-};
-
 local panelKeyboardLayout = {
   keyboardLayout: [
     {
       HStack: {
         subviews: [
           {
-            Cell: keyboard.hamster3Button.name,
+            Cell: params.toolbarButton.toolbarHamster3Button.name,
           },
           {
-            Cell: keyboard.switcherButton.name,
+            Cell: params.toolbarButton.toolbarCheckUpdateButton.name,
           },
           {
-            Cell: keyboard.feedbackButton.name,
+            Cell: params.toolbarButton.toolbarFeedbackButton.name,
           },
           {
-            Cell: keyboard.finderButton.name,
+            Cell: params.toolbarButton.toolbarFinderButton.name,
           },
         ],
       },
@@ -103,16 +27,16 @@ local panelKeyboardLayout = {
       HStack: {
         subviews: [
           {
-            Cell: keyboard.skinButton.name,
+            Cell: params.toolbarButton.toolbarSkinButton.name,
           },
           {
-            Cell: keyboard.uploadButton.name,
+            Cell: params.toolbarButton.toolbarUploadButton.name,
           },
           {
-            Cell: keyboard.deployButton.name,
+            Cell: params.toolbarButton.toolbarDeployButton.name,
           },
           {
-            Cell: keyboard.toggleEmbeddedButton.name,
+            Cell: params.toolbarButton.toolbarToggleEmbeddedButton.name,
           }
         ],
       },
@@ -131,44 +55,44 @@ local newKeyLayout(isDark=false, isPortrait=false) =
   }
   + panelKeyboardLayout
   + basicStyle.newFloatingKeyboardButton(
-    keyboard.hamster3Button.name,
+    params.toolbarButton.toolbarHamster3Button.name,
     isDark,
-    keyboard.hamster3Button.params
+    params.toolbarButton.toolbarHamster3Button.params
   )
   + basicStyle.newFloatingKeyboardButton(
-    keyboard.switcherButton.name,
+    params.toolbarButton.toolbarCheckUpdateButton.name,
     isDark,
-    keyboard.switcherButton.params
+    params.toolbarButton.toolbarCheckUpdateButton.params
   )
   + basicStyle.newFloatingKeyboardButton(
-    keyboard.feedbackButton.name,
+    params.toolbarButton.toolbarFeedbackButton.name,
     isDark,
-    keyboard.feedbackButton.params
+    params.toolbarButton.toolbarFeedbackButton.params
   )
   + basicStyle.newFloatingKeyboardButton(
-    keyboard.finderButton.name,
+    params.toolbarButton.toolbarFinderButton.name,
     isDark,
-    keyboard.finderButton.params
+    params.toolbarButton.toolbarFinderButton.params
   )
   + basicStyle.newFloatingKeyboardButton(
-    keyboard.skinButton.name,
+    params.toolbarButton.toolbarSkinButton.name,
     isDark,
-    keyboard.skinButton.params
+    params.toolbarButton.toolbarSkinButton.params
   )
   + basicStyle.newFloatingKeyboardButton(
-    keyboard.uploadButton.name,
+    params.toolbarButton.toolbarUploadButton.name,
     isDark,
-    keyboard.uploadButton.params
+    params.toolbarButton.toolbarUploadButton.params
   )
   + basicStyle.newFloatingKeyboardButton(
-    keyboard.deployButton.name,
+    params.toolbarButton.toolbarDeployButton.name,
     isDark,
-    keyboard.deployButton.params
+    params.toolbarButton.toolbarDeployButton.params
   )
   + basicStyle.newFloatingKeyboardButton(
-    keyboard.toggleEmbeddedButton.name,
+    params.toolbarButton.toolbarToggleEmbeddedButton.name,
     isDark,
-    keyboard.toggleEmbeddedButton.params
+    params.toolbarButton.toolbarToggleEmbeddedButton.params
   );
 
 {

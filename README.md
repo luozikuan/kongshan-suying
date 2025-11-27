@@ -29,6 +29,7 @@ zxcvbnm 按键
   + `spaceButtonSchemaNameCenter`: 方案名称在空格键上的位置，有的方案名称较长，需要调整 x 值以免超出按键。
   + `showSwipeUpText`: 是否显示按键的上划文字显示。
   + `showSwipeDownText`: 是否显示按键的下划文字显示。
+  + `toolbarButtons`: 工具栏显示的按钮列表，按顺序排列。
 
 - `jsonnet/Constants/Keyboard.libsonnet`: 定义了键盘按键，各区域高度等常量。
 

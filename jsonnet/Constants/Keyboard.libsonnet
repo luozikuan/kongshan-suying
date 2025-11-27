@@ -114,6 +114,148 @@ local settings = import '../Constants/Settings.libsonnet';
     },
   },
 
+  // toolbar 或浮动键盘按键定义，按键名需要注意不要和 keyboard 下的按键名冲突，所以加 tb 前缀
+  toolbarButton: {
+    toolbarMenuButton: {
+      name: 'toolbarMenuButton',
+      params: {
+        action: { floatKeyboardType: 'panel', },
+        systemImageName: 'swirl.circle.righthalf.filled',
+        text: '面板',
+      },
+    },
+    toolbarDismissButton: {
+      name: 'toolbarDismissButton',
+      params: {
+        action: 'dismissKeyboard',
+        systemImageName: 'chevron.down',
+        text: '关闭',
+      },
+    },
+
+    toolbarPerformanceButton: {
+      name: 'toolbarPerformanceButton',
+      params: {
+        action: { shortcut: '#keyboardPerformance' },
+        systemImageName: 'speedometer',
+        text: '性能',
+      },
+    },
+    toolbarPhraseButton: {
+      name: 'toolbarPhraseButton',
+      params: {
+        action: { shortcut: '#showPhraseView' },
+        systemImageName: 'heart',
+        text: '短语',
+      },
+    },
+    toolbarScriptButton: {
+      name: 'toolbarScriptButton',
+      params: {
+        action: { shortcut: '#toggleScriptView' },
+        systemImageName: 'apple.terminal',
+        text: '脚本',
+      },
+    },
+    toolbarClipboardButton: {
+      name: 'toolbarClipboardButton',
+      params: {
+        action: { shortcut: '#showPasteboardView' },
+        systemImageName: 'clipboard',
+        text: '剪贴',
+      },
+    },
+    toolbarRimeSwitcherButton: {
+      name: 'toolbarRimeSwitcherButton',
+      params: {
+        action: { shortcut: '#方案切换' },
+        systemImageName: 'switch.2',
+        text: '方案切换',
+      },
+    },
+
+    toolbarHamster3Button: {
+      name: 'toolbarHamster3Button',
+      params: {
+        action: 'settings',
+        systemImageName: 'keyboard',
+        text: '元书',
+      },
+    },
+    toolbarCheckUpdateButton: {
+      name: 'toolbarCheckUpdateButton',
+      params: {
+        action: { openURL: 'https://apps.apple.com/cn/app/%E5%85%83%E4%B9%A6%E8%BE%93%E5%85%A5%E6%B3%95/id6744464701' },
+        systemImageName: 'arrow.down.circle',
+        text: '检查更新',
+      },
+    },
+    toolbarFeedbackButton: {
+      name: 'toolbarFeedbackButton',
+      params: {
+        action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/feedback' },
+        systemImageName: 'iphone.radiowaves.left.and.right',
+        text: '按键震动',
+      },
+    },
+    toolbarFinderButton: {
+      name: 'toolbarFinderButton',
+      params: {
+        action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/finder' },
+        systemImageName: 'folder',
+        text: '文件管理',
+      },
+    },
+    toolbarSkinButton: {
+      name: 'toolbarSkinButton',
+      params: {
+        action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/keyboardSkins' },
+        systemImageName: 'tshirt',
+        text: '键盘皮肤',
+      },
+    },
+    toolbarUploadButton: {
+      name: 'toolbarUploadButton',
+      params: {
+        action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/wifi' },
+        systemImageName: 'wifi',
+        text: '无线传输',
+      },
+    },
+    toolbarDeployButton: {
+      name: 'toolbarDeployButton',
+      params: {
+        action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/rime?action=deploy' },
+        systemImageName: 'slider.horizontal.2.arrow.trianglehead.counterclockwise',
+        text: 'Rime部署',
+      },
+    },
+    toolbarToggleEmbeddedButton: {
+      name: 'toolbarToggleEmbeddedButton',
+      params: {
+        action: { shortcut: '#toggleEmbeddedInputMode' },
+        systemImageName: 'square.and.pencil',
+        text: '内嵌开关',
+      },
+    },
+    toolbarLeftHandButton: {
+      name: 'toolbarLeftHandButton',
+      params: {
+        action: { shortcut: '#左手模式' },
+        systemImageName: 'keyboard.onehanded.left',
+        text: '左手模式',
+      },
+    },
+    toolbarRightHandButton: {
+      name: 'toolbarRightHandButton',
+      params: {
+        action: { shortcut: '#右手模式' },
+        systemImageName: 'keyboard.onehanded.right',
+        text: '右手模式',
+      },
+    },
+  },
+
   keyboard: {
     height: {
       iPhone: {
@@ -471,7 +613,8 @@ local settings = import '../Constants/Settings.libsonnet';
         repeatAction: 'backspace',
         systemImageName: 'delete.left',
         highlightSystemImageName: 'delete.left.fill',
-        swipeUp: { action: { shortcut: '#重输'} },
+        swipeUp: { action: { shortcut: '#deleteText'} },
+        swipeDown: { action: { shortcut: '#undo' } },
       },
     },
 

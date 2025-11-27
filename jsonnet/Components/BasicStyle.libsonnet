@@ -310,6 +310,42 @@ local newFloatingKeyboardButton(name, isDark=false, params={}) =
     } + params, isDark),
   };
 
+local toolbarSlideButtonsName = 'toolbarSlideButtons';
+local newToolbarSlideButtons(buttons, isDark=false) = {
+  [toolbarSlideButtonsName]: {
+    type: 'horizontalSymbols',
+    size: { width: '5/7' },
+    maxColumns: 5,
+    contentRightToLeft: false,
+    insets: { left: 3, right: 3 },
+    // backgroundStyle: 'toolbarcollectionCellBackgroundStyle',
+    dataSource: 'horizontalSymbolsToolbarButtonsDataSource',
+    // 用于定义符号列表中每个符号的样式(仅支持文本)
+    cellStyle: 'toolbarCollectionCellStyle',
+  },
+  horizontalSymbolsToolbarButtonsDataSource: [
+    {
+      label: button.name,
+      action: button.params.action,
+      styleName: button.name + 'Style',
+    } for button in buttons
+  ],
+  toolbarCollectionCellStyle: utils.newBackgroundStyle(style=keyboardBackgroundStyleName)
+    + utils.newForegroundStyle(style=keyboardBackgroundStyleName),
+} +
+  std.foldl(
+    function(acc, button) acc + {
+      [button.name + 'Style']: utils.newForegroundStyle(style=button.name + 'ForegroundStyle'),
+      [button.name + 'ForegroundStyle']: utils.newSystemImageStyle({
+        normalColor: colors.toolbarButtonForegroundColor,
+        highlightColor: colors.toolbarButtonHighlightedForegroundColor,
+        fontSize: fonts.toolbarButtonImageFontSize,
+      } + button.params, isDark),
+    },
+    buttons,
+    {}
+  );
+
 local newToolbarButton(name, isDark=false, params={}) =
   {
     [name]: utils.newForegroundStyle(style=name + 'ForegroundStyle')
@@ -649,6 +685,8 @@ local newCommitCandidateForegroundStyle(isDark=false, params={}) = {
   newImageSystemButtonForegroundStyle: newImageSystemButtonForegroundStyle,
 
   newFloatingKeyboardButton: newFloatingKeyboardButton,
+  toolbarSlideButtonsName: toolbarSlideButtonsName,
+  newToolbarSlideButtons: newToolbarSlideButtons,
   newToolbarButton: newToolbarButton,
 
   newAlphabeticButton: newAlphabeticButton,

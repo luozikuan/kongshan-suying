@@ -1,5 +1,6 @@
 local colors = import '../Constants/Colors.libsonnet';
 local keyboardParams = import '../Constants/Keyboard.libsonnet';
+local settings = import '../Constants/Settings.libsonnet';
 local basicStyle = import 'BasicStyle.libsonnet';
 local utils = import 'Utils.libsonnet';
 
@@ -198,82 +199,24 @@ local newVerticalCandidateBackspaceButtonStyle(isDark) = {
 };
 
 
-local toolbarKeyboard = {
-  toolbarMenuButton: {
-    name: 'toolbarMenuButton',
-    params: {
-      action: { floatKeyboardType: 'panel', },
-      systemImageName: 'swirl.circle.righthalf.filled',
-    },
-  },
-  toolbarDismissButton: {
-    name: 'toolbarDismissButton',
-    params: {
-      action: 'dismissKeyboard',
-      systemImageName: 'chevron.down',
-    },
-  },
-  toolbarPerformanceButton: {
-    name: 'toolbarPerformanceButton',
-    params: {
-      action: { shortcut: '#keyboardPerformance' },
-      systemImageName: 'speedometer',
-    },
-  },
-  toolbarPhraseButton: {
-    name: 'toolbarPhraseButton',
-    params: {
-      action: { shortcut: '#showPhraseView' },
-      systemImageName: 'heart',
-    },
-  },
-  toolbarScriptButton: {
-    name: 'toolbarScriptButton',
-    params: {
-      action: { shortcut: '#toggleScriptView' },
-      systemImageName: 'apple.terminal',
-    },
-  },
-  toolbarClipboardButton: {
-    name: 'toolbarClipboardButton',
-    params: {
-      action: { shortcut: '#showPasteboardView' },
-      systemImageName: 'clipboard',
-    },
-  },
-  toolbarRimeSwitcherButton: {
-    name: 'toolbarRimeSwitcherButton',
-    params: {
-      action: { shortcut: '#RimeSwitcher' },
-      systemImageName: 'switch.2',
-    },
-  },
-};
+local buttons = [
+  keyboardParams.toolbarButton['toolbar' + name]
+  for name in settings.toolbarButtons
+];
+
 
 local toolbarKeyboardLayout = [
   {
     HStack: {
       subviews: [
         {
-          Cell: toolbarKeyboard.toolbarMenuButton.name,
+          Cell: keyboardParams.toolbarButton.toolbarMenuButton.name,
         },
         {
-          Cell: toolbarKeyboard.toolbarPerformanceButton.name,
+          Cell: basicStyle.toolbarSlideButtonsName,
         },
         {
-          Cell: toolbarKeyboard.toolbarRimeSwitcherButton.name,
-        },
-        {
-          Cell: toolbarKeyboard.toolbarScriptButton.name,
-        },
-        {
-          Cell: toolbarKeyboard.toolbarPhraseButton.name,
-        },
-        {
-          Cell: toolbarKeyboard.toolbarClipboardButton.name,
-        },
-        {
-          Cell: toolbarKeyboard.toolbarDismissButton.name,
+          Cell: keyboardParams.toolbarButton.toolbarDismissButton.name,
         },
       ],
     },
@@ -282,39 +225,14 @@ local toolbarKeyboardLayout = [
 
 local newButtons(isDark=false) =
   basicStyle.newToolbarButton(
-    toolbarKeyboard.toolbarMenuButton.name,
+    keyboardParams.toolbarButton.toolbarMenuButton.name,
     isDark,
-    toolbarKeyboard.toolbarMenuButton.params,
+    keyboardParams.toolbarButton.toolbarMenuButton.params,
   )
   + basicStyle.newToolbarButton(
-    toolbarKeyboard.toolbarPerformanceButton.name,
+    keyboardParams.toolbarButton.toolbarDismissButton.name,
     isDark,
-    toolbarKeyboard.toolbarPerformanceButton.params,
-  )
-  + basicStyle.newToolbarButton(
-    toolbarKeyboard.toolbarRimeSwitcherButton.name,
-    isDark,
-    toolbarKeyboard.toolbarRimeSwitcherButton.params,
-  )
-  + basicStyle.newToolbarButton(
-    toolbarKeyboard.toolbarScriptButton.name,
-    isDark,
-    toolbarKeyboard.toolbarScriptButton.params,
-  )
-  + basicStyle.newToolbarButton(
-    toolbarKeyboard.toolbarPhraseButton.name,
-    isDark,
-    toolbarKeyboard.toolbarPhraseButton.params,
-  )
-  + basicStyle.newToolbarButton(
-    toolbarKeyboard.toolbarClipboardButton.name,
-    isDark,
-    toolbarKeyboard.toolbarClipboardButton.params,
-  )
-  + basicStyle.newToolbarButton(
-    toolbarKeyboard.toolbarDismissButton.name,
-    isDark,
-    toolbarKeyboard.toolbarDismissButton.params,
+    keyboardParams.toolbarButton.toolbarDismissButton.params,
   );
 
 
@@ -346,6 +264,7 @@ local newToolbar(isDark=false, params={}) =
     ],
   }
   + newButtons(isDark)
+  + basicStyle.newToolbarSlideButtons(buttons, isDark)
   + newHorizontalCandidatesCollectionView(isDark)
   + newExpandButton(isDark)
   + newVerticalCandidateCollectionStyle(isDark)
