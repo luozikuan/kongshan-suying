@@ -104,12 +104,15 @@ local config = {
   },
 };
 
-// std.toString 生成的内容紧凑，生成速度快，但不易阅读
-// std.manifestYamlDoc 生成的内容格式化良好，易于阅读，但生成速度慢，也更占用内存
-// 在 PC 上调试时可以设置 forDebug=true
-local forDebug = false;
-local toString(x) = if forDebug then std.manifestYamlDoc(x, indent_array_in_object=false, quote_keys=false) else std.toString(x);
-
+// std.toString 生成的内容紧凑，生成速度快，但不易阅读，适合发布时使用
+// std.manifestYamlDoc 生成的内容格式化良好，易于阅读，但生成速度慢，也更占用内存，适合在电脑上调试时使用
+// 如果想让 debug=true，需要在命令行中使用 --tla-code debug=true 参数传入
+function(debug=false)
+  local toString =
+    if debug then
+      function(x) std.manifestYamlDoc(x, indent_array_in_object=false, quote_keys=false)
+    else
+      function(x) std.toString(x);
 {
   'config.yaml': std.manifestYamlDoc(config, indent_array_in_object=true, quote_keys=false),
 
