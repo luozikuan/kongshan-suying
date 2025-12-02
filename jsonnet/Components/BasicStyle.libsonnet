@@ -11,6 +11,12 @@ local swipeTextCenter = {
   down: { x: 0.72, y: 0.28 },
 };
 
+local alphabeticTextCenterWhenShowSwipeText =
+  local showSwipeText = settings.showSwipeUpText || settings.showSwipeDownText;
+  {
+    [if showSwipeText then 'center']: { y: 0.55 }
+  };
+
 local getKeyboardActionText(params={}, key='action', isUppercase=false) =
   if std.objectHas(params, 'text') then
     { text: params.text }
@@ -89,7 +95,8 @@ local newAlphabeticButtonForegroundStyle(isDark=false, params={}) =
       normalColor: colors.standardButtonForegroundColor,
       highlightColor: colors.standardButtonHighlightedForegroundColor,
       fontSize: fonts.standardButtonTextFontSize,
-    } + params, isDark) + getKeyboardActionText(params);
+    } + alphabeticTextCenterWhenShowSwipeText
+      + params, isDark) + getKeyboardActionText(params);
 
 // 字母键按钮上下划提示前景样式
 local newAlphabeticButtonAlternativeForegroundStyle(isDark=false, params={}) =
@@ -112,7 +119,8 @@ local newAlphabeticButtonUppercaseForegroundStyle(isDark=false, params={}) =
     normalColor: colors.standardButtonForegroundColor,
     highlightColor: colors.standardButtonHighlightedForegroundColor,
     fontSize: fonts.standardButtonUppercasedTextFontSize,
-  } + params, isDark);
+  } + alphabeticTextCenterWhenShowSwipeText
+    + params, isDark);
 
 // 字母提示背景样式
 local alphabeticHintBackgroundStyleName = 'alphabeticHintBackgroundStyle';

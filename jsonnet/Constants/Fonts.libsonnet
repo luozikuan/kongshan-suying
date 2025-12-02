@@ -10,7 +10,7 @@
   candidateStateButtonFontSize: 20,
 
   standardButtonTextFontSize: 22.5,
-  standardButtonUppercasedTextFontSize: 22.5,
+  standardButtonUppercasedTextFontSize: 21.5,
   standardButtonImageFontSize: 20,
 
   numericButtonTextFontSize: 22.5,

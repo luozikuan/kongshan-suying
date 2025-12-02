@@ -603,6 +603,7 @@ local settings = import '../Constants/Settings.libsonnet';
       params: {
         action: 'space',
         systemImageName: 'space',
+        center: {x: 0.5, y: 0.5},
         notification: [
           'preeditChangedForSpaceButtonNotification',
         ] + (
@@ -867,6 +868,7 @@ local settings = import '../Constants/Settings.libsonnet';
       params: {
         action: { character: ',' },
         swipeUp: { action: { character: '.' }, text: '' },
+        center: {x: 0.5, y: 0.5},
       },
     },
     chinesePeriodButton: {
