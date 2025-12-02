@@ -216,7 +216,7 @@ local toolbarButtonNames = [
   keyboardParams.toolbarButton.toolbarRightHandButton.name, // 右手模式
 ];
 
-local buttons = [
+local slideButtons = [
   keyboardParams.toolbarButton[toolbarButtonNames[buttonCode - 1]]
   for buttonCode in settings.toolbarButtons
 ];
@@ -226,15 +226,9 @@ local toolbarKeyboardLayout = [
   {
     HStack: {
       subviews: [
-        {
-          Cell: keyboardParams.toolbarButton.toolbarMenuButton.name,
-        },
-        {
-          Cell: basicStyle.toolbarSlideButtonsName,
-        },
-        {
-          Cell: keyboardParams.toolbarButton.toolbarDismissButton.name,
-        },
+        { Cell: keyboardParams.toolbarButton.toolbarMenuButton.name, },
+        { Cell: basicStyle.toolbarSlideButtonsName, },
+        { Cell: keyboardParams.toolbarButton.toolbarDismissButton.name, },
       ],
     },
   },
@@ -281,7 +275,7 @@ local newToolbar(isDark=false, params={}) =
     ],
   }
   + newButtons(isDark)
-  + basicStyle.newToolbarSlideButtons(buttons, isDark)
+  + basicStyle.newToolbarSlideButtons(slideButtons, isDark)
   + newHorizontalCandidatesCollectionView(isDark)
   + newExpandButton(isDark)
   + newVerticalCandidateCollectionStyle(isDark)

@@ -16,133 +16,49 @@ local hintStyle = {
 };
 
 // 标准26键布局
-local alphabeticKeyboardLayout = {
-  keyboardLayout: [
-    {
-      HStack: {
-        subviews: [
-          {
-            Cell: params.keyboard.qButton.name,
-          },
-          {
-            Cell: params.keyboard.wButton.name,
-          },
-          {
-            Cell: params.keyboard.eButton.name,
-          },
-          {
-            Cell: params.keyboard.rButton.name,
-          },
-          {
-            Cell: params.keyboard.tButton.name,
-          },
-          {
-            Cell: params.keyboard.yButton.name,
-          },
-          {
-            Cell: params.keyboard.uButton.name,
-          },
-          {
-            Cell: params.keyboard.iButton.name,
-          },
-          {
-            Cell: params.keyboard.oButton.name,
-          },
-          {
-            Cell: params.keyboard.pButton.name,
-          },
-        ],
-      },
-    },
-    {
-      HStack: {
-        subviews: [
-          {
-            Cell: params.keyboard.aButton.name,
-          },
-          {
-            Cell: params.keyboard.sButton.name,
-          },
-          {
-            Cell: params.keyboard.dButton.name,
-          },
-          {
-            Cell: params.keyboard.fButton.name,
-          },
-          {
-            Cell: params.keyboard.gButton.name,
-          },
-          {
-            Cell: params.keyboard.hButton.name,
-          },
-          {
-            Cell: params.keyboard.jButton.name,
-          },
-          {
-            Cell: params.keyboard.kButton.name,
-          },
-          {
-            Cell: params.keyboard.lButton.name,
-          },
-        ],
-      },
-    },
-    {
-      HStack: {
-        subviews: [
-          {
-            Cell: params.keyboard.shiftButton.name,
-          },
-          {
-            Cell: params.keyboard.zButton.name,
-          },
-          {
-            Cell: params.keyboard.xButton.name,
-          },
-          {
-            Cell: params.keyboard.cButton.name,
-          },
-          {
-            Cell: params.keyboard.vButton.name,
-          },
-          {
-            Cell: params.keyboard.bButton.name,
-          },
-          {
-            Cell: params.keyboard.nButton.name,
-          },
-          {
-            Cell: params.keyboard.mButton.name,
-          },
-          {
-            Cell: params.keyboard.backspaceButton.name,
-          },
-        ],
-      },
-    },
-    {
-      HStack: {
-        subviews: [
-          {
-            Cell: params.keyboard.numericButton.name,
-          },
-          {
-            Cell: params.keyboard.commaButton.name,
-          },
-          {
-            Cell: params.keyboard.spaceButton.name,
-          },
-          {
-            Cell: params.keyboard.asciiModeButton.name,
-          },
-          {
-            Cell: params.keyboard.enterButton.name,
-          },
-        ],
-      },
-    },
+local rows = [
+  [
+    params.keyboard.qButton,
+    params.keyboard.wButton,
+    params.keyboard.eButton,
+    params.keyboard.rButton,
+    params.keyboard.tButton,
+    params.keyboard.yButton,
+    params.keyboard.uButton,
+    params.keyboard.iButton,
+    params.keyboard.oButton,
+    params.keyboard.pButton,
   ],
-};
+  [
+    params.keyboard.aButton,
+    params.keyboard.sButton,
+    params.keyboard.dButton,
+    params.keyboard.fButton,
+    params.keyboard.gButton,
+    params.keyboard.hButton,
+    params.keyboard.jButton,
+    params.keyboard.kButton,
+    params.keyboard.lButton,
+  ],
+  [
+    params.keyboard.shiftButton,
+    params.keyboard.zButton,
+    params.keyboard.xButton,
+    params.keyboard.cButton,
+    params.keyboard.vButton,
+    params.keyboard.bButton,
+    params.keyboard.nButton,
+    params.keyboard.mButton,
+    params.keyboard.backspaceButton,
+  ],
+  [
+    params.keyboard.numericButton,
+    params.keyboard.commaButton,
+    params.keyboard.spaceButton,
+    params.keyboard.asciiModeButton,
+    params.keyboard.enterButton,
+  ],
+];
 
 
 local newKeyLayout(isDark=false, isPortrait=true) =
@@ -151,58 +67,15 @@ local newKeyLayout(isDark=false, isPortrait=true) =
     keyboardHeight: keyboardHeight,
     keyboardStyle: utils.newBackgroundStyle(style=basicStyle.keyboardBackgroundStyleName),
   }
-  + alphabeticKeyboardLayout
-  // First Row
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.qButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.qButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.wButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.wButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.eButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.eButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.rButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.rButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.tButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.tButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.yButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.yButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.uButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.uButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.iButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.iButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.oButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.oButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.pButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.pButton.params + hintStyle
-  )
+  + utils.newRowKeyboardLayout(rows)
+  // using default width first
+  + std.foldl(function(acc, button) acc +
+      basicStyle.newAlphabeticButton(
+        button.name,
+        isDark,
+        portraitNormalButtonSize + button.params + hintStyle),
+      params.keyboard.letterButtons,
+      {})
 
   // Second Row
   + basicStyle.newAlphabeticButton(
@@ -215,13 +88,6 @@ local newKeyLayout(isDark=false, isPortrait=true) =
         { width: '111/168.75', alignment: 'right' },
     } + params.keyboard.aButton.params + hintStyle,
   )
-  + basicStyle.newAlphabeticButton(params.keyboard.sButton.name, isDark, portraitNormalButtonSize + params.keyboard.sButton.params + hintStyle)
-  + basicStyle.newAlphabeticButton(params.keyboard.dButton.name, isDark, portraitNormalButtonSize + params.keyboard.dButton.params + hintStyle)
-  + basicStyle.newAlphabeticButton(params.keyboard.fButton.name, isDark, portraitNormalButtonSize + params.keyboard.fButton.params + hintStyle)
-  + basicStyle.newAlphabeticButton(params.keyboard.gButton.name, isDark, portraitNormalButtonSize + params.keyboard.gButton.params + hintStyle)
-  + basicStyle.newAlphabeticButton(params.keyboard.hButton.name, isDark, portraitNormalButtonSize + params.keyboard.hButton.params + hintStyle)
-  + basicStyle.newAlphabeticButton(params.keyboard.jButton.name, isDark, portraitNormalButtonSize + params.keyboard.jButton.params + hintStyle)
-  + basicStyle.newAlphabeticButton(params.keyboard.kButton.name, isDark, portraitNormalButtonSize + params.keyboard.kButton.params + hintStyle)
   + basicStyle.newAlphabeticButton(
     params.keyboard.lButton.name,
     isDark,
@@ -261,41 +127,6 @@ local newKeyLayout(isDark=false, isPortrait=true) =
       basicStyle.newImageSystemButtonForegroundStyle(isDark, params.keyboard.shiftButton.capsLockedParams),
   }
 
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.zButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.zButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.xButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.xButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.cButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.cButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.vButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.vButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.bButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.bButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.nButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.nButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.mButton.name,
-    isDark,
-    portraitNormalButtonSize + params.keyboard.mButton.params + hintStyle
-  )
   + basicStyle.newSystemButton(
     params.keyboard.backspaceButton.name,
     isDark,

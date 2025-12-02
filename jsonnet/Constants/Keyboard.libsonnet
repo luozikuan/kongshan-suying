@@ -519,6 +519,15 @@ local settings = import '../Constants/Settings.libsonnet';
       },
     },
 
+    letterButtons: [
+      self.qButton, self.wButton, self.eButton, self.rButton, self.tButton,
+      self.yButton, self.uButton, self.iButton, self.oButton, self.pButton,
+      self.aButton, self.sButton, self.dButton, self.fButton, self.gButton,
+      self.hButton, self.jButton, self.kButton, self.lButton,
+      self.zButton, self.xButton, self.cButton, self.vButton, self.bButton,
+      self.nButton, self.mButton,
+    ],
+
     // 数字键
     oneButton: {
       name: 'oneButton',
@@ -580,6 +589,13 @@ local settings = import '../Constants/Settings.libsonnet';
         action: { character: '0' },
       },
     },
+
+    numericButtons: [
+      self.oneButton, self.twoButton, self.threeButton,
+      self.fourButton, self.fiveButton, self.sixButton,
+      self.sevenButton, self.eightButton, self.nineButton,
+      self.zeroButton,
+    ],
 
     // 特殊功能键
     spaceButton: {

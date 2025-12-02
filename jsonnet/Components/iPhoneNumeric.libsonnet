@@ -77,12 +77,8 @@ local numericKeyboardLayout = {
       VStack: {
         style: numericSideColumnStyleName,
         subviews: [
-          {
-            Cell: collection.name,
-          },
-          {
-            Cell: params.keyboard.goBackButton.name,
-          },
+          { Cell: collection.name, },
+          { Cell: params.keyboard.goBackButton.name, },
         ],
       },
     },
@@ -90,18 +86,10 @@ local numericKeyboardLayout = {
       VStack: {
         style: numericMiddleColumnStyleName,
         subviews: [
-          {
-            Cell: params.keyboard.oneButton.name,
-          },
-          {
-            Cell: params.keyboard.fourButton.name,
-          },
-          {
-            Cell: params.keyboard.sevenButton.name,
-          },
-          {
-            Cell: params.keyboard.symbolicButton.name,
-          }
+          { Cell: params.keyboard.oneButton.name, },
+          { Cell: params.keyboard.fourButton.name, },
+          { Cell: params.keyboard.sevenButton.name, },
+          { Cell: params.keyboard.symbolicButton.name, },
         ],
       },
     },
@@ -109,18 +97,10 @@ local numericKeyboardLayout = {
       VStack: {
         style: numericMiddleColumnStyleName,
         subviews: [
-          {
-            Cell: params.keyboard.twoButton.name,
-          },
-          {
-            Cell: params.keyboard.fiveButton.name,
-          },
-          {
-            Cell: params.keyboard.eightButton.name,
-          },
-          {
-            Cell: params.keyboard.zeroButton.name,
-          }
+          { Cell: params.keyboard.twoButton.name, },
+          { Cell: params.keyboard.fiveButton.name, },
+          { Cell: params.keyboard.eightButton.name, },
+          { Cell: params.keyboard.zeroButton.name, },
         ],
       },
     },
@@ -128,18 +108,10 @@ local numericKeyboardLayout = {
       VStack: {
         style: numericMiddleColumnStyleName,
         subviews: [
-          {
-            Cell: params.keyboard.threeButton.name,
-          },
-          {
-            Cell: params.keyboard.sixButton.name,
-          },
-          {
-            Cell: params.keyboard.nineButton.name,
-          },
-          {
-            Cell: params.keyboard.dotButton.name,
-          }
+          { Cell: params.keyboard.threeButton.name, },
+          { Cell: params.keyboard.sixButton.name, },
+          { Cell: params.keyboard.nineButton.name, },
+          { Cell: params.keyboard.dotButton.name, },
         ],
       },
     },
@@ -147,18 +119,10 @@ local numericKeyboardLayout = {
       VStack: {
         style: numericSideColumnStyleName,
         subviews: [
-          {
-            Cell: params.keyboard.backspaceButton.name,
-          },
-          {
-            Cell: params.keyboard.numericSpaceButton.name,
-          },
-          {
-            Cell: params.keyboard.numericColonButton.name,
-          },
-          {
-            Cell: params.keyboard.enterButton.name,
-          },
+          { Cell: params.keyboard.backspaceButton.name, },
+          { Cell: params.keyboard.numericSpaceButton.name, },
+          { Cell: params.keyboard.numericColonButton.name, },
+          { Cell: params.keyboard.enterButton.name, },
         ],
       },
     },
@@ -176,56 +140,15 @@ local newKeyLayout(isDark=false, isPortrait=false) =
   }
   + numericKeyboardLayout
   // number Buttons
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.oneButton.name,
-    isDark,
-    params.keyboard.oneButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.twoButton.name,
-    isDark,
-    params.keyboard.twoButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.threeButton.name,
-    isDark,
-    params.keyboard.threeButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.fourButton.name,
-    isDark,
-    params.keyboard.fourButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.fiveButton.name,
-    isDark,
-    params.keyboard.fiveButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.sixButton.name,
-    isDark,
-    params.keyboard.sixButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.sevenButton.name,
-    isDark,
-    params.keyboard.sevenButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.eightButton.name,
-    isDark,
-    params.keyboard.eightButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.nineButton.name,
-    isDark,
-    params.keyboard.nineButton.params + hintStyle
-  )
-  + basicStyle.newAlphabeticButton(
-    params.keyboard.zeroButton.name,
-    isDark,
-    params.keyboard.zeroButton.params + hintStyle
-  )
+  + std.foldl(
+    function(acc, button) acc +
+      basicStyle.newAlphabeticButton(
+        button.name,
+        isDark,
+        button.params + hintStyle
+      ),
+    params.keyboard.numericButtons,
+    {})
 
   // First Column
   + basicStyle.newSymbolicCollection(
@@ -234,46 +157,23 @@ local newKeyLayout(isDark=false, isPortrait=false) =
     collection.params
   )
   + newSymbols(collection.params.useRimeEngine)
-  + basicStyle.newSystemButton(
-    params.keyboard.goBackButton.name,
-    isDark,
-    params.keyboard.goBackButton.params
-  )
-  // Second Column
-  + basicStyle.newSystemButton(
-    params.keyboard.symbolicButton.name,
-    isDark,
-    params.keyboard.symbolicButton.params
-  )
-
-  // Fourth Column
-  + basicStyle.newSystemButton(
-    params.keyboard.dotButton.name,
-    isDark,
-    params.keyboard.dotButton.params
-  )
-
-  // Last Column
-  + basicStyle.newSystemButton(
-    params.keyboard.backspaceButton.name,
-    isDark,
-    params.keyboard.backspaceButton.params,
-  )
-  + basicStyle.newSystemButton(
-    params.keyboard.numericSpaceButton.name,
-    isDark,
-    params.keyboard.numericSpaceButton.params
-  )
-  + basicStyle.newSystemButton(
-    params.keyboard.numericColonButton.name,
-    isDark,
-    params.keyboard.numericColonButton.params
-  )
-  + basicStyle.newSystemButton(
-    params.keyboard.enterButton.name,
-    isDark,
-    params.keyboard.enterButton.params
-  );
+  + std.foldl(
+    function(acc, button) acc +
+      basicStyle.newSystemButton(
+        button.name,
+        isDark,
+        button.params
+      ),
+    [
+      params.keyboard.goBackButton,
+      params.keyboard.symbolicButton,
+      params.keyboard.dotButton,
+      params.keyboard.backspaceButton,
+      params.keyboard.numericSpaceButton,
+      params.keyboard.numericColonButton,
+      params.keyboard.enterButton,
+    ],
+    {});
 
 {
   new(isDark, isPortrait):

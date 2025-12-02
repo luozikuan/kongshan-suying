@@ -159,6 +159,21 @@ local newForegroundStyle(styleName='foregroundStyle', style) = { [styleName]: st
 
 local newAnimation(animation) = { animation: animation };
 
+local newRowKeyboardLayout(rows) = {
+  keyboardLayout: [
+    {
+      HStack: {
+        subviews: [
+          {
+            Cell: button.name,
+          }
+          for button in row
+        ],
+      },
+    }
+    for row in rows
+  ],
+};
 
 {
   extractProperty: extractProperty,
@@ -172,5 +187,6 @@ local newAnimation(animation) = { animation: animation };
   newTextStyle: newTextStyle,
   newBackgroundStyle: newBackgroundStyle,
   newForegroundStyle: newForegroundStyle,
-  newAnimation: newAnimation
+  newAnimation: newAnimation,
+  newRowKeyboardLayout: newRowKeyboardLayout,
 }
