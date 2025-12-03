@@ -177,7 +177,7 @@ local settings = import '../Constants/Settings.libsonnet';
       name: 'toolbarSchemaSelectorButton',
       params: {
         action: { shortcut: '#方案切换' },
-        systemImageName: 'list.bullet',
+        systemImageName: 'list.bullet.rectangle',
         text: '方案切换',
       },
     },
@@ -260,6 +260,14 @@ local settings = import '../Constants/Settings.libsonnet';
         action: { shortcut: '#右手模式' },
         systemImageName: 'keyboard.onehanded.right',
         text: '右手模式',
+      },
+    },
+    toolbarScriptingSyncButton: {
+      name: 'toolbarScriptingSyncButton',
+      params: {
+        action: { openURL: 'scripting://run/%E7%9A%AE%E8%82%A4ws%E5%90%8C%E6%AD%A5' },
+        systemImageName: 'macbook.and.iphone',
+        text: '皮肤开发',
       },
     },
   },
