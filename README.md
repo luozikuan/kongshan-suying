@@ -18,6 +18,9 @@ asdfghjkl 按键
 `*%=[&? 上划功能
 zxcvbnm 按键
     ]~$ 下划功能，z撤销、x剪切、c复制、v粘贴
+
+123 上划切换符号键盘，下划切换 emoji 键盘
+逗号 上划输入句号
 ```
 
 ## 自定义皮肤调整说明
@@ -35,7 +38,7 @@ zxcvbnm 按键
 
 - `jsonnet/Constants/Keyboard.libsonnet`: 定义了键盘按键，各区域高度等常量。
 
-  + 如想对按键上下划动进行调整，可在此文件中添加或修改对应按键的 `swipeUp` 或 `swipeDown` 属性。
+  + 如想对按键上下划动进行调整，可在此文件中添加或修改对应按键的 `swipeUp` 或 `swipeDown` 属性。（**注意**不是 `swipeUpAction` 或 `swipeDownAction`）
 
 ## 手机端编译
 
