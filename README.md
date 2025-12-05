@@ -35,6 +35,8 @@ zxcvbnm 按键
   + `showSwipeDownText`: 是否显示按键的下划文字显示。
   + `toolbarButtonsMaxCount`: 工具栏滑动按钮的显示个数。
   + `toolbarButtons`: 工具栏显示的滑动按钮列表，按顺序排列。
+  + `accentColor`: 主题色选择。
+  + `needHint`: 是否显示按键气泡提示。
 
 - `jsonnet/Constants/Keyboard.libsonnet`: 定义了键盘按键，各区域高度等常量。
 
