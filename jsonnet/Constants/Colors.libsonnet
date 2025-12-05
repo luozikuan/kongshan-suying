@@ -1,6 +1,12 @@
 local settings = import 'Settings.libsonnet';
 
 // 颜色对比度计算函数
+local removeAlpha(hex) =
+  if std.length(hex) == 9 then
+    '#' + std.substr(hex, 1, 6)
+  else
+    hex;
+
 // 将十六进制颜色转换为 RGB 值
 local hexToRgb(hex) =
   local cleanHex = if std.startsWith(hex, '#') then std.substr(hex, 1, std.length(hex) - 1) else hex;
@@ -33,7 +39,7 @@ local getContrastRatio(lum1, lum2) =
 // 选择对比度更高的前景色
 // bgColor: 背景颜色（十六进制字符串）
 // fgColor1, fgColor2: 两个候选前景色（十六进制字符串）
-// 返回对比度更高的那个颜色
+// 若浅色易辨认，则返回浅色，否则返回对比度更高的那个颜色
 local selectBetterForeground(bgColor, fgColor1, fgColor2) =
   local lumbg = getRelativeLuminance(hexToRgb(bgColor));
   local lum1 = getRelativeLuminance(hexToRgb(fgColor1));
@@ -43,7 +49,7 @@ local selectBetterForeground(bgColor, fgColor1, fgColor2) =
   local lighter = if lum1 > lum2 then color1 else color2;
   local darker = if lum1 > lum2 then color2 else color1;
   local contrast1 = getContrastRatio(lumbg, lighter.lum);
-  local easyToReadContrast = 2;
+  local easyToReadContrast = 4.5;
   if contrast1 > easyToReadContrast then
     lighter.color
   else
@@ -126,45 +132,28 @@ local systemButtonForegroundColor = labelColor.primary;
 
 local systemButtonHighlightedForegroundColor = systemButtonForegroundColor;
 
-local accentColors = {
-  red: {
-    light: '#FF3B30',
-    dark: '#ff453a',
-  },
-  green: {
-    light: '#34C759',
-    dark: '#30d158',
-  },
-  yellow: {
-    light: '#FFCC00',
-    dark: '#ffd60a',
-  },
-  blue: {
-    light: '#007AFF',
-    dark: '#1162ff',
-  },
-  purple: {
-    light: '#AF52DE',
-    dark: '#bf5af2',
-  },
-  cyan: {
-    light: '#5AC8FA',
-    dark: '#64d2ff',
-  },
-};
-
 // MARK: 一定要与 Settings.libsonnet 中的 accentColor 编号对应
-local accentColorList = [
-  accentColors.red,
-  accentColors.green,
-  accentColors.yellow,
-  accentColors.blue,
-  accentColors.purple,
-  accentColors.cyan,
+local accentColors = [
+  { // red
+    light: '#da4357',
+    dark: '#d74255',
+  },
+  { // green
+    light: '#86c77a',
+    dark: '#86c77a',
+  },
+  { // orange
+    light: '#ea7c43',
+    dark: '#ea7c43',
+  },
+  { // blue
+    light: '#2e67f8',
+    dark: '#2e67f8',
+  },
 ];
 
 local colorButtonBackgroundColor = if settings.accentColor == 0 then systemButtonBackgroundColor else
-  accentColorList[settings.accentColor - 1];
+  accentColors[settings.accentColor - 1];
 local colorButtonForegroundColor = if settings.accentColor == 0 then systemButtonForegroundColor else
   {
     light: selectBetterForeground(colorButtonBackgroundColor.light, labelColor.primary.light, labelColor.primary.dark),
@@ -190,7 +179,10 @@ local lowerEdgeOfButtonHighlightColor = {
 };
 
 // 标准按键 Hint 背景色(包含长按符号列表的背景色)
-local standardCalloutBackgroundColor = standardButtonBackgroundColor;
+local standardCalloutBackgroundColor = {
+  light: '#ffffff',
+  dark: '#6B6B6B',
+};
 
 // 标准按键 Hint 前景色，用于按键的字体，图片等
 local standardCalloutForegroundColor = standardButtonForegroundColor;
@@ -227,6 +219,7 @@ local candidateSeparatorColor = separatorColor;
 
 
 {
+  removeAlpha: removeAlpha,
   labelColor: labelColor,
   separatorColor: separatorColor,
   keyboardBackgroundColor: keyboardBackgroundColor,
