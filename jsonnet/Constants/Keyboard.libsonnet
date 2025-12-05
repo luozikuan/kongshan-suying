@@ -265,7 +265,8 @@ local settings = import '../Constants/Settings.libsonnet';
     toolbarScriptingSyncButton: {
       name: 'toolbarScriptingSyncButton',
       params: {
-        action: { openURL: 'scripting://run/%E7%9A%AE%E8%82%A4ws%E5%90%8C%E6%AD%A5' },
+        // action: { openURL: 'scripting://run/%E7%9A%AE%E8%82%A4ws%E5%90%8C%E6%AD%A5' },
+        action: { openURL: 'scripting://' },
         systemImageName: 'macbook.and.iphone',
         text: '皮肤开发',
       },
