@@ -1,6 +1,6 @@
 local colors = import 'Colors.libsonnet';
 local fonts = import 'Fonts.libsonnet';
-local settings = import '../Constants/Settings.libsonnet';
+local settings = import 'Settings.libsonnet';
 
 {
   local root = self,
