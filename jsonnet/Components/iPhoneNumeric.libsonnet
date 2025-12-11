@@ -36,6 +36,19 @@ local wideVStackStyle = {
   },
 };
 
+// 半宽 VStack 宽度样式，横屏时一半显示数字，一半显示符号
+local halfVStackStyle = {
+  local this = self,
+  name: 'halfVStackStyle',
+  style: {
+    [this.name]: {
+      size: {
+        width: { percentage: 0.45 },
+      },
+    },
+  },
+};
+
 // 9 键布局
 local numericKeyboardLayout = {
   keyboardLayout: [
@@ -95,6 +108,35 @@ local numericKeyboardLayout = {
   ],
 };
 
+local totalKeyboardLayout(isPortrait=false) =
+  if isPortrait then
+    numericKeyboardLayout
+  else {
+    keyboardLayout: [
+      {
+        VStack: {
+          style: halfVStackStyle.name,
+          subviews: numericKeyboardLayout.keyboardLayout,
+        }
+      },
+
+      // 中间留白
+      {
+        VStack: {},
+      },
+
+      // 符号区
+      {
+        VStack: {
+          style: halfVStackStyle.name,
+          subviews: [
+            { Cell: params.keyboard.numericCategorySymbolCollection.name, },
+          ],
+        }
+      },
+    ]
+  };
+
 
 local newKeyLayout(isDark=false, isPortrait=false, extraParams={}) =
 
@@ -104,7 +146,7 @@ local newKeyLayout(isDark=false, isPortrait=false, extraParams={}) =
     keyboardHeight: keyboardHeight,
     keyboardStyle: utils.newBackgroundStyle(style=basicStyle.keyboardBackgroundStyleName),
   }
-  + numericKeyboardLayout
+  + totalKeyboardLayout(isPortrait)
   // number Buttons
   + std.foldl(
     function(acc, button) acc +
@@ -119,12 +161,17 @@ local newKeyLayout(isDark=false, isPortrait=false, extraParams={}) =
     params.keyboard.numericButtons,
     {})
 
-  // First Column
   + basicStyle.newSymbolicCollection(
     params.keyboard.numericSymbolsCollection.name,
     isDark,
     params.keyboard.numericSymbolsCollection.params + extraParams
   )
+  + {
+    [params.keyboard.numericCategorySymbolCollection.name]:
+      utils.newBackgroundStyle(style=basicStyle.systemButtonBackgroundStyleName)
+      + params.keyboard.numericCategorySymbolCollection.params
+      + extraParams,
+  }
   + std.foldl(
     function(acc, button) acc +
       basicStyle.newSystemButton(
@@ -160,6 +207,9 @@ local newKeyLayout(isDark=false, isPortrait=false, extraParams={}) =
 
     preedit.new(isDark)
     + toolbar.new(isDark, isPortrait)
+    + (
+      if !isPortrait then halfVStackStyle.style else {}
+    )
     + narrowVStackStyle.style
     + wideVStackStyle.style
     + basicStyle.newKeyboardBackgroundStyle(isDark)
