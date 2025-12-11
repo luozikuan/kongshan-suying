@@ -275,10 +275,10 @@ local newToolbar(isDark=false, isPortrait=false, params={}) =
       },
     verticalCandidatesLayout: verticalCandidatesLayout,
     candidateContextMenu: [
-      {
-        name: '复制',
-        action: '#copy',
-      },
+      // {
+      //   name: '复制', // 一般是对当前候选做处理，比如发送一个快捷键让rime处理这个候选，主要是给rime用，复制不行
+      //   action: { shortcut: '#copy' },
+      // },
     ],
   }
   + newButtons(isDark)
