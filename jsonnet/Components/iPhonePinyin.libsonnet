@@ -234,14 +234,14 @@ local newKeyLayout(isDark=false, isPortrait=true) =
   })
   + utils.newAsciiModeForegroundStyle(params.keyboard.commaButton.name,
       basicStyle.newAlphabeticButtonForegroundStyle(isDark, params.keyboard.commaButton.params)
-        + { text: '，', center: { x: 0.68, y: 0.45 } },
+        + { text: '，', center: { x: 0.68, y: 0.4 } },
       basicStyle.newAlphabeticButtonForegroundStyle(isDark, params.keyboard.commaButton.params)
-        + { text: ',', center: { y: 0.45 }})
+        + { center: { y: 0.48 }})
   + utils.newAsciiModeForegroundStyle(params.keyboard.commaButton.name + 'SwipeUp',
-      basicStyle.newAlphabeticButtonAlternativeForegroundStyle(isDark, params.keyboard.commaButton.params)
-        + { text: '。', center: { x: 0.55, y: 0.25 } },
-      basicStyle.newAlphabeticButtonAlternativeForegroundStyle(isDark, params.keyboard.commaButton.params)
-        + { text: '.', center: { y: 0.25 }})
+      basicStyle.newAlphabeticButtonAlternativeForegroundStyle(isDark, params.keyboard.commaButton.params.swipeUp)
+        + { text: '。', center: { x: 0.56, y: 0.22 } },
+      basicStyle.newAlphabeticButtonAlternativeForegroundStyle(isDark, params.keyboard.commaButton.params.swipeUp)
+        + { center: { y: 0.28 }})
 
   + basicStyle.newSpaceButton(
     params.keyboard.spaceButton.name,
