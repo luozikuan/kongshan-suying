@@ -345,7 +345,7 @@ local newToolbarButton(name, isDark=false, params={}) =
       } + params, isDark),
   };
 
-local newAlphabeticButton(name, isDark=false, params={}, needHint=settings.needHint) =
+local newAlphabeticButton(name, isDark=false, params={}, needHint=true) =
   local swipeStyleName = generateSwipeForegroundStyleNames(name, params);
   {
     [name]: utils.newBackgroundStyle(style=alphabeticButtonBackgroundStyleName)

@@ -42,10 +42,6 @@
   // 0-无  1-红色  2-绿色  3-橙色  4-蓝色
   accentColor: 4,
 
-  // 是否显示气泡
-  // true 显示，false 不显示
-  needHint: false,
-
   // 中文模式下，字母键是否大写显示
   // true 大写，false 小写
   uppercaseForChinese: true,
