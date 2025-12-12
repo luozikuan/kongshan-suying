@@ -1,6 +1,6 @@
 local colors = import '../Constants/Colors.libsonnet';
 local keyboardParams = import '../Constants/Keyboard.libsonnet';
-local settings = import '../Constants/Settings.libsonnet';
+local settings = import '../Settings.libsonnet';
 local basicStyle = import 'BasicStyle.libsonnet';
 local utils = import 'Utils.libsonnet';
 

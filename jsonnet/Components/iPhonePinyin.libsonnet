@@ -1,5 +1,5 @@
 local params = import '../Constants/Keyboard.libsonnet';
-local settings = import '../Constants/Settings.libsonnet';
+local settings = import '../Settings.libsonnet';
 local basicStyle = import 'BasicStyle.libsonnet';
 local preedit = import 'Preedit.libsonnet';
 local toolbar = import 'Toolbar.libsonnet';

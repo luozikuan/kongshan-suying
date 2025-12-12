@@ -31,7 +31,7 @@ enter 下划换行
 
 ## 自定义皮肤调整说明
 
-- `jsonnet/Constants/Settings.libsonnet`: 定义了皮肤的基本设置
+- `jsonnet/Settings.libsonnet`: 定义了皮肤的基本设置
 
   + `usePCLayout`: 是否使用 PC 布局，启用后 zxcv 行按键左移半格。
   + `spaceButtonComposingText`: 打字时空格键上显示的文字内容。

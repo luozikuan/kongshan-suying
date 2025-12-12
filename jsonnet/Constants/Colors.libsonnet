@@ -1,4 +1,4 @@
-local settings = import 'Settings.libsonnet';
+local settings = import '../Settings.libsonnet';
 
 // 标签颜色常量定义
 local labelColor = {
