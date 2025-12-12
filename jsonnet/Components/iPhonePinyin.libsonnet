@@ -99,9 +99,7 @@ local newKeyLayout(isDark=false, isPortrait=true) =
 
   // letter Buttons
   + std.foldl(function(acc, button)
-      local swipeStyleName = if std.objectHas(button.params, 'swipeUp') && settings.showSwipeUpText then [button.name + 'SwipeUpForegroundStyle'] else []
-  +
-    if std.objectHas(button.params, 'swipeDown') && settings.showSwipeDownText then [button.name + 'SwipeDownForegroundStyle'] else [];
+      local swipeStyleName = basicStyle.generateSwipeForegroundStyleNames(button.name, button.params);
       acc +
       basicStyle.newAlphabeticButton(
         button.name,

@@ -112,6 +112,12 @@ local newAlphabeticButtonAlternativeForegroundStyle(isDark=false, params={}) =
       fontSize: fonts.alternativeTextFontSize,
     } + params, isDark) + getKeyboardActionText(params);
 
+// 生成上下划提示前景名称
+local generateSwipeForegroundStyleNames(name, params={}) =
+  local swipeUpStyleName = if std.objectHas(params, 'swipeUp') && settings.showSwipeUpText then [name + 'SwipeUpForegroundStyle'] else [];
+  local swipeDownStyleName = if std.objectHas(params, 'swipeDown') && settings.showSwipeDownText then [name + 'SwipeDownForegroundStyle'] else [];
+  swipeUpStyleName + swipeDownStyleName;
+
 // 大写字母键按钮前景样式
 local newAlphabeticButtonUppercaseForegroundStyle(isDark=false, params={}) =
   utils.newTextStyle({
@@ -340,9 +346,7 @@ local newToolbarButton(name, isDark=false, params={}) =
   };
 
 local newAlphabeticButton(name, isDark=false, params={}, needHint=settings.needHint) =
-  local swipeStyleName = if std.objectHas(params, 'swipeUp') && settings.showSwipeUpText then [name + 'SwipeUpForegroundStyle'] else []
-  +
-    if std.objectHas(params, 'swipeDown') && settings.showSwipeDownText then [name + 'SwipeDownForegroundStyle'] else [];
+  local swipeStyleName = generateSwipeForegroundStyleNames(name, params);
   {
     [name]: utils.newBackgroundStyle(style=alphabeticButtonBackgroundStyleName)
             + (
@@ -618,6 +622,8 @@ local newCommitCandidateForegroundStyle(isDark=false, params={}) = {
 
   newAlphabeticButtonAlternativeForegroundStyle: newAlphabeticButtonAlternativeForegroundStyle,
   newAlphabeticButtonUppercaseForegroundStyle: newAlphabeticButtonUppercaseForegroundStyle,
+
+  generateSwipeForegroundStyleNames: generateSwipeForegroundStyleNames,
 
   alphabeticHintBackgroundStyleName: alphabeticHintBackgroundStyleName,
   newAlphabeticHintBackgroundStyle: newAlphabeticHintBackgroundStyle,
