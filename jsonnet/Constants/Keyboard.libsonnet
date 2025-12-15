@@ -230,8 +230,8 @@ local settings = import '../Settings.libsonnet';
         text: '无线传输',
       },
     },
-    toolbarDeployButton: {
-      name: 'toolbarDeployButton',
+    toolbarRimeDeployButton: {
+      name: 'toolbarRimeDeployButton',
       params: {
         action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/rime?action=deploy' },
         systemImageName: 'slider.horizontal.2.arrow.trianglehead.counterclockwise',

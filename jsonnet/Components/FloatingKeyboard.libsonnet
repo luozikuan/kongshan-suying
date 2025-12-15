@@ -24,7 +24,7 @@ local floatingKeyboardButtonsDefine = {
     [
       params.toolbarButton.toolbarSkinButton,
       params.toolbarButton.toolbarUploadButton,
-      params.toolbarButton.toolbarDeployButton,
+      params.toolbarButton.toolbarRimeDeployButton,
       params.toolbarButton.toolbarToggleEmbeddedButton,
     ],
   ],

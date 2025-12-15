@@ -211,7 +211,7 @@ local toolbarButtonNames = [
   keyboardParams.toolbarButton.toolbarFinderButton.name, // 打开元书文件管理器
   keyboardParams.toolbarButton.toolbarSkinButton.name, // 皮肤
   keyboardParams.toolbarButton.toolbarUploadButton.name, // WIFI 文件传输
-  keyboardParams.toolbarButton.toolbarDeployButton.name, // Rime部署
+  keyboardParams.toolbarButton.toolbarRimeDeployButton.name, // Rime部署
   keyboardParams.toolbarButton.toolbarToggleEmbeddedButton.name, // 内嵌开关
   keyboardParams.toolbarButton.toolbarLeftHandButton.name, // 左手模式
   keyboardParams.toolbarButton.toolbarRightHandButton.name, // 右手模式
