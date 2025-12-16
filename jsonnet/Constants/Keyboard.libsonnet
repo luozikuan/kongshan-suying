@@ -703,6 +703,7 @@ local settings = import '../Settings.libsonnet';
       params: {
         action: { shortcut: '#中英切换' },
         assetImageName: 'chineseState2',
+        swipeUp: { action: { shortcut: '#方案切换' } },
       },
     },
 
