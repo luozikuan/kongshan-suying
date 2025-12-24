@@ -19,7 +19,7 @@ local floatingKeyboardButtonsDefine = {
       params.toolbarButton.toolbarHamster3Button,
       params.toolbarButton.toolbarFeedbackButton,
       params.toolbarButton.toolbarCheckUpdateButton,
-      params.toolbarButton.toolbarFinderButton,
+      params.toolbarButton.toolbarSkinPreference,
     ],
     [
       params.toolbarButton.toolbarSkinButton,

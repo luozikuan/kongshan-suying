@@ -214,6 +214,22 @@ local settings = import '../Settings.libsonnet';
         text: '文件',
       },
     },
+    toolbarSkinPreference: {
+      name: 'toolbarSkinPreference',
+      params: {
+        action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/finder?action=openAppFile&fileURL=Skins/空山素影/jsonnet/Settings.libsonnet' },
+        systemImageName: 'theatermask.and.paintbrush',
+        text: '偏好',
+      },
+    },
+    toolbarKeyboardDefinition: {
+      name: 'toolbarKeyboardDefinition',
+      params: {
+        action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/finder?action=openAppFile&fileURL=Skins/空山素影/jsonnet/Constants/Keyboard.libsonnet' },
+        systemImageName: 'keyboard.badge.ellipsis',
+        text: '按键',
+      },
+    },
     toolbarSkinButton: {
       name: 'toolbarSkinButton',
       params: {
