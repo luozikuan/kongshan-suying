@@ -278,6 +278,24 @@ local newFloatingKeyboardButton(name, isDark=false, params={}) =
     } + params, isDark),
   };
 
+local newToolbarButtonForegroundStyle(isDark=false, params={}) =
+  local preferIcon = settings.toolbarPreferIcon;
+  if preferIcon && (std.objectHas(params, 'systemImageName') || std.objectHas(params, 'assetImageName')) then
+    utils.newSystemImageStyle({
+    normalColor: colors.toolbarButtonForegroundColor,
+    highlightColor: colors.toolbarButtonHighlightedForegroundColor,
+    fontSize: fonts.toolbarButtonImageFontSize,
+  } + params, isDark)
+  else if std.objectHas(params, 'text') || std.objectHas(params, 'action') then
+    utils.newTextStyle({
+    normalColor: colors.toolbarButtonForegroundColor,
+    highlightColor: colors.toolbarButtonHighlightedForegroundColor,
+    fontSize: fonts.toolbarButtonTextFontSize,
+  } + params, isDark) + getKeyboardActionText(params)
+  else
+    assert false : 'toolbar button 必须指定 systemImageName、assetImageName、text 或 action 中的一个';
+    {};
+
 local toolbarSlideButtonsName = 'toolbarSlideButtons';
 local newToolbarSlideButtons(buttons, slideButtonsMaxCount, isDark=false) =
   local rightToLeft = std.length(buttons) < slideButtonsMaxCount;
@@ -308,33 +326,11 @@ local newToolbarSlideButtons(buttons, slideButtonsMaxCount, isDark=false) =
   std.foldl(
     function(acc, button) acc + {
       [button.name + 'Style']: utils.newForegroundStyle(style=button.name + 'ForegroundStyle'),
-      [button.name + 'ForegroundStyle']: utils.newSystemImageStyle({
-        normalColor: colors.toolbarButtonForegroundColor,
-        highlightColor: colors.toolbarButtonHighlightedForegroundColor,
-        fontSize: fonts.toolbarButtonImageFontSize,
-      } + button.params, isDark),
+      [button.name + 'ForegroundStyle']: newToolbarButtonForegroundStyle(isDark, button.params),
     },
     buttons,
     {}
   );
-
-local newToolbarButton(name, isDark=false, params={}) =
-  {
-    [name]: utils.newForegroundStyle(style=name + 'ForegroundStyle')
-            + utils.extractProperties(
-              params,
-              [
-                'action',
-                'size',
-              ]
-            ),
-    [name + 'ForegroundStyle']:
-      utils.newSystemImageStyle({
-        normalColor: colors.toolbarButtonForegroundColor,
-        highlightColor: colors.toolbarButtonHighlightedForegroundColor,
-        fontSize: fonts.toolbarButtonImageFontSize,
-      } + params, isDark),
-  };
 
 // 例如：replaceGivenPairs(['a', 'b', 'c'], {'a': 'x', 'b':'y'}) 返回 ['x', 'y', 'c']
 local replaceGivenPairs(arr, oldToNewPairs) =
@@ -565,6 +561,13 @@ local newButton(name, type='alphabetic', isDark=false, params={}) =
     [root.name]: root[root.name],
   },
 };
+
+local newToolbarButton(name, isDark=false, params={}) =
+  local button = newButton(name, 'system', isDark, params)
+    .AddForegroundStyle(newToolbarButtonForegroundStyle)
+    .AddPropertiesInParams()
+    .AddAsciiModeChangeEvent();
+  button.GetButton() + button.reference;
 
 local newAlphabeticButton(name, isDark=false, params={}, needHint=true, swipeTextFollowSetting=false) =
   local button = newButton(name, 'alphabetic', isDark, params)

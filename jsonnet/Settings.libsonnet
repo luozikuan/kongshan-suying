@@ -46,4 +46,8 @@
   // 中文模式下，字母键是否大写显示
   // true 大写，false 小写
   uppercaseForChinese: true,
+
+  // toolbar 按钮显示图标
+  // true 显示图标，false 显示文字
+  toolbarPreferIcon: true,
 }
