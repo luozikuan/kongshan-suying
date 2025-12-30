@@ -381,6 +381,7 @@ local replaceGivenPairs(arr, oldToNewPairs) =
 
 local newButton(name, type='alphabetic', isDark=false, params={}) =
 {
+  assert type == 'alphabetic' || type == 'system' || type == 'color' : 'type 可选值： alphabetic, system, color',
   local root = self,
   name: name,
   type: type, // type 可选值： alphabetic, system, color
@@ -400,7 +401,7 @@ local newButton(name, type='alphabetic', isDark=false, params={}) =
       foregroundStyle: [root.name + 'ForegroundStyle'],
     },
     reference+: {
-      [root.name + 'ForegroundStyle']: newButtonForegroundStyle(isDark, root.params),
+      [root.name + 'ForegroundStyle']: newButtonForegroundStyle(root.isDark, root.params),
     },
   },
 
@@ -448,7 +449,7 @@ local newButton(name, type='alphabetic', isDark=false, params={}) =
       },
     reference+: {
         [if hasSwipeUpParams && showSwipeText then generateSwipeForegroundStyleName(root.name, 'Up')]:
-          newAlphabeticButtonAlternativeForegroundStyle(isDark, { center: swipeTextCenter.up } + swipeUpParams),
+          newAlphabeticButtonAlternativeForegroundStyle(root.isDark, { center: swipeTextCenter.up } + swipeUpParams),
       }
       + (if std.objectHas(root[root.name], 'hintStyle') then {
           [root.name + 'HintStyle']+: {
@@ -469,7 +470,7 @@ local newButton(name, type='alphabetic', isDark=false, params={}) =
       },
     reference+: {
         [if hasSwipeDownParams && showSwipeText then generateSwipeForegroundStyleName(root.name, 'Down')]:
-          newAlphabeticButtonAlternativeForegroundStyle(isDark, { center: swipeTextCenter.down } + swipeDownParams),
+          newAlphabeticButtonAlternativeForegroundStyle(root.isDark, { center: swipeTextCenter.down } + swipeDownParams),
       }
       + (if std.objectHas(root[root.name], 'hintStyle') then {
           [root.name + 'HintStyle']+: {
@@ -498,7 +499,7 @@ local newButton(name, type='alphabetic', isDark=false, params={}) =
           [if std.objectHas(uppercasedParams, 'action') then 'uppercasedStateAction']: uppercasedParams.action,
         } + utils.newForegroundStyle('uppercasedStateForegroundStyle', uppercasedForeground),
         reference+: {
-          [root.name + 'UppercasedForegroundStyle']: newButtonUppercasedForegroundStyle(isDark, root.params + uppercasedParams) + getKeyboardActionText(uppercasedParams),
+          [root.name + 'UppercasedForegroundStyle']: newButtonUppercasedForegroundStyle(root.isDark, root.params + uppercasedParams) + getKeyboardActionText(uppercasedParams),
         },
       },
 
@@ -513,7 +514,7 @@ local newButton(name, type='alphabetic', isDark=false, params={}) =
           capsLockedStateForegroundStyle: root.name + 'CapsLockedForegroundStyle',
         },
         reference+: {
-          [root.name + 'CapsLockedForegroundStyle']: newButtonCapsLockedForegroundStyle(isDark, capsLockedParams),
+          [root.name + 'CapsLockedForegroundStyle']: newButtonCapsLockedForegroundStyle(root.isDark, capsLockedParams),
         },
       },
 
@@ -549,7 +550,7 @@ local newButton(name, type='alphabetic', isDark=false, params={}) =
             symbolStyles: [
               root.name + 'LongPressSymbol'+i+'Style' for i in std.range(0, std.length(longPressParams) - 1)
             ],
-            selectedIndex: findSelectedIndex,
+            [if findSelectedIndex != 0 then 'selectedIndex']: findSelectedIndex,
            }
           + utils.newBackgroundStyle(style=longPressSymbolsBackgroundStyleName)
           + utils.newBackgroundStyle('selectedBackgroundStyle', style=longPressSymbolsSelectedBackgroundStyleName)
@@ -561,7 +562,7 @@ local newButton(name, type='alphabetic', isDark=false, params={}) =
             for i in std.range(0, std.length(longPressParams) - 1)
         } + {
           [root.name + 'LongPressSymbol'+i+'ForegroundStyle']:
-            newLongPressSymbolsForegroundStyle(isDark, longPressParams[i]),
+            newLongPressSymbolsForegroundStyle(root.isDark, longPressParams[i]),
             for i in std.range(0, std.length(longPressParams) - 1)
         },
       },
@@ -659,7 +660,7 @@ local newButton(name, type='alphabetic', isDark=false, params={}) =
           foregroundStyle: root.name + 'PreeditChangedForegroundStyle',
         }
         + utils.extractProperties(preeditChangedParams, ['action']),
-        [root.name + 'PreeditChangedForegroundStyle']: newForegroundStyle(isDark, root.params + preeditChangedParams),
+        [root.name + 'PreeditChangedForegroundStyle']: newForegroundStyle(root.isDark, root.params + preeditChangedParams),
       },
     },
 
@@ -685,7 +686,7 @@ local newButton(name, type='alphabetic', isDark=false, params={}) =
         for i in std.range(0, std.length(keyboardActionParams) - 1)
       }
       + {
-        [root.name + 'KeyboardAction'+i+'ForegroundStyle']: newForegroundStyle(isDark, root.params + keyboardActionParams[i]),
+        [root.name + 'KeyboardAction'+i+'ForegroundStyle']: newForegroundStyle(root.isDark, root.params + keyboardActionParams[i]),
         for i in std.range(0, std.length(keyboardActionParams) - 1)
       },
     },
