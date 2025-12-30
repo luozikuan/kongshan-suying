@@ -696,7 +696,7 @@ local settings = import '../Settings.libsonnet';
         swipeDown: { action: { keyboardType: 'emojis' } },
 
         whenPreeditChanged: {
-          action: { character: '`'},
+          action: settings.segmentAction,
           text: '分词',
         },
       },

@@ -74,6 +74,13 @@
   uppercaseForChinese: true,
 
 
+  # 分词键，用于输入方案中分词使用
+  segmentAction:
+    { character: '`'},
+    # 'tab',
+    # { character: "'"},
+
+
   # 空格左侧的功能键
   showFunctionButton: false,
   functionButtonParams: {
