@@ -378,7 +378,7 @@ local settings = import '../Settings.libsonnet';
         action: { character: 's' },
         uppercased: { action: { character: 'S' } },
         swipeUp: { action: { character: '^' } },
-        swipeDown: { action: { character: '`' } },
+        swipeDown: { action: { character: '|' } },
       },
     },
     dButton: {
