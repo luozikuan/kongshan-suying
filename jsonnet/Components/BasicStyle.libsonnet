@@ -553,7 +553,7 @@ local newButton(name, type='alphabetic', isDark=false, params={}) =
             symbolStyles: [
               root.name + 'LongPressSymbol'+i+'Style' for i in std.range(0, std.length(longPressParams) - 1)
             ],
-            [if findSelectedIndex != 0 then 'selectedIndex']: findSelectedIndex,
+            selectedIndex: findSelectedIndex,
            }
           + utils.newBackgroundStyle(style=longPressSymbolsBackgroundStyleName)
           + utils.newBackgroundStyle('selectedBackgroundStyle', style=longPressSymbolsSelectedBackgroundStyleName)
