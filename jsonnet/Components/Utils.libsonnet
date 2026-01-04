@@ -224,6 +224,8 @@ local newAsciiModeChangedNotification(name, value, params={}) = {  // value is t
       'bounds',
       'hintStyle',
       'hintSymbolsStyle',
+      'uppercasedStateForegroundStyle',
+      'capsLockedStateForegroundStyle',
     ]
   ),
 };
