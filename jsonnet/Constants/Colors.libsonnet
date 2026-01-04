@@ -127,7 +127,7 @@ local lowerEdgeOfButtonHighlightColor = {
 
 // 标准按键 Hint 背景色(包含长按符号列表的背景色)
 local standardCalloutBackgroundColor = {
-  light: '#ffffff',
+  light: '#f8f8f8',
   dark: '#6B6B6B',
 };
 
