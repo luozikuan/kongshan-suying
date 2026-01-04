@@ -646,11 +646,21 @@ local settings = import '../Settings.libsonnet';
     shiftButton: {
       name: 'shiftButton',
       params: {
-        systemImageName: 'shift',
-        action: 'shift',
+        action: { character: ';' },
+        systemImageName: 'figure.roll.runningpace',
 
         uppercased: { systemImageName: 'shift.fill', },
         capsLocked: { systemImageName: 'capslock.fill', },
+
+        whenAsciiModeOn: {
+          action: 'shift',
+          systemImageName: 'shift',
+        },
+
+        whenPreeditChanged: {
+          action: settings.segmentAction,
+          systemImageName: 'square.and.line.vertical.and.square',
+        }
       },
     },
 
@@ -706,11 +716,6 @@ local settings = import '../Settings.libsonnet';
         text: '123',
         swipeUp: { action: { keyboardType: 'symbolic' } },
         swipeDown: { action: { keyboardType: 'emojis' } },
-
-        whenPreeditChanged: {
-          action: settings.segmentAction,
-          text: '分词',
-        },
       },
     },
 
