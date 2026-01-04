@@ -81,7 +81,7 @@
     # { character: "'"},
 
 
-  # 空格左侧的功能键
+  # 逗号左侧的功能键
   showFunctionButton: false,
   functionButtonParams: {
     action: { shortcut: '#selectText' },

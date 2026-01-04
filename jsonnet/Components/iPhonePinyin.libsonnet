@@ -59,7 +59,6 @@ local rows = [
   ],
   [
     params.keyboard.numericButton,
-    params.keyboard.commaButton,
   ]
   + (
     if settings.showFunctionButton then
@@ -69,6 +68,7 @@ local rows = [
   )
   +
   [
+    params.keyboard.commaButton,
     params.keyboard.spaceButton,
     params.keyboard.asciiModeButton,
     params.keyboard.enterButton,

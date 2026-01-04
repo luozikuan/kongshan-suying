@@ -47,7 +47,7 @@ enter 下划换行
   + `uppercaseForChinese`: 中文模式下，字母键是否大写显示。
   + `segmentAction`: 分词键，用于输入方案中分词使用。
   + `showFunctionButton`: 是否显示空格左侧的功能键。
-  + `functionButtonParams`: 空格左侧功能键的功能定义。
+  + `functionButtonParams`: 逗号左侧功能键的功能定义。
 
 - `jsonnet/Constants/Keyboard.libsonnet`: 定义了键盘按键，各区域高度等常量。浮动键盘中的“按键”可以直接打开该文件进行编辑。
 
