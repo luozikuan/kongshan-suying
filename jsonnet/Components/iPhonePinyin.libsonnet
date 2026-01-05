@@ -183,13 +183,15 @@ local newKeyLayout(isDark=false, isPortrait=true) =
     else
       {}
   )
-  + basicStyle.newSpaceButton(
+  + basicStyle.newAlphabeticButton(
     params.keyboard.spaceButton.name,
     isDark,
     {
-      foregroundStyle: basicStyle.spaceButtonForegroundStyle,
+      foregroundStyleName: basicStyle.spaceButtonForegroundStyle,
+      foregroundStyle: basicStyle.newSpaceButtonRimeSchemaForegroundStyle(isDark),
     }
-    + params.keyboard.spaceButton.params
+    + params.keyboard.spaceButton.params,
+    needHint=false,
   )
   + basicStyle.newSystemButton(
     params.keyboard.asciiModeButton.name,

@@ -602,13 +602,15 @@ local settings = import '../Settings.libsonnet';
         action: 'space',
         systemImageName: 'space',
         center: {x: 0.5, y: 0.5},
-        notification: [
-          'preeditChangedForSpaceButtonNotification',
-        ] + (
-          if settings.spaceButtonShowSchema then
+        notification:
+          (if settings.spaceButtonShowSchema then
             ['rimeSchemaChangedNotification']
-          else []
-        ),
+          else []),
+
+        whenPreeditChanged: {
+          text: settings.spaceButtonComposingText,
+          fontSize: fonts.systemButtonTextFontSize,
+        }
       },
     },
 
