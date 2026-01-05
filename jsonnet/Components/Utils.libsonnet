@@ -32,6 +32,24 @@ local deepMerge(x, y) =
     }
   else y;  // 如果不是对象，直接用 y 覆盖
 
+local isPrintableAsciiChar(c) =
+  assert std.type(c) == 'string' && std.length(c) == 1 : 'isPrintableAsciiChar requires a single character string, input is ' + c;
+  local cp = std.codepoint(c);
+  cp >= 32 && cp <= 126;
+
+
+local isPrintableAsciiString(s) =
+  assert std.type(s) == 'string' : 'isPrintableAsciiString requires a string, input is ' + s;
+  std.all(std.map(isPrintableAsciiChar, std.stringChars(s)));
+
+
+local calcDiffFontSizeForNonAsciiText(params={}) =
+  assert std.objectHas(params, 'fontSize') && std.objectHas(params, 'text') && std.type(params.text) == 'string' : 'calcDiffFontSizeForNonAsciiText requires params with fontSize and text, params is ' + std.toString(params);
+  if isPrintableAsciiString(params.text) then
+    params.fontSize
+  else
+    std.round(params.fontSize * 0.7);  // 非 ASCII 字符缩小显示
+
 
 local setColor(name='', color, isDark=false) =
   if std.type(color) == 'string' then
@@ -235,6 +253,7 @@ local newAsciiModeChangedNotification(name, value, params={}) = {  // value is t
   extractProperties: extractProperties,
   excludeProperties: excludeProperties,
   deepMerge: deepMerge,
+  calcDiffFontSizeForNonAsciiText: calcDiffFontSizeForNonAsciiText,
   setColor: setColor,
   extractColors: extractColors,
   newGeometryStyle: newGeometryStyle,
