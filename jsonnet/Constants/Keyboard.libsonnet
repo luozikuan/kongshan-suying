@@ -60,8 +60,8 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarMenuButton',
       params: {
         action: { floatKeyboardType: 'panel', },
-        systemImageName: 'hexagon.righthalf.filled',
-        // systemImageName: 'swirl.circle.righthalf.filled', // 需要 iOS 17+
+        // systemImageName: 'hexagon.righthalf.filled',
+        systemImageName: 'swirl.circle.righthalf.filled', // 需要 iOS 17+
         text: '面板',
       },
     },
