@@ -683,7 +683,11 @@ local settings = import '../Settings.libsonnet';
 
         longPress: [
           { action: { shortcut: '#换行' }, text: '换行' },
-        ]
+        ],
+
+        whenPreeditChanged: {
+          text: '确认',
+        },
       },
     },
 
