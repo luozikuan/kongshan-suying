@@ -919,12 +919,12 @@ local settings = import '../Settings.libsonnet';
       params: {
         action: { character: ',', },
         text: '，',
-        center: { y: 0.52 },
+        center: { y: 0.6 },
 
         swipeUp: {
           action: { character: '.' },
           text: '。',
-          center: { y: 0.3 }
+          center: { y: 0.34 }
         },
 
         whenAsciiModeOn: {
