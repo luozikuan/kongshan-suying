@@ -3,6 +3,7 @@ local iPhonePinyin = import 'Components/iPhonePinyin.libsonnet';
 local iPadPinyin = import 'Components/iPadPinyin.libsonnet';
 local iPadNumeric = import 'Components/iPadNumeric.libsonnet';
 local floatingKeyboard = import 'Components/FloatingKeyboard.libsonnet';
+local portraitT9Pinyin = import 'Components/PortraitT9Pinyin.libsonnet';
 
 local pinyinPortraitFileName = 'pinyinPortrait';
 local lightPinyinPortraitFileContent = iPhonePinyin.new(isDark=false, isPortrait=true);
@@ -44,6 +45,11 @@ local FloatingKeyboardLandscapeName(name) = name + 'Landscape';
 local lightFloatingKeyboardLandscapeContent = floatingKeyboard.new(isDark=false, isPortrait=false);
 local darkFloatingKeyboardLandscapeContent = floatingKeyboard.new(isDark=true, isPortrait=false);
 
+local portraitT9PinyinFileName = 'portraitT9Pinyin';
+local lightPortraitT9PinyinFileContent = portraitT9Pinyin.new(isDark=false, isPortrait=true);
+local darkPortraitT9PinyinFileContent = portraitT9Pinyin.new(isDark=true, isPortrait=true);
+
+
 local config = {
   pinyin: {
     iPhone: {
@@ -65,6 +71,12 @@ local config = {
       portrait: iPadNumericPortraitName,
       landscape: iPadNumericLandscapeName,
       floating: numericPortraitFileName,
+    },
+  },
+  t9Pinyin: {
+    iPhone: {
+      portrait: portraitT9PinyinFileName,
+      landscape: portraitT9PinyinFileName,
     },
   },
 } + {
@@ -122,6 +134,10 @@ function(debug=false)
   ['dark/' + iPadNumericPortraitName + '.yaml']: toString(darkIpadNumericPortraitContent),
   ['light/' + iPadNumericLandscapeName + '.yaml']: toString(lightIpadNumericLandscapeContent),
   ['dark/' + iPadNumericLandscapeName + '.yaml']: toString(darkIpadNumericLandscapeContent),
+
+  // t9 拼音
+  ['light/' + portraitT9PinyinFileName + '.yaml']: toString(lightPortraitT9PinyinFileContent),
+  ['dark/' + portraitT9PinyinFileName + '.yaml']: toString(darkPortraitT9PinyinFileContent),
 
   // 浮动键盘
   // ['light/' + panelPortraitName + '.yaml']: toString(lightPanelPortraitContent),

@@ -251,6 +251,14 @@ local settings = import '../Settings.libsonnet';
         text: '表情',
       },
     },
+    toolbarKeyboardT9PinyinButton: {
+      name: 'toolbarKeyboardT9PinyinButton',
+      params: {
+        action: { keyboardType: 't9Pinyin' },
+        systemImageName: 'square.grid.3x3.topleft.filled',
+        text: '九宫'
+      },
+    },
   },
 
   keyboard: {
@@ -593,6 +601,106 @@ local settings = import '../Settings.libsonnet';
       self.fourButton, self.fiveButton, self.sixButton,
       self.sevenButton, self.eightButton, self.nineButton,
       self.zeroButton,
+    ],
+
+
+    // T9 按键
+    t9OneButton: {
+      name: 't9OneButton',
+      params: {
+        action: { character: '1' },
+        swipeUp: { action: { symbol: '1' } },
+        text: '@/.',
+
+        whenPreeditChanged: {
+          text: '分词',
+        }
+      },
+    },
+    t9TwoButton: {
+      name: 't9TwoButton',
+      params: {
+        action: { character: '2' },
+        swipeUp: { action: { symbol: '2' } },
+        text: 'ABC',
+      },
+    },
+    t9ThreeButton: {
+      name: 't9ThreeButton',
+      params: {
+        action: { character: '3' },
+        swipeUp: { action: { symbol: '3' } },
+        text: 'DEF',
+      },
+    },
+    t9FourButton: {
+      name: 't9FourButton',
+      params: {
+        action: { character: '4' },
+        swipeUp: { action: { symbol: '4' } },
+        text: 'GHI',
+      },
+    },
+    t9FiveButton: {
+      name: 't9FiveButton',
+      params: {
+        action: { character: '5' },
+        swipeUp: { action: { symbol: '5' } },
+        text: 'JKL',
+      },
+    },
+    t9SixButton: {
+      name: 't9SixButton',
+      params: {
+        action: { character: '6' },
+        swipeUp: { action: { symbol: '6' } },
+        text: 'MNO',
+      },
+    },
+    t9SevenButton: {
+      name: 't9SevenButton',
+      params: {
+        action: { character: '7' },
+        swipeUp: { action: { symbol: '7' } },
+        text: 'PQRS',
+      },
+    },
+    t9EightButton: {
+      name: 't9EightButton',
+      params: {
+        action: { character: '8' },
+        swipeUp: { action: { symbol: '8' } },
+        text: 'TUV',
+      },
+    },
+    t9NineButton: {
+      name: 't9NineButton',
+      params: {
+        action: { character: '9' },
+        swipeUp: { action: { symbol: '9' } },
+        text: 'WXYZ',
+      },
+    },
+    t9ZeroButton: {
+      name: 't9ZeroButton',
+      params: {
+        action: { character: '0' },
+        swipeUp: { action: { symbol: '0' } },
+        fontSize: 20,
+      },
+    },
+
+    t9Buttons: [
+      self.t9OneButton,
+      self.t9TwoButton,
+      self.t9ThreeButton,
+      self.t9FourButton,
+      self.t9FiveButton,
+      self.t9SixButton,
+      self.t9SevenButton,
+      self.t9EightButton,
+      self.t9NineButton,
+      self.t9ZeroButton,
     ],
 
     // 特殊功能键
@@ -1276,6 +1384,14 @@ local settings = import '../Settings.libsonnet';
       name: 'numericSymbolsCollection',
       params: {
         type: 'numericSymbols',
+      },
+    },
+
+    // t9拼音符号列表兼拼音候选
+    t9SymbolsCollection: {
+      name: 't9SymbolsCollection',
+      params: {
+        type: 't9Symbols',
       },
     },
 

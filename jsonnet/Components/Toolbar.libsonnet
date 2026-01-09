@@ -224,6 +224,7 @@ local slideButtons =
     buttons.toolbarRimeSyncButton.name, // Rime同步
     buttons.toolbarSkinPreference.name, // 皮肤微调
     buttons.toolbarKeyboardDefinition.name, // 键盘按键定义
+    buttons.toolbarKeyboardT9PinyinButton.name, // T9拼音键盘（测试用）
   ];
 [
   buttons[names[buttonCode - 1]]
