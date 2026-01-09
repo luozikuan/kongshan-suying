@@ -912,13 +912,20 @@ local settings = import '../Settings.libsonnet';
     commaButton: {
       name: 'commaButton',
       params: {
-        action: { character: ',' }, center: { y: 0.48 },
-        swipeUp: { action: { character: '.' }, center: { y: 0.28 } },
+        action: { character: ',', },
+        text: '，',
+        center: { y: 0.52 },
 
-        whenAsciiModeOff: {
-          text: '，', center: { y: 0.52 },
-          swipeUp: { text: '。', center: { y: 0.3 } },
+        swipeUp: {
+          action: { character: '.' },
+          text: '。',
+          center: { y: 0.3 }
         },
+
+        whenAsciiModeOn: {
+          text: ',', center: { y: 0.48 },
+          swipeUp: { text: '.', center: { y: 0.28 } },
+        }
       },
     },
     chinesePeriodButton: {

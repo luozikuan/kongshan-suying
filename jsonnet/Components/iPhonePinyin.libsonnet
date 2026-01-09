@@ -113,9 +113,15 @@ local newKeyLayout(isDark=false, isPortrait=true) =
         button.name,
         isDark,
         getAlphabeticButtonSize(button.name) + button.params + hintStyle + alphabeticTextCenterWhenShowSwipeText +
-        {
-          [if settings.uppercaseForChinese then 'whenAsciiModeOff']: basicStyle.newAlphabeticButtonUppercaseForegroundStyle(isDark, button.params) + basicStyle.getKeyboardActionText(button.params.uppercased),
-        },
+        (
+          if settings.uppercaseForChinese then
+            basicStyle.newAlphabeticButtonUppercaseForegroundStyle(isDark, button.params) + basicStyle.getKeyboardActionText(button.params.uppercased)
+            + {
+              [if settings.uppercaseForChinese then 'whenAsciiModeOn']: basicStyle.newAlphabeticButtonForegroundStyle(isDark, button.params) + basicStyle.getKeyboardActionText(button.params),
+            }
+          else {}
+        )
+        ,
         swipeTextFollowSetting=true),
       params.keyboard.letterButtons,
       {})
