@@ -299,62 +299,12 @@ local settings = import '../Settings.libsonnet';
         swipeUp: { action: { character: '2' } },
       },
     },
-    eButton: {
-      name: 'eButton',
+    fButton: {
+      name: 'fButton',
       params: {
-        action: { character: 'e' },
-        uppercased: { action: { character: 'E' } },
+        action: { character: 'f' },
+        uppercased: { action: { character: 'F' } },
         swipeUp: { action: { character: '3' } },
-      },
-    },
-    rButton: {
-      name: 'rButton',
-      params: {
-        action: { character: 'r' },
-        uppercased: { action: { character: 'R' } },
-        swipeUp: { action: { character: '4' } },
-      },
-    },
-    tButton: {
-      name: 'tButton',
-      params: {
-        action: { character: 't' },
-        uppercased: { action: { character: 'T' } },
-        swipeUp: { action: { character: '5' } },
-      },
-    },
-    yButton: {
-      name: 'yButton',
-      params: {
-        action: { character: 'y' },
-        uppercased: { action: { character: 'Y' } },
-        swipeUp: { action: { character: '6' } },
-      },
-    },
-    uButton: {
-      name: 'uButton',
-      params: {
-        action: { character: 'u' },
-        uppercased: { action: { character: 'U' } },
-        swipeUp: { action: { character: '7' } },
-      },
-    },
-    iButton: {
-      name: 'iButton',
-      params: {
-        action: { character: 'i' },
-        uppercased: { action: { character: 'I' } },
-        swipeUp: { action: { character: '8' } },
-        swipeDown: { action: { character: '|' } },
-      },
-    },
-    oButton: {
-      name: 'oButton',
-      params: {
-        action: { character: 'o' },
-        uppercased: { action: { character: 'O' } },
-        swipeUp: { action: { character: '9' } },
-        swipeDown: { action: { character: '<' } },
       },
     },
     pButton: {
@@ -362,22 +312,78 @@ local settings = import '../Settings.libsonnet';
       params: {
         action: { character: 'p' },
         uppercased: { action: { character: 'P' } },
+        swipeUp: { action: { character: '4' } },
+      },
+    },
+    gButton: {
+      name: 'gButton',
+      params: {
+        action: { character: 'g' },
+        uppercased: { action: { character: 'G' } },
+        swipeUp: { action: { character: '5' } },
+      },
+    },
+    jButton: {
+      name: 'jButton',
+      params: {
+        action: { character: 'j' },
+        uppercased: { action: { character: 'J' } },
+        swipeUp: { action: { character: '6' } },
+      },
+    },
+    lButton: {
+      name: 'lButton',
+      params: {
+        action: { character: 'l' },
+        uppercased: { action: { character: 'L' } },
+        swipeUp: { action: { character: '7' } },
+      },
+    },
+    uButton: {
+      name: 'uButton',
+      params: {
+        action: { character: 'u' },
+        uppercased: { action: { character: 'U' } },
+        swipeUp: { action: { character: '8' } },
+      },
+    },
+    yButton: {
+      name: 'yButton',
+      params: {
+        action: { character: 'y' },
+        uppercased: { action: { character: 'Y' } },
+        swipeUp: { action: { character: '9' } },
+      },
+    },
+    // 分号
+    semicolonButton: {
+      name: 'semicolonButton',
+      params: {
+        action: { character: ';' },
         swipeUp: { action: { character: '0' } },
-        swipeDown: { action: { character: '>' } },
       },
     },
 
-    // 第二行字母键 (ASDF)
+    // 第二行
     aButton: {
       name: 'aButton',
       params: {
         action: { character: 'a' },
         uppercased: { action: { character: 'A' } },
-        swipeUp: { action: { character: '!' } },
+        swipeUp: { action: { character: '@' } },
         swipeDown: { action: { shortcut: '#selectText' }, text: '全' },
         longPress: [
           { action: { shortcut: '#左手模式' }, systemImageName: 'keyboard.onehanded.left' },
         ],
+      },
+    },
+    rButton: {
+      name: 'rButton',
+      params: {
+        action: { character: 'r' },
+        uppercased: { action: { character: 'R' } },
+        swipeUp: { action: { character: '<' } },
+        swipeDown: { action: { character: '>' } },
       },
     },
     sButton: {
@@ -386,7 +392,15 @@ local settings = import '../Settings.libsonnet';
         action: { character: 's' },
         uppercased: { action: { character: 'S' } },
         swipeUp: { action: { character: '^' } },
-        swipeDown: { action: { character: '`' } },
+      },
+    },
+    tButton: {
+      name: 'tButton',
+      params: {
+        action: { character: 't' },
+        uppercased: { action: { character: 'T' } },
+        swipeUp: { action: { character: '+' } },
+        swipeDown: { action: { character: '~' } },
       },
     },
     dButton: {
@@ -398,24 +412,6 @@ local settings = import '../Settings.libsonnet';
         swipeDown: { action: { character: '\\' } },
       },
     },
-    fButton: {
-      name: 'fButton',
-      params: {
-        action: { character: 'f' },
-        uppercased: { action: { character: 'F' } },
-        swipeUp: { action: { character: ';' } },
-        swipeDown: { action: { character: ':' } },
-      },
-    },
-    gButton: {
-      name: 'gButton',
-      params: {
-        action: { character: 'g' },
-        uppercased: { action: { character: 'G' } },
-        swipeUp: { action: { character: '(' } },
-        swipeDown: { action: { character: ')' } },
-      },
-    },
     hButton: {
       name: 'hButton',
       params: {
@@ -425,29 +421,36 @@ local settings = import '../Settings.libsonnet';
         swipeDown: { action: { character: '_' } },
       },
     },
-    jButton: {
-      name: 'jButton',
+    nButton: {
+      name: 'nButton',
       params: {
-        action: { character: 'j' },
-        uppercased: { action: { character: 'J' } },
+        action: { character: 'n' },
+        uppercased: { action: { character: 'N' } },
         swipeUp: { action: { character: '#' } },
-        swipeDown: { action: { character: '+' } },
+        swipeDown: { action: { character: '&' } },
       },
     },
-    kButton: {
-      name: 'kButton',
+    eButton: {
+      name: 'eButton',
       params: {
-        action: { character: 'k' },
-        uppercased: { action: { character: 'K' } },
-        swipeUp: { action: { character: '{' } },
-        swipeDown: { action: { character: '}' } },
+        action: { character: 'e' },
+        uppercased: { action: { character: 'E' } },
+        swipeUp: { action: { character: '=' } },
       },
     },
-    lButton: {
-      name: 'lButton',
+    iButton: {
+      name: 'iButton',
       params: {
-        action: { character: 'l' },
-        uppercased: { action: { character: 'L' } },
+        action: { character: 'i' },
+        uppercased: { action: { character: 'I' } },
+        swipeUp: { action: { character: ':' } },
+      },
+    },
+    oButton: {
+      name: 'oButton',
+      params: {
+        action: { character: 'o' },
+        uppercased: { action: { character: 'O' } },
         swipeUp: { action: { character: '"' } },
         swipeDown: { action: { character: "'" } },
         longPress: [
@@ -456,13 +459,13 @@ local settings = import '../Settings.libsonnet';
       },
     },
 
-    // 第三行字母键 (ZXCV)
+    // 第三行
     zButton: {
       name: 'zButton',
       params: {
         action: { character: 'z' },
         uppercased: { action: { character: 'Z' } },
-        swipeUp: { action: { character: '@' } },
+        swipeUp: { action: { character: '`' } },
         swipeDown: { action: { shortcut: '#undo' }, text: '撤' },
       },
     },
@@ -489,7 +492,7 @@ local settings = import '../Settings.libsonnet';
       params: {
         action: { character: 'v' },
         uppercased: { action: { character: 'V' } },
-        swipeUp: { action: { character: '=' } },
+        swipeUp: { action: { character: '|' } },
         swipeDown: { action: { shortcut: '#paste' }, text: '贴' },
       },
     },
@@ -502,13 +505,13 @@ local settings = import '../Settings.libsonnet';
         swipeDown: { action: { character: ']' } },
       },
     },
-    nButton: {
-      name: 'nButton',
+    kButton: {
+      name: 'kButton',
       params: {
-        action: { character: 'n' },
-        uppercased: { action: { character: 'N' } },
-        swipeUp: { action: { character: '&' } },
-        swipeDown: { action: { character: '~' } },
+        action: { character: 'k' },
+        uppercased: { action: { character: 'K' } },
+        swipeUp: { action: { character: '{' } },
+        swipeDown: { action: { character: '}' } },
       },
     },
     mButton: {
@@ -516,18 +519,27 @@ local settings = import '../Settings.libsonnet';
       params: {
         action: { character: 'm' },
         uppercased: { action: { character: 'M' } },
-        swipeUp: { action: { character: '?' } },
+        swipeUp: { action: { character: '(' } },
+        swipeDown: { action: { character: ')' } },
+      },
+    },
+    // 英文问号
+    questionMarkButton: {
+      name: 'questionMarkButton',
+      params: {
+        action: { character: '?' },
+        swipeUp: { action: { character: '!' } },
         swipeDown: { action: { character: '$' } },
       },
     },
 
     letterButtons: [
-      self.qButton, self.wButton, self.eButton, self.rButton, self.tButton,
-      self.yButton, self.uButton, self.iButton, self.oButton, self.pButton,
-      self.aButton, self.sButton, self.dButton, self.fButton, self.gButton,
-      self.hButton, self.jButton, self.kButton, self.lButton,
-      self.zButton, self.xButton, self.cButton, self.vButton, self.bButton,
-      self.nButton, self.mButton,
+      self.aButton, self.bButton, self.cButton, self.dButton, self.eButton,
+      self.fButton, self.gButton, self.hButton, self.iButton, self.jButton,
+      self.kButton, self.lButton, self.mButton, self.nButton, self.oButton,
+      self.pButton, self.qButton, self.rButton, self.sButton, self.tButton,
+      self.uButton, self.vButton, self.wButton, self.xButton, self.yButton,
+      self.zButton, self.semicolonButton, self.questionMarkButton,
     ],
 
     // 数字键
@@ -823,14 +835,6 @@ local settings = import '../Settings.libsonnet';
       },
     },
 
-    // 分号
-    semicolonButton: {
-      name: 'semicolonButton',
-      params: {
-        action: { symbol: ';' },
-      },
-    },
-
     // 中文分号
     chineseSemicolonButton: {
       name: 'chineseSemicolonButton',
@@ -963,13 +967,6 @@ local settings = import '../Settings.libsonnet';
       name: 'questionMarkButton',
       params: {
         action: { symbol: '？' },
-      },
-    },
-    // 英文问号
-    questionMarkButton: {
-      name: 'questionMarkEnButton',
-      params: {
-        action: { symbol: '?' },
       },
     },
     // 中文感叹号

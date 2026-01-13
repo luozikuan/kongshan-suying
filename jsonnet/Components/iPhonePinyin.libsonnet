@@ -6,7 +6,7 @@ local toolbar = import 'Toolbar.libsonnet';
 local utils = import 'Utils.libsonnet';
 
 local portraitNormalButtonSize = {
-  size: { width: '112.5/1125' },
+  size: { width: '100/1000' }, # 一个键宽 100，总共 10 个键
 };
 
 local hintStyle = {
@@ -26,25 +26,26 @@ local rows = [
   [
     params.keyboard.qButton,
     params.keyboard.wButton,
-    params.keyboard.eButton,
-    params.keyboard.rButton,
-    params.keyboard.tButton,
-    params.keyboard.yButton,
-    params.keyboard.uButton,
-    params.keyboard.iButton,
-    params.keyboard.oButton,
+    params.keyboard.fButton,
     params.keyboard.pButton,
+    params.keyboard.gButton,
+    params.keyboard.jButton,
+    params.keyboard.lButton,
+    params.keyboard.uButton,
+    params.keyboard.yButton,
+    params.keyboard.semicolonButton,
   ],
   [
     params.keyboard.aButton,
+    params.keyboard.rButton,
     params.keyboard.sButton,
+    params.keyboard.tButton,
     params.keyboard.dButton,
-    params.keyboard.fButton,
-    params.keyboard.gButton,
     params.keyboard.hButton,
-    params.keyboard.jButton,
-    params.keyboard.kButton,
-    params.keyboard.lButton,
+    params.keyboard.nButton,
+    params.keyboard.eButton,
+    params.keyboard.iButton,
+    params.keyboard.oButton,
   ],
   [
     params.keyboard.shiftButton,
@@ -53,8 +54,9 @@ local rows = [
     params.keyboard.cButton,
     params.keyboard.vButton,
     params.keyboard.bButton,
-    params.keyboard.nButton,
+    params.keyboard.kButton,
     params.keyboard.mButton,
+    params.keyboard.questionMarkButton,
     params.keyboard.backspaceButton,
   ],
   [
@@ -79,15 +81,12 @@ local getAlphabeticButtonSize(name) =
   local extra = {
     [params.keyboard.aButton.name]: {
       size:
-        { width: '168.75/1125' },
+        { width: '125/1000' },
       bounds:
-        { width: '111/168.75', alignment: 'right' },
+        { width: '100/125', alignment: 'right' },
     },
-    [params.keyboard.lButton.name]: {
-      size:
-        { width: '168.75/1125' },
-      bounds:
-        { width: '111/168.75', alignment: 'left' },
+    [params.keyboard.oButton.name]: {
+      size: { width: '75/1000' },
     },
   };
   (
@@ -114,7 +113,7 @@ local newKeyLayout(isDark=false, isPortrait=true) =
         isDark,
         getAlphabeticButtonSize(button.name) + button.params + hintStyle + alphabeticTextCenterWhenShowSwipeText +
         (
-          if settings.uppercaseForChinese then
+          if settings.uppercaseForChinese && std.objectHas(button.params, 'uppercased') then
             basicStyle.newAlphabeticButtonUppercaseForegroundStyle(isDark, button.params) + basicStyle.getKeyboardActionText(button.params.uppercased)
             + {
               [if settings.uppercaseForChinese then 'whenAsciiModeOn']: basicStyle.newAlphabeticButtonForegroundStyle(isDark, button.params) + basicStyle.getKeyboardActionText(button.params),
@@ -130,34 +129,14 @@ local newKeyLayout(isDark=false, isPortrait=true) =
   + basicStyle.newSystemButton(
     params.keyboard.shiftButton.name,
     isDark,
-    (
-      if settings.usePCLayout then portraitNormalButtonSize else
-      {
-        size:
-          { width: '168.75/1125' },
-        bounds:
-          { width: '151/168.75', alignment: 'left' },
-      }
-    )
+    { size: { width: '75/1000' } }
     + params.keyboard.shiftButton.params
   )
 
   + basicStyle.newSystemButton(
     params.keyboard.backspaceButton.name,
     isDark,
-    (
-      if settings.usePCLayout then
-      {
-        size: { width: '225/1125' },
-      }
-      else
-      {
-        size:
-          { width: '168.75/1125' },
-        bounds:
-          { width: '151/168.75', alignment: 'right' },
-      }
-    )
+    { size: { width: '150/1000' } }
     + params.keyboard.backspaceButton.params,
   )
 
@@ -167,9 +146,9 @@ local newKeyLayout(isDark=false, isPortrait=true) =
     isDark,
     (
       if settings.showFunctionButton then
-        { size: { width: '191.25/1125' } }
+        { size: { width: { percentage: 0.17 } } }
       else
-        { size: { width: '225/1125' } }
+        { size: { width: { percentage: 0.20 } } }
     )
     + params.keyboard.numericButton.params
   )
@@ -209,7 +188,7 @@ local newKeyLayout(isDark=false, isPortrait=true) =
     params.keyboard.enterButton.name,
     isDark,
     {
-      size: { width: '250/1125' },
+      size: { width: { percentage: 0.222 } },
     } + params.keyboard.enterButton.params
   )
 ;
