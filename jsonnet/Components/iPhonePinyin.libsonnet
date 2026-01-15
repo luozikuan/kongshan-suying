@@ -5,8 +5,10 @@ local preedit = import 'Preedit.libsonnet';
 local toolbar = import 'Toolbar.libsonnet';
 local utils = import 'Utils.libsonnet';
 
+local totalWidth = 1010; // 总宽度单位，一个键宽 100，总共 10+1/4 个键
+
 local portraitNormalButtonSize = {
-  size: { width: '100/1000' }, # 一个键宽 100，总共 10 个键
+  size: { width: '100/' + totalWidth },
 };
 
 local hintStyle = {
@@ -81,13 +83,22 @@ local getAlphabeticButtonSize(name) =
   local extra = {
     [params.keyboard.aButton.name]: {
       size:
-        { width: '125/1000' },
+        { width: '125/' + totalWidth },
       bounds:
         { width: '100/125', alignment: 'right' },
     },
-    [params.keyboard.oButton.name]: {
-      size: { width: '75/1000' },
+    [params.keyboard.semicolonButton.name]: {
+      local myWidth = totalWidth - 9 * 100,
+      size:
+        { width: myWidth + '/' + totalWidth },
+      bounds:
+        { width: '100/'+myWidth, alignment: 'left' },
     },
+    [params.keyboard.oButton.name]: {
+      local myWidth = totalWidth - 125 - 8 * 100, // aButton 宽 125
+      size:
+        { width: myWidth + '/' + totalWidth },
+    }
   };
   (
   if std.objectHas(extra, name) then
@@ -129,14 +140,17 @@ local newKeyLayout(isDark=false, isPortrait=true) =
   + basicStyle.newSystemButton(
     params.keyboard.shiftButton.name,
     isDark,
-    { size: { width: '75/1000' } }
+    { size: { width: '75/' + totalWidth } }
     + params.keyboard.shiftButton.params
   )
 
   + basicStyle.newSystemButton(
     params.keyboard.backspaceButton.name,
     isDark,
-    { size: { width: '150/1000' } }
+    {
+      local myWidth = totalWidth - 75 - 8 * 100, // shift 宽 75
+      size: { width: myWidth + '/' + totalWidth }
+    }
     + params.keyboard.backspaceButton.params,
   )
 
