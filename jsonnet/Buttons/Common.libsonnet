@@ -76,6 +76,12 @@ local settings = import '../Settings.libsonnet';
 
       uppercased: { systemImageName: 'shift.fill', },
       capsLocked: { systemImageName: 'capslock.fill', },
+
+      whenPreeditChanged: {
+        action: settings.segmentAction,
+        // systemImageName: 'square.and.line.vertical.and.square',
+        text: '分词',
+      },
     },
   },
 
