@@ -1,5 +1,4 @@
 local fonts = import '../Constants/Fonts.libsonnet';
-local params = import '../Constants/Keyboard.libsonnet';
 local pinyin9Buttons = import '../Buttons/Layout9.libsonnet';
 local commonButtons = import '../Buttons/Common.libsonnet';
 local settings = import '../Settings.libsonnet';
