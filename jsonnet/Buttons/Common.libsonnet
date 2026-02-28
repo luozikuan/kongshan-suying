@@ -153,12 +153,20 @@ local settings = import '../Settings.libsonnet';
       text: '123',
       swipeUp: { action: { keyboardType: 'symbolic' } },
       swipeDown: { action: { keyboardType: 'emojis' } },
-
-      // whenPreeditChanged: {
-      //   action: settings.segmentAction,
-      //   text: '分词',
-      // },
-    },
+    }
+    + ( // 对于 iPad 设备，长按数字键可以切换到 iOS 系统键盘列表中的下一个键盘
+      if settings.iPad then {
+        longPress: [
+          {
+            systemImageName: 'globe',
+            action: 'nextKeyboard',
+            selected: true,
+          },
+        ],
+      }
+      else {}
+    )
+    ,
   },
 
   symbolicButton: {
