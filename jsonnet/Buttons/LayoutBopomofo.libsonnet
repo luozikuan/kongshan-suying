@@ -356,15 +356,7 @@ local commonButtons = import './Common.libsonnet';
 
   spaceButton: {
     name: 'spaceButton',
-    params: {
-      action: 'space',
-      systemImageName: 'space',
-      center: {x: 0.5, y: 0.5},
-      notification:
-        (if settings.spaceButtonShowSchema then
-          ['rimeSchemaChangedNotification']
-        else []),
-
+    params: commonButtons.spaceButton.params + {
       whenPreeditChanged: {
         text: '一聲',
         fontSize: fonts.systemButtonTextFontSize,
