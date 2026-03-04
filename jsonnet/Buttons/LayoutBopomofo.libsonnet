@@ -10,6 +10,7 @@
 local colors = import '../Constants/Colors.libsonnet';
 local fonts = import '../Constants/Fonts.libsonnet';
 local settings = import '../Settings.libsonnet';
+local commonButtons = import './Common.libsonnet';
 
 {
   local root = self,
@@ -373,27 +374,10 @@ local settings = import '../Settings.libsonnet';
 
   enterButton: {
     name: 'enterButton',
-    params: {
-      action: 'enter',
-      text: '$returnKeyType',
-      notification: [
-        'returnKeyTypeChangedNotification',
-      ],
-
-      swipeUp: { action: { shortcut: '#行首' } },
-      swipeDown: { action: { shortcut: '#行尾' } },
-
-      longPress: [
-        {
-          action: { shortcut: '#换行' },
-          systemImageName: 'paragraphsign',
-        },
-      ],
-
-      whenPreeditChanged: {
+    params: commonButtons.enterButton.params + {
+      // 注音方案中，回車鍵打字時功能爲“選定”而非“确认”
+      whenPreeditChanged+: {
         text: '選定',
-        backgroundStyle: 'systemButtonBackgroundStyle',
-        normalColor: colors.systemButtonForegroundColor,
       },
     },
   },
