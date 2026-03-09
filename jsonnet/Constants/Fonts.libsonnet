@@ -16,7 +16,6 @@
   standardButtonImageFontSize: 20,
 
   numericButtonTextFontSize: 22.5,
-  numericCollectionTextFontSize: 20,
 
   systemButtonTextFontSize: 18,
   systemButtonImageFontSize: 20,

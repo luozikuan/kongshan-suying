@@ -923,30 +923,6 @@ local newColorButton(name, isDark=false, params={}) =
     .AddRimeOptionChangeEvent();
   button.GetButton() + button.reference;
 
-local newSymbolicCollection(name, isDark=false, params={}) =
-  {
-    [name]: utils.newBackgroundStyle(style=systemButtonBackgroundStyleName)
-            + { cellStyle: name + 'CellStyle' }
-            + utils.extractProperties(
-              params,
-              [
-                'type',
-                'size',
-                'insets',
-                'dataSource',
-              ]
-            ),
-    [name + 'CellStyle']:
-            // utils.newBackgroundStyle(style=systemButtonBackgroundStyleName)+
-            utils.newForegroundStyle(style=name + 'CellForegroundStyle'),
-    [name + 'CellForegroundStyle']: utils.newTextStyle({
-      normalColor: colors.systemButtonForegroundColor,
-      highlightColor: colors.systemButtonHighlightedForegroundColor,
-      fontSize: fonts.numericCollectionTextFontSize,
-    } + params, isDark),
-  };
-
-
 local rimeSchemaChangedNotification =
   {
     [if settings.spaceButtonSchemaNameCenter != null then 'rimeSchemaChangedNotification']: {
@@ -1009,8 +985,6 @@ local returnKeyTypeChangedNotification =
   newAlphabeticButton: newAlphabeticButton,
   newSystemButton: newSystemButton,
   newColorButton: newColorButton,
-
-  newSymbolicCollection: newSymbolicCollection,
 
   spaceButtonForegroundStyle: spaceButtonForegroundStyle,
   newSpaceButtonRimeSchemaForegroundStyle: newSpaceButtonRimeSchemaForegroundStyle,
