@@ -1,4 +1,4 @@
-local layout26 = import 'iPhonePinyin26.libsonnet';
+local layout26 = import 'Pinyin26.libsonnet';
 
 {
   new(isDark, isPortrait):
