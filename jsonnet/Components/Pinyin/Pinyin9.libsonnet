@@ -257,7 +257,7 @@ else
     };
 
     preedit.new(isDark)
-    + toolbar.new(isDark, isPortrait)
+    + toolbar.new(isDark, isPortrait, 'pinyin')
     + (
       if !isPortrait then halfVStackStyle.style else {}
     )

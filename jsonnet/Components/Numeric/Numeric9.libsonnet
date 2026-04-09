@@ -205,7 +205,7 @@ else
     };
 
     preedit.new(isDark)
-    + toolbar.new(isDark, isPortrait)
+    + toolbar.new(isDark, isPortrait, 'numeric')
     + (
       if !isPortrait then halfVStackStyle.style else {}
     )

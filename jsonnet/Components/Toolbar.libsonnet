@@ -227,12 +227,6 @@ local toolbarButtonNames = local buttons = keyboardParams.toolbarButton;
   buttons.toolbarMoveCursorRightButton.name, // 光标右移
 ];
 
-local slideButtons =
-[
-  keyboardParams.toolbarButton[toolbarButtonNames[buttonCode - 1]]
-  for buttonCode in settings.toolbarSlideButtons
-];
-
 local needSlideToolbar(slideButtons, slideButtonsMaxCount) =
   std.length(slideButtons) > slideButtonsMaxCount;
 
@@ -255,7 +249,7 @@ local toolbarKeyboardLayout(slideButtons, slideButtonsMaxCount) = [
 ];
 
 
-local newSlideAreaButtons(slideButtons, slideButtonsMaxCount, isDark) =
+local newSlideAreaButtons(slideButtons, slideButtonsMaxCount, isDark, keyboardName) =
   if needSlideToolbar(slideButtons, slideButtonsMaxCount) then
     basicStyle.newToolbarSlideButtons(slideButtons, slideButtonsMaxCount, isDark)
   else
@@ -264,7 +258,7 @@ local newSlideAreaButtons(slideButtons, slideButtonsMaxCount, isDark) =
         basicStyle.newToolbarButton(
           button.name,
           isDark,
-          button.params
+          std.mergePatch(button.params, std.get(button.params, 'On'+utils.capitalize(keyboardName), default={}))
         ),
       slideButtons,
       {}
@@ -282,7 +276,13 @@ local newButtons(isDark=false) =
     keyboardParams.toolbarButton.toolbarDismissButton.params,
   );
 
-local newToolbar(isDark=false, isPortrait=false, params={}) =
+local newToolbar(isDark=false, isPortrait=false, keyboardName, params={}) =
+  local slideButtons =
+  [
+    local btn = keyboardParams.toolbarButton[toolbarButtonNames[buttonCode - 1]];
+    std.mergePatch(btn, { params: std.get(btn.params, 'On'+utils.capitalize(keyboardName), {})})
+    for buttonCode in settings.toolbarSlideButtons
+  ];
   local slideButtonsMaxCount =
     if isPortrait then settings.toolbarSlideButtonsMaxCount.portrait else settings.toolbarSlideButtonsMaxCount.landscape;
   {
@@ -312,7 +312,7 @@ local newToolbar(isDark=false, isPortrait=false, params={}) =
     ],
   }
   + newButtons(isDark)
-  + newSlideAreaButtons(slideButtons, slideButtonsMaxCount, isDark)
+  + newSlideAreaButtons(slideButtons, slideButtonsMaxCount, isDark, keyboardName)
   + newHorizontalCandidatesCollectionView(isDark)
   + newExpandButton(isDark)
   + newVerticalCandidateCollectionStyle(isDark)

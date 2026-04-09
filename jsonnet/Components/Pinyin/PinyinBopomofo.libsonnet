@@ -207,7 +207,7 @@ else
     };
 
     preedit.new(isDark)
-    + toolbar.new(isDark, isPortrait)
+    + toolbar.new(isDark, isPortrait, 'pinyin')
     + basicStyle.newKeyboardBackgroundStyle(isDark)
     + basicStyle.newAlphabeticButtonBackgroundStyle(isDark, extraParams)
     + basicStyle.newSystemButtonBackgroundStyle(isDark, extraParams)

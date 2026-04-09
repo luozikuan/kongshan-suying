@@ -257,6 +257,10 @@ local processButtonParams(isAlphabetic, params) =
   else
     params;
 
+local capitalize(s) =
+  if std.length(s) == 0 then s
+  else std.asciiUpper(s[0:1]) + s[1:];
+
 {
   extractProperty: extractProperty,
   extractProperties: extractProperties,
@@ -276,4 +280,5 @@ local processButtonParams(isAlphabetic, params) =
   numericActionNeedSymbol: numericActionNeedSymbol,
   normalizeCenter: normalizeCenter,
   processButtonParams: processButtonParams,
+  capitalize: capitalize,
 }

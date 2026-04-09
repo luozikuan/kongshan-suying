@@ -236,7 +236,7 @@ local newKeyLayout(isDark=false, isPortrait=true, keyboardType=KeyboardType.Chin
     };
 
     preedit.new(isDark)
-    + toolbar.new(isDark, isPortrait)
+    + toolbar.new(isDark, isPortrait, if keyboardType == KeyboardType.Chinese then 'pinyin' else 'alphabetic')
     + basicStyle.newKeyboardBackgroundStyle(isDark)
     + basicStyle.newAlphabeticButtonBackgroundStyle(isDark, extraParams)
     + basicStyle.newSystemButtonBackgroundStyle(isDark, extraParams)
