@@ -1071,11 +1071,11 @@ local rimeSchemaChangedNotification =
 
 local returnKeyTypeChangedNotification =
   {
+    // NOTE: 此通知仅用来更新 enterButton 的前景文字 $returnKeyType
+    //       匹配不上 returnKeyType:[] 中指定的值，就会使用默认的文字 $returnKeyType
     returnKeyTypeChangedNotification:{
       notificationType: 'returnKeyType',
       returnKeyType: [],
-      backgroundStyle: colorButtonBackgroundStyleName,
-      foregroundStyle: colorButtonForegroundStyleName,
     },
   };
 
