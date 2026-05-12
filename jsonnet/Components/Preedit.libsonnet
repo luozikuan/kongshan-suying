@@ -1,7 +1,7 @@
 local colors = import '../Constants/Colors.libsonnet';
 local toolbarParams = import '../Buttons/Toolbar.libsonnet';
 local basicStyle = import '../Styles/BasicStyle.libsonnet';
-local utils = import 'Utils.libsonnet';
+local utils = import '../Utils/Utils.libsonnet';
 
 local preeditBackgroundStyleName = basicStyle.keyboardBackgroundStyleName;
 local preeditForegroundStyleName = 'preeditForegroundStyle';

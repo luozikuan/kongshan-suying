@@ -2,7 +2,7 @@ local colors = import '../Constants/Colors.libsonnet';
 local keyboardParams = import '../Buttons/Toolbar.libsonnet';
 local settings = import '../Settings.libsonnet';
 local basicStyle = import '../Styles/BasicStyle.libsonnet';
-local utils = import 'Utils.libsonnet';
+local utils = import '../Utils/Utils.libsonnet';
 
 
 local newCandidateStyle(param={}, isDark=false) =

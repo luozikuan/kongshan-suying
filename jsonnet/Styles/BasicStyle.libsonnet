@@ -2,7 +2,7 @@ local colors = import '../Constants/Colors.libsonnet';
 local fonts = import '../Constants/Fonts.libsonnet';
 local toolbarParams = import '../Buttons/Toolbar.libsonnet';
 local settings = import '../Settings.libsonnet';
-local utils = import '../Components/Utils.libsonnet';
+local utils = import '../Utils/Utils.libsonnet';
 
 local buttonCornerRadius = 8.5;
 
