@@ -63,3 +63,4 @@ jsonnet -S -m . --tla-code debug=true ./jsonnet/main.jsonnet
 ## github 仓库地址
 - [空山素影](https://github.com/luozikuan/kongshan-suying)
 - [最新版本发布地址](https://github.com/luozikuan/kongshan-suying/releases/latest)
+- [配套测试方案](https://github.com/luozikuan/rime-tailor)
