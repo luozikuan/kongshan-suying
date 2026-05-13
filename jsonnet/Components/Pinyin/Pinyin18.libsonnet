@@ -5,7 +5,7 @@ local settings = import '../../Settings.libsonnet';
 local basicStyle = import '../../Styles/BasicStyle.libsonnet';
 local preedit = import '../Preedit.libsonnet';
 local toolbar = import '../Toolbar.libsonnet';
-local utils = import '../Utils.libsonnet';
+local utils = import '../../Utils/Utils.libsonnet';
 
 local keyboardLayout = {
   keyboardLayout: [
