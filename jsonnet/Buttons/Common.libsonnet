@@ -78,9 +78,11 @@ local settings = import '../Settings.libsonnet';
       repeatAction: self.action,
       systemImageName: 'delete.left',
       highlightSystemImageName: 'delete.left.fill',
-      swipeUp: {
-        action: { sendKeys: 'Control+Backspace' } // 删除一个音节
-      },
+	  whenPreeditChanged: {
+		swipeUp: {
+          action: { sendKeys: 'Control+Backspace' } // 删除一个音节
+		},
+	  },
     },
   },
 
