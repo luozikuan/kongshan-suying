@@ -74,13 +74,6 @@ local commonButtons = import './Common.libsonnet';
       action: { character: '7' },
       swipeUp: { action: { symbol: '7' } },
       text: 'pqrs',
-
-      whenPreeditChanged: {
-        swipeUp: {
-          action: { character: '-' },
-          text: '一声',
-        },
-      }
     },
   },
   t9EightButton: {
@@ -89,13 +82,6 @@ local commonButtons = import './Common.libsonnet';
       action: { character: '8' },
       swipeUp: { action: { symbol: '8' } },
       text: 'tuv',
-
-      whenPreeditChanged: {
-        swipeUp: {
-          action: { character: '/' },
-          text: '二声',
-        },
-      },
     },
   },
   t9NineButton: {
@@ -104,13 +90,6 @@ local commonButtons = import './Common.libsonnet';
       action: { character: '9' },
       swipeUp: { action: { symbol: '9' } },
       text: 'wxyz',
-
-      whenPreeditChanged: {
-        swipeUp: {
-          action: { character: '<' },
-          text: '三声',
-        },
-      },
     },
   },
   // t9ZeroButton: {
@@ -156,12 +135,6 @@ local commonButtons = import './Common.libsonnet';
     name: 'spaceButton',
     params: std.mergePatch(commonButtons.spaceButton.params, {
       swipeUp: { action: { symbol: '0' } },
-      whenPreeditChanged: {
-        swipeUp: {
-          action: { character: '\\' },
-          text: '四声',
-        },
-      },
     }),
   },
 
