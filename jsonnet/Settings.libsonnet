@@ -26,7 +26,7 @@
 
   # 符号键盘布局选择，可选值如下：
   # default : 元书自带的符号键盘
-  # 26 : 类似 26 键布局
+  # row : 行式符号布局
   # classic : 分类符号布局
   symbolicLayout: 'default',
 

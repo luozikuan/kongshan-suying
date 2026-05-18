@@ -179,6 +179,11 @@ local settings = import '../Settings.libsonnet';
 		// 对于英文键盘，如果数字键盘是 row 形式，那么切到 numericRowEn 键盘
 		// numericRowEn 键盘经过特殊处理，上面的符号都是用 symbol 直接上屏的
 		[if settings.numericLayout == 'row' then 'action']: { keyboardType: 'numericRowEn' },
+
+		// 同样地，对于英文键盘，如果字符键盘是 row 形式，那么切到 symbolicRowEn 键盘
+		swipeUp: {
+		  [if settings.symbolicLayout == 'row' then 'action']: { keyboardType: 'symbolicRowEn' },
+		}
 	  }
     }
     + ( // 对于 iPad 设备，长按数字键可以切换到 iOS 系统键盘列表中的下一个键盘
@@ -201,6 +206,10 @@ local settings = import '../Settings.libsonnet';
     params: {
       action: { keyboardType: 'symbolic' },
       text: if settings.preferIcon then '#+=' else '符号',
+
+	  OnAlphabetic: {
+		[if settings.symbolicLayout == 'row' then 'action']: { keyboardType: 'symbolicRowEn' },
+	  },
     },
   },
 

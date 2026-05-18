@@ -274,7 +274,10 @@ local settings = import '../Settings.libsonnet';
           action: 'returnPrimaryKeyboard',
           systemImageName: 'arrow.backward',
           text: '返回',
-        }
+        },
+		OnAlphabetic: {
+		  [if settings.symbolicLayout == 'row' then 'action']: { keyboardType: 'symbolicRowEn' },
+		},
       },
     },
     toolbarKeyboardEmojiButton: {
