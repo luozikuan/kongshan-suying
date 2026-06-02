@@ -31,13 +31,6 @@
   symbolicLayout: 'default',
 
 
-  # emoji 键盘布局选择，可选值如下：
-  # default : 元书自带的表情键盘
-  # kaomoji : 日式颜文字布局
-  # classic : 分类表情布局
-  emojiLayout: 'default',
-
-
   # 输入时空格键上的内容，支持固定内容和变量
   # 注意：bopomofo 佈局下此項不生效，因為空格鍵打字中用於選聲調（一聲）
   # 变量可选如下：
