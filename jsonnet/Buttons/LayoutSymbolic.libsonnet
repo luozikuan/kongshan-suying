@@ -34,16 +34,16 @@ local settings = import '../Settings.libsonnet';
     },
   },
   leftCornerBracketButton: {
-	name: 'leftCornerBracketButton',
-	params: {
-	  action: { symbol: '〔' },
-	},
+    name: 'leftCornerBracketButton',
+    params: {
+      action: { symbol: '〔' },
+    },
   },
   rightCornerBracketButton: {
-	name: 'rightCornerBracketButton',
-	params: {
-	  action: { symbol: '〕' },
-	},
+    name: 'rightCornerBracketButton',
+    params: {
+      action: { symbol: '〕' },
+    },
   },
   percentButton: {
     name: 'percentButton',
@@ -108,101 +108,102 @@ local settings = import '../Settings.libsonnet';
     },
   },
   backQuoteButton: {
-	name: 'backQuoteButton',
-	params: {
-	  action: { symbol: '`' },
-	},
+    name: 'backQuoteButton',
+    params: {
+      action: { symbol: '`' },
+    },
   },
   yenButton: {
     name: 'yenButton',
     params: {
       action: { symbol: '¥' },
 
-	  OnAlphabetic: {
-		text: '$',
-		action: { symbol: '$' } ,
-	  },
+      OnAlphabetic: {
+        text: '$',
+        action: { symbol: '$' } ,
+      },
     },
   },
   euroButton: {
     name: 'euroButton',
     params: {
-	  action: { symbol: '‘', },
+      action: { symbol: '‘', },
 
-	  OnAlphabetic: {
-		action: { symbol: '€' },
-	  },
+      OnAlphabetic: {
+        action: { symbol: '€' },
+      },
     },
   },
   poundButton: {
     name: 'poundButton',
     params: {
-	  action: { symbol: '’', },
+      action: { symbol: '’', },
 
-	  OnAlphabetic: {
-		action: { symbol: '£' },
-	  },
+      OnAlphabetic: {
+        action: { symbol: '£' },
+      },
     },
   },
 
   // 第三行符号
   longDashButton: {
-	name: 'longDashButton',
-	params: {
-	  action: { symbol: '——' },
-	},
+    name: 'longDashButton',
+    params: {
+      text: '—',
+      action: { symbol: '——' },
+    },
   },
   centerDotButton: {
-	name: 'centerDotButton',
-	params: {
-	  action: { symbol: '・' },
+    name: 'centerDotButton',
+    params: {
+      action: { symbol: '・' },
 
-	  OnAlphabetic: {
-		action: { symbol: '·' },
-	  },
-	},
+      OnAlphabetic: {
+        action: { symbol: '·' },
+      },
+    },
   },
   almostEqualButton: {
-	name: 'almostEqualButton',
-	params: {
-	  action: { symbol: '≈' },
-	},
+    name: 'almostEqualButton',
+    params: {
+      action: { symbol: '≈' },
+    },
   },
   leftBookTitleMarkButton: {
-	name: 'leftBookTitleMarkButton',
-	params: {
-	  action: { symbol: '《' },
+    name: 'leftBookTitleMarkButton',
+    params: {
+      action: { symbol: '《' },
 
-	  OnAlphabetic: {
-		action: { symbol: 'i' },
-	  },
-	},
+      OnAlphabetic: {
+        action: { symbol: 'i' },
+      },
+    },
   },
   rightBookTitleMarkButton: {
-	name: 'rightBookTitleMarkButton',
-	params: {
-	  action: { symbol: '》' },
+    name: 'rightBookTitleMarkButton',
+    params: {
+      action: { symbol: '》' },
 
-	  OnAlphabetic: {
-		action: { symbol: '?' },
-	  },
-	},
+      OnAlphabetic: {
+        action: { symbol: '?' },
+      },
+    },
   },
   sectionSymButton: {
-	name: 'sectionSymButton',
-	params: {
-	  action: { symbol: '§' },
-	},
+	  name: 'sectionSymButton',
+    params: {
+      action: { symbol: '§' },
+    },
   },
   temperatureButton: {
-	name: 'temperatureButton',
-	params: {
-	  action: { symbol: '℃' },
+    name: 'temperatureButton',
+    params: {
+      action: { symbol: '℃' },
 
-	  OnAlphabetic: {
-		action: { symbol: '℉' },
-	  },
-	},
+      OnAlphabetic: {
+        action: { symbol: '℉' },
+      },
+    },
   },
 
   // 第四行
@@ -214,20 +215,20 @@ local settings = import '../Settings.libsonnet';
     },
   },
   ellipsisButton: {
-	name: 'ellipsisButton',
-	params: {
-	  action: { symbol: '…' },
-	},
+    name: 'ellipsisButton',
+    params: {
+      action: { symbol: '…' },
+    },
   },
   etcButton: {
-	name: 'etcButton',
-	params: {
-	  action: { symbol: '々' },
+    name: 'etcButton',
+    params: {
+      action: { symbol: '々' },
 
-	  OnAlphabetic: {
-		action: { symbol: '¶' },
-	  },
-	},
+      OnAlphabetic: {
+        action: { symbol: '¶' },
+      },
+    },
   },
 
 }
