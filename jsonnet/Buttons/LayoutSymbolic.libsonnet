@@ -120,7 +120,7 @@ local settings = import '../Settings.libsonnet';
 
 	  OnAlphabetic: {
 		text: '$',
-		action: { action: { symbol: '$' } },
+		action: { symbol: '$' } ,
 	  },
     },
   },

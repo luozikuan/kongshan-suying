@@ -43,7 +43,7 @@ local keyboardLayout = {
           { Cell: symbolicButtons.tildeButton.name },
           { Cell: symbolicButtons.lessThanButton.name },
           { Cell: symbolicButtons.greaterThanButton.name },
-		  { Cell: symbolicButtons.backQuoteButton.name },
+          { Cell: symbolicButtons.backQuoteButton.name },
           { Cell: symbolicButtons.yenButton.name },
           { Cell: symbolicButtons.euroButton.name },
           { Cell: symbolicButtons.poundButton.name },
