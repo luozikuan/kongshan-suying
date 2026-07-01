@@ -400,6 +400,57 @@ local newToolbarSlideButtons(buttons, slideButtonsMaxCount, isDark=false) =
     {}
   );
 
+local newClassifiedCollection(name, isDark=true, isPortrait=true, params={}) = {
+    [name]: {
+      type: 'classifiedSymbols',
+      backgroundStyle: systemButtonBackgroundStyleName,
+      cellStyle: 'classifiedSymbolsCellStyle',
+    } + params,
+    classifiedSymbolsCellStyle: {
+      backgroundStyle: 'classifiedSymbolsCellBackgroundStyle',
+      foregroundStyle: 'classifiedSymbolsCellForegroundStyle',
+    },
+    classifiedSymbolsCellBackgroundStyle: utils.newGeometryStyle({
+      highlightColor: colors.systemButtonHighlightedBackgroundColor,
+      cornerRadius: buttonCornerRadius,
+    } + params + {
+      insets: {
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+      }
+    }, isDark),
+    classifiedSymbolsCellForegroundStyle: utils.newTextStyle({
+      normalColor: colors.systemButtonForegroundColor,
+      highlightColor: colors.systemButtonHighlightedForegroundColor,
+      fontSize: fonts.systemButtonTextFontSize,
+    }, isDark),
+  };
+
+local newSubClassifiedCollection(name, isDark=true, isPortrait=true, params={}) = {
+    [name]: {
+      type: 'subClassifiedSymbols',
+      backgroundStyle: systemButtonBackgroundStyleName,
+      cellStyle: 'subClassifiedSymbolsCellStyle',
+      maximumRow: 4,
+      maximumColumn: if isPortrait then 5 else 10,
+    } + params,
+    subClassifiedSymbolsCellStyle: {
+      backgroundStyle: 'subClassifiedSymbolsCellBackgroundStyle',
+      foregroundStyle: 'subClassifiedSymbolsCellForegroundStyle',
+    },
+    subClassifiedSymbolsCellBackgroundStyle: utils.newGeometryStyle({
+      highlightColor: colors.systemButtonHighlightedBackgroundColor,
+      cornerRadius: buttonCornerRadius,
+    } + params, isDark),
+    subClassifiedSymbolsCellForegroundStyle: utils.newTextStyle({
+      normalColor: colors.systemButtonForegroundColor,
+      highlightColor: colors.systemButtonHighlightedForegroundColor,
+      fontSize: fonts.systemButtonTextFontSize,
+    }, isDark),
+  };
+
 // 例如：replaceGivenPairs(['a', 'b', 'c'], {'a': 'x', 'b':'y'}) 返回 ['x', 'y', 'c']
 local replaceGivenPairs(arr, oldToNewPairs) =
   if std.length(std.objectFields(oldToNewPairs)) == 0 then
@@ -1143,8 +1194,13 @@ local rimeSchemaChangedNotification =
   newSystemButton: newSystemButton,
   newColorButton: newColorButton,
 
+  newSystemButtonForegroundStyle: newSystemButtonForegroundStyle,
+
   spaceButtonForegroundStyle: spaceButtonForegroundStyle,
   newSpaceButtonForegroundStyle: newSpaceButtonForegroundStyle,
+
+  newClassifiedCollection: newClassifiedCollection,
+  newSubClassifiedCollection: newSubClassifiedCollection,
 
   // notification
   rimeSchemaChangedNotification: rimeSchemaChangedNotification,
