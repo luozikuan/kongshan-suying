@@ -693,6 +693,83 @@ local newButton(name, type='alphabetic', isDark=false, params={}) =
         },
       },
 
+  AddLongPressGrid():
+    local hasLongPressParams = std.objectHas(root.params, 'longPressGrid');
+    if !hasLongPressParams then
+      root
+    else
+      local longPressParams = if hasLongPressParams then root.params.longPressGrid else [];
+      assert std.type(longPressParams) == 'array' : 'longPress 必须是数组类型';
+      local longPressRows =
+        if std.length(longPressParams) == 0 then
+          []
+        else if std.type(longPressParams[0]) == 'array' then
+          longPressParams
+        else
+          [longPressParams];
+      local longPressStyleName(row, col) =
+        if longPressRows[row][col] != '~' then
+          root.name + 'LongPressSymbol' + row + '_' + col + 'Style'
+        else
+          null;
+      local longPressForegroundStyleName(row, col) =
+        if longPressRows[row][col] != '~' then
+          root.name + 'LongPressSymbol' + row + '_' + col + 'ForegroundStyle'
+        else
+          null;
+      root {
+        [root.name]+: {
+          hintSymbolsGridStyle: root.name + 'LongPressSymbolsGridStyle',
+        },
+        reference+: {
+          [root.name + 'LongPressSymbolsGridStyle']:
+            local findDictItemInList(rows, key) =
+              local findInRow(row, col) =
+                if row >= std.length(rows) then
+                  null
+                else if col >= std.length(rows[row]) then
+                  findInRow(row + 1, 0)
+                else if std.get(rows[row][col], key, false) then
+                  { row: row, col: col }
+                else
+                  findInRow(row, col + 1);
+              findInRow(0, 0);
+            local anchor = findDictItemInList(longPressRows, 'anchor');
+            local selected = findDictItemInList(longPressRows, 'selected');
+           {
+            // size: { width: self.height, height: toolbarParams.toolbar.height },
+            spacing: { horizontal: 4, vertical: 4 },
+            insets: {
+              left: 3,
+              right: 3,
+              top: 3,
+              bottom: 3,
+            },
+            # offset: { x: 0, y: -10 },
+            symbolRows: [
+              [if longPressRows[row][col] == '~' then '~' else longPressStyleName(row, col) for col in std.range(0, std.length(longPressRows[row]) - 1)]
+              for row in std.range(0, std.length(longPressRows) - 1)
+            ],
+            [if anchor != null then 'anchor']: anchor,
+            [if selected != null then 'selected']: selected,
+           }
+          + utils.newBackgroundStyle(style=longPressSymbolsBackgroundStyleName)
+          + utils.newBackgroundStyle('selectedBackgroundStyle', style=longPressSymbolsSelectedBackgroundStyleName)
+        } + {
+          [longPressStyleName(row, col)]: {
+            action: longPressRows[row][col].action,
+          }
+          + utils.newForegroundStyle(style=longPressForegroundStyleName(row, col)),
+          for row in std.range(0, std.length(longPressRows) - 1)
+          for col in std.range(0, std.length(longPressRows[row]) - 1)
+        } + {
+          [longPressForegroundStyleName(row, col)]:
+            newLongPressSymbolsForegroundStyle(root.isDark, root.params, longPressRows[row][col]),
+          for row in std.range(0, std.length(longPressRows) - 1)
+          for col in std.range(0, std.length(longPressRows[row]) - 1)
+        },
+      },
+
   AddAnimation(): root {
     [root.name]+: utils.newAnimation(animation=[buttonAnimationName]),
     globalNames+: [buttonAnimationName],
