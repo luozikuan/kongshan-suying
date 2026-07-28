@@ -514,9 +514,11 @@ local newButton(name, type='alphabetic', isDark=false, params={}) =
 
   // 内部调用函数，外面不要调用
   local _CreateHintStyleReference(hintStyleName, param) =
-    local hintForegroundStyleName = hintStyleName[:-5] + 'Foreground' + hintStyleName[-5:];
-    local swipeUpHintForegroundStyleName = if std.objectHas(param, 'swipeUp') then hintStyleName[:-5] + 'SwipeUpForeground' + hintStyleName[-5:] else null;
-    local swipeDownHintForegroundStyleName = if std.objectHas(param, 'swipeDown') then hintStyleName[:-5] + 'SwipeDownForeground' + hintStyleName[-5:] else null;
+    local hintNamePrefix = std.substr(hintStyleName, 0, std.length(hintStyleName) - 5);
+    local hintNameSuffix = std.substr(hintStyleName, std.length(hintStyleName) - 5, 5);
+    local hintForegroundStyleName = hintNamePrefix + 'Foreground' + hintNameSuffix;
+    local swipeUpHintForegroundStyleName = if std.objectHas(param, 'swipeUp') then hintNamePrefix + 'SwipeUpForeground' + hintNameSuffix else null;
+    local swipeDownHintForegroundStyleName = if std.objectHas(param, 'swipeDown') then hintNamePrefix + 'SwipeDownForeground' + hintNameSuffix else null;
     {
       [hintStyleName]: (
             if std.objectHas(root.params, 'hintStyle') then
