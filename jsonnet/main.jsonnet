@@ -24,6 +24,24 @@ local nameToComponent = {
 local getFileName(componentName, isPortrait) =
   componentName + (if isPortrait then 'Portrait' else 'Landscape');
 
+local keySoundConfig = {
+  // keySound: {
+  //   input: "key.wav",
+  //   delete: "delete.wav",
+  //   system: "system.wav",
+  //   actions: [
+  //     {
+  //       action: { character: 'f' },
+  //       url: "key_f.wav",
+  //     },
+  //     {
+  //       action: { character: 'h' },
+  //       url: "key_h.wav",
+  //     },
+  //   ]
+  // }
+};
+
 local config = {
   [name]: {
     iPhone: {
@@ -36,7 +54,7 @@ local config = {
       floating: getFileName(name, isPortrait=true),
     },
   } for name in std.objectFields(nameToComponent)
-};
+} + keySoundConfig;
 
 // std.toString 生成的内容紧凑，生成速度快，但不易阅读，适合发布时使用
 // std.manifestYamlDoc 生成的内容格式化良好，易于阅读，但生成速度慢，也更占用内存，适合在电脑上调试时使用
