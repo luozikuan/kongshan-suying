@@ -210,10 +210,10 @@ local toolbarButtonNames = local buttons = keyboardParams.toolbarButton;
   buttons.toolbarPerformanceButton.name, // 查看性能
   buttons.toolbarLeftHandButton.name, // 左手模式
   buttons.toolbarRightHandButton.name, // 右手模式
+  buttons.toolbarCommandButton.name, // 命令模式
   buttons.toolbarRimeSyncButton.name, // Rime同步
   buttons.toolbarRimeDeployButton.name, // Rime部署
   buttons.toolbarRimeInputSchemaButton.name, // Rime方案管理
-  buttons.toolbarRimeQuickButton.name, // 快符
   buttons.toolbarRimeSwitcherButton.name, // RimeSwitcher
   buttons.toolbarSkinPreference.name, // 皮肤微调
   buttons.toolbarKeyboardDefinition.name, // 键盘按键定义

@@ -92,6 +92,14 @@ local settings = import '../Settings.libsonnet';
         text: '短语',
       },
     },
+    toolbarCommandButton: {
+      name: 'toolbarCommandButton',
+      params: {
+        action: { shortcut: "#toggleCommandView" },
+        systemImageName: 'command',
+        text: '命令',
+      },
+    },
     toolbarScriptButton: {
       name: 'toolbarScriptButton',
       params: {
@@ -203,14 +211,6 @@ local settings = import '../Settings.libsonnet';
         action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/inputSchema' },
         systemImageName: 'list.bullet.rectangle.portrait',
         text: '方案',
-      },
-    },
-    toolbarRimeQuickButton: {
-      name: 'toolbarRimeQuickButton',
-      params: {
-        action: settings.quickAction,
-        systemImageName: 'figure.roll.runningpace',
-        text: '快符',
       },
     },
     toolbarRimeSyncButton: {
