@@ -222,7 +222,7 @@ local newKeyLayout(isDark=false, isPortrait=true, keyboardType=KeyboardType.Chin
   // 只在非26键布局下额外生成一个26键布局，action 使用 character，把动作发给 Rime 处理
   // 和主键盘的区别在于"中英切换键"改为"返回"键
   new(isDark, isPortrait, keyboardType=KeyboardType.Chinese):
-	local insets = if isPortrait then commonButtons.backgroundInsets.portrait else commonButtons.backgroundInsets.landscape;
+    local insets = if isPortrait then commonButtons.backgroundInsets.portrait else commonButtons.backgroundInsets.landscape;
 
     local extraParams = {
       insets: insets,

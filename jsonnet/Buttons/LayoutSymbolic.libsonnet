@@ -190,7 +190,7 @@ local settings = import '../Settings.libsonnet';
     },
   },
   sectionSymButton: {
-	  name: 'sectionSymButton',
+    name: 'sectionSymButton',
     params: {
       action: { symbol: '§' },
     },

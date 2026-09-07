@@ -258,9 +258,9 @@ local settings = import '../Settings.libsonnet';
           text: '返回',
         },
 
-		OnAlphabetic: {
-		  [if settings.numericLayout == 'row' then 'action']: { keyboardType: 'numericRowEn' },
-		}
+        OnAlphabetic: {
+          [if settings.numericLayout == 'row' then 'action']: { keyboardType: 'numericRowEn' },
+        }
       },
     },
     toolbarKeyboardSymbolicButton: {
@@ -275,16 +275,16 @@ local settings = import '../Settings.libsonnet';
           systemImageName: 'arrow.backward',
           text: '返回',
         },
-		OnAlphabetic: {
-		  [if settings.symbolicLayout == 'row' then 'action']: { keyboardType: 'symbolicRowEn' },
-		},
+        OnAlphabetic: {
+          [if settings.symbolicLayout == 'row' then 'action']: { keyboardType: 'symbolicRowEn' },
+        },
       },
     },
     toolbarKeyboardEmojiButton: {
       name: 'toolbarKeyboardEmojiButton',
       params: {
         action: { keyboardType: 'emojis', },
-		// systemImageName: 'face.smiling.inverse', // 这个表情经常会异常反色
+        // systemImageName: 'face.smiling.inverse', // 这个表情经常会异常反色
         systemImageName: 'face.dashed',
         text: '表情',
 

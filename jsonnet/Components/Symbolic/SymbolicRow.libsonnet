@@ -93,8 +93,8 @@ local getButtonSize(name) =
       bounds:
         { width: '151/168.75', alignment: 'right' },
     },
-	[symbolicButtons.ellipsisButton.name]: portraitNormalButtonSize,
-	[symbolicButtons.etcButton.name]: portraitNormalButtonSize,
+    [symbolicButtons.ellipsisButton.name]: portraitNormalButtonSize,
+    [symbolicButtons.etcButton.name]: portraitNormalButtonSize,
     [commonButtons.enterButton.name]: { size: { width: '250/1125' } },
   };
   (
@@ -137,7 +137,7 @@ local newKeyLayout(isDark=false, isPortrait=false, keyboardType=KeyboardType.Chi
       symbolicButtons.tildeButton,
       symbolicButtons.lessThanButton,
       symbolicButtons.greaterThanButton,
-	  symbolicButtons.backQuoteButton,
+      symbolicButtons.backQuoteButton,
       symbolicButtons.yenButton,
       symbolicButtons.euroButton,
       symbolicButtons.poundButton,
@@ -151,7 +151,7 @@ local newKeyLayout(isDark=false, isPortrait=false, keyboardType=KeyboardType.Chi
       symbolicButtons.ellipsisButton,
       symbolicButtons.symbolicSpaceButton,
       symbolicButtons.etcButton,
-	],
+    ],
     {})
   // 功能键
   + std.foldl(
