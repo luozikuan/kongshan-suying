@@ -132,5 +132,12 @@
   },
 
 
+  # 候选字上下文菜单配置
+  candidateContextMenu: [
+    {
+      name: '简繁',
+      action: { sendKeys: 'Control+Shift+dollar' },
+    },
+  ]
 
 }
