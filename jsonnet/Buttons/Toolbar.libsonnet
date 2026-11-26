@@ -144,7 +144,7 @@ local settings = import '../Settings.libsonnet';
     toolbarCheckUpdateButton: {
       name: 'toolbarCheckUpdateButton',
       params: {
-        action: { openURL: 'https://apps.apple.com/cn/app/%E5%85%83%E4%B9%A6%E8%BE%93%E5%85%A5%E6%B3%95/id6744464701' },
+        action: { openURL: 'https://ihsiao.com/apps/hamster/v3/docs/logs/' },
         systemImageName: { ios: 'arrow.down.circle', android: 'arrow_circle_down'},
         text: '更新',
       },
