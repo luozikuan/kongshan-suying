@@ -394,39 +394,4 @@ local settings = import '../Settings.libsonnet';
         fontSize: fonts.candidateStateButtonFontSize,
       },
     },
-
-  verticalCandidateStyle:
-    {
-      // insets 用于展开候选字后的区域内边距
-      // insets: { top: 3, bottom: 3, left: 4, right: 4 },
-      bottomRowHeight: 45,
-      candidateCollectionStyle: {
-        insets: { top: 8, bottom: 8, left: 8, right: 8 },
-        backgroundColor: colors.keyboardBackgroundColor,
-        maxRows: 5,
-        maxColumns: 6,
-        separatorColor: colors.candidateSeparatorColor,
-      },
-      pageUpButton: {
-        action: { shortcut: '#verticalCandidatesPageUp' },
-        systemImageName: { ios: 'chevron.up', android: 'keyboard_arrow_up'},
-        normalColor: colors.toolbarButtonForegroundColor,
-        highlightColor: colors.toolbarButtonHighlightedForegroundColor,
-        fontSize: fonts.candidateStateButtonFontSize,
-      },
-      pageDownButton: {
-        action: { shortcut: '#verticalCandidatesPageDown' },
-        systemImageName: { ios: 'chevron.down', android: 'keyboard_arrow_down'},
-        normalColor: colors.toolbarButtonForegroundColor,
-        highlightColor: colors.toolbarButtonHighlightedForegroundColor,
-        fontSize: fonts.candidateStateButtonFontSize,
-      },
-      returnButton: {
-        action: { shortcut: '#candidatesBarStateToggle' },
-        systemImageName: { ios: 'arrow.backward', android: 'arrow_back'},
-        normalColor: colors.toolbarButtonForegroundColor,
-        highlightColor: colors.toolbarButtonHighlightedForegroundColor,
-        fontSize: fonts.candidateStateButtonFontSize,
-      },
-    },
 }
