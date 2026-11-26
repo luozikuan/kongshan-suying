@@ -60,7 +60,7 @@ aButton: {
     longPress: [
       {
         action: { shortcut: '#左手模式' },
-        systemImageName: 'keyboard.onehanded.left'
+        systemImageName: { ios: 'keyboard.onehanded.left', android: 'mobile_hand_left'}
       },
     ],
   },
@@ -106,13 +106,13 @@ pButton: {
 shiftButton: {
   name: 'shiftButton',
   params: {
-    systemImageName: 'shift',
+    systemImageName: { ios: 'shift', android: 'shift'},
     action: 'shift',
 
-    uppercased: { systemImageName: 'shift.fill', },
+    uppercased: { systemImageName: { ios: 'shift.fill', android: 'shift.fill'}, },
 
     # 大写锁定状态下显示的图标
-    capsLocked: { systemImageName: 'capslock.fill', },
+    capsLocked: { systemImageName: { ios: 'capslock.fill', android: 'shift_lock.fill'}, },
   },
 },
 ```
@@ -190,7 +190,7 @@ functionButton: {
   name: 'functionButton',
   params: {
     action: { shortcut: '#selectText' },
-    systemImageName: 'selection.pin.in.out',
+    systemImageName: { ios: 'selection.pin.in.out', android: 'select_all'},
 
     whenKeyboardAction: [
       {
@@ -198,7 +198,7 @@ functionButton: {
           shortcut: '#selectText'
         },
         action: { shortcut: '#cut' },
-        systemImageName: 'scissors',
+        systemImageName: { ios: 'scissors', android: 'content_cut'},
       },
     ],
   },
@@ -213,7 +213,7 @@ functionButton: {
   name: 'functionButton',
   params: {
     action: { shortcut: '#selectText' },
-    systemImageName: 'selection.pin.in.out',
+    systemImageName: { ios: 'selection.pin.in.out', android: 'select_all'},
 
     whenKeyboardAction: [
       {
@@ -221,7 +221,7 @@ functionButton: {
           shortcut: '#selectText'
         },
         action: { shortcut: '#cut' },
-        systemImageName: 'scissors',
+        systemImageName: { ios: 'scissors', android: 'content_cut'},
 
         # 变成剪切后就一直是剪切，不会自动恢复回全选
         lockedNotificationMatchState: true,

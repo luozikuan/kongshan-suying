@@ -62,7 +62,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarMenuButton',
       params: {
         action: { floatKeyboardType: 'panel', },
-        systemImageName: 'hexagon.righthalf.filled',
+        systemImageName: { ios: 'hexagon.righthalf.filled', android: 'hexagon'},
         // systemImageName: 'swirl.circle.righthalf.filled', // 需要 iOS 17+
         text: '面板',
       },
@@ -71,7 +71,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarDismissButton',
       params: {
         action: 'dismissKeyboard',
-        systemImageName: 'chevron.down',
+        systemImageName: { ios: 'chevron.down', android: 'keyboard_arrow_down'},
         text: '关闭',
       },
     },
@@ -80,7 +80,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarPerformanceButton',
       params: {
         action: { shortcut: '#keyboardPerformance' },
-        systemImageName: 'speedometer',
+        systemImageName: { ios: 'speedometer', android: 'swap_driving_apps_wheel'},
         text: '性能',
       },
     },
@@ -88,7 +88,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarPhraseButton',
       params: {
         action: { shortcut: '#showPhraseView' },
-        systemImageName: 'heart',
+        systemImageName: { ios: 'heart', android: 'favorite'},
         text: '短语',
       },
     },
@@ -96,7 +96,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarCommandButton',
       params: {
         action: { shortcut: "#toggleCommandView" },
-        systemImageName: 'command',
+        systemImageName: { ios: 'command', android: 'keyboard_command_key'},
         text: '命令',
       },
     },
@@ -104,7 +104,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarScriptButton',
       params: {
         action: { shortcut: '#toggleScriptView' },
-        systemImageName: 'terminal',
+        systemImageName: { ios: 'terminal', android: 'terminal'},
         text: '脚本',
       },
     },
@@ -112,7 +112,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarClipboardButton',
       params: {
         action: { shortcut: '#showPasteboardView' },
-        systemImageName: 'clipboard',
+        systemImageName: { ios: 'clipboard', android: 'content_paste_search'},
         text: '剪贴',
       },
     },
@@ -120,7 +120,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarRimeSwitcherButton',
       params: {
         action: { shortcut: '#RimeSwitcher' },
-        systemImageName: 'switch.2',
+        systemImageName: { ios: 'switch.2', android: 'toggle_on'},
         text: '开关',
       },
     },
@@ -128,7 +128,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarSchemaSelectorButton',
       params: {
         action: { shortcut: '#方案切换' },
-        systemImageName: 'list.bullet.rectangle',
+        systemImageName: { ios: 'list.bullet.rectangle', android: 'list_alt'},
         text: '切换',
       },
     },
@@ -137,7 +137,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarHamster3Button',
       params: {
         action: 'settings',
-        systemImageName: 'atom',
+        systemImageName: { ios: 'atom', android: 'orbit'},
         text: '元书',
       },
     },
@@ -145,7 +145,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarCheckUpdateButton',
       params: {
         action: { openURL: 'https://apps.apple.com/cn/app/%E5%85%83%E4%B9%A6%E8%BE%93%E5%85%A5%E6%B3%95/id6744464701' },
-        systemImageName: 'arrow.down.circle',
+        systemImageName: { ios: 'arrow.down.circle', android: 'arrow_circle_down'},
         text: '更新',
       },
     },
@@ -153,7 +153,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarFeedbackButton',
       params: {
         action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/feedback' },
-        systemImageName: 'iphone.radiowaves.left.and.right',
+        systemImageName: { ios: 'iphone.radiowaves.left.and.right', android: 'mobile_vibrate'},
         text: '震动',
       },
     },
@@ -161,7 +161,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarFinderButton',
       params: {
         action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/finder' },
-        systemImageName: 'folder',
+        systemImageName: { ios: 'folder', android: 'folder'},
         text: '文件',
       },
     },
@@ -169,7 +169,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarSkinPreference',
       params: {
         action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/finder?action=openSkinsFile&fileURL=jsonnet/Settings.libsonnet' },
-        systemImageName: 'wrench.and.screwdriver',
+        systemImageName: { ios: 'wrench.and.screwdriver', android: 'handyman'},
         text: '微调',
       },
     },
@@ -177,7 +177,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarKeyboardDefinition',
       params: {
         action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/finder?action=openSkinsFile&fileURL=jsonnet/Buttons/README.md' },
-        systemImageName: 'keyboard.badge.ellipsis',
+        systemImageName: { ios: 'keyboard.badge.ellipsis', android: 'keyboard_external_input'},
         text: '按键',
       },
     },
@@ -185,7 +185,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarSkinButton',
       params: {
         action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/keyboardSkins' },
-        systemImageName: 'tshirt',
+        systemImageName: { ios: 'tshirt', android: 'apparel'},
         text: '皮肤',
       },
     },
@@ -193,7 +193,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarUploadButton',
       params: {
         action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/wifi' },
-        systemImageName: 'wifi',
+        systemImageName: { ios: 'wifi', android: 'wifi'},
         text: '传输',
       },
     },
@@ -201,7 +201,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarRimeDeployButton',
       params: {
         action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/rime?action=deploy' },
-        systemImageName: 'slider.horizontal.2.arrow.trianglehead.counterclockwise',
+        systemImageName: { ios: 'slider.horizontal.2.arrow.trianglehead.counterclockwise', android: 'reset_wrench'},
         text: '部署',
       },
     },
@@ -209,7 +209,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarRimeInputSchemaButton',
       params: {
         action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/inputSchema' },
-        systemImageName: 'list.bullet.rectangle.portrait',
+        systemImageName: { ios: 'list.bullet.rectangle.portrait', android: 'list_alt'},
         text: '方案',
       },
     },
@@ -217,7 +217,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarRimeSyncButton',
       params: {
         action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/rime?action=sync' },
-        systemImageName: 'checkmark.icloud',
+        systemImageName: { ios: 'checkmark.icloud', android: 'cloud_done'},
         text: '同步',
       },
     },
@@ -225,7 +225,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarToggleEmbeddedButton',
       params: {
         action: { shortcut: '#toggleEmbeddedInputMode' },
-        systemImageName: 'square.and.pencil',
+        systemImageName: { ios: 'square.and.pencil', android: 'edit_square'},
         text: '内嵌',
       },
     },
@@ -233,7 +233,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarLeftHandButton',
       params: {
         action: { shortcut: '#左手模式' },
-        systemImageName: 'keyboard.onehanded.left',
+        systemImageName: { ios: 'keyboard.onehanded.left', android: 'mobile_hand_left'},
         text: '左手',
       },
     },
@@ -241,7 +241,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarRightHandButton',
       params: {
         action: { shortcut: '#右手模式' },
-        systemImageName: 'keyboard.onehanded.right',
+        systemImageName: { ios: 'keyboard.onehanded.right', android: 'mobile_hand'},
         text: '右手',
       },
     },
@@ -249,12 +249,12 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarKeyboardNumericButton',
       params: {
         action: { keyboardType: 'numeric', },
-        systemImageName: 'textformat.123',
+        systemImageName: { ios: 'textformat.123', android: '123'},
         text: '数字',
 
         OnNumeric: {
           action: 'returnPrimaryKeyboard',
-          systemImageName: 'arrow.backward',
+          systemImageName: { ios: 'arrow.backward', android: 'arrow_back'},
           text: '返回',
         },
 
@@ -267,12 +267,12 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarKeyboardSymbolicButton',
       params: {
         action: { keyboardType: 'symbolic', },
-        systemImageName: 'number',
+        systemImageName: { ios: 'number', android: 'numbers'},
         text: '符号',
 
         OnSymbolic: {
           action: 'returnPrimaryKeyboard',
-          systemImageName: 'arrow.backward',
+          systemImageName: { ios: 'arrow.backward', android: 'arrow_back'},
           text: '返回',
         },
         OnAlphabetic: {
@@ -284,13 +284,13 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarKeyboardEmojiButton',
       params: {
         action: { keyboardType: 'emojis', },
-        // systemImageName: 'face.smiling.inverse', // 这个表情经常会异常反色
-        systemImageName: 'face.dashed',
+        // systemImageName: 'face.smiling.inverse', // ios 这个表情经常会异常反色
+        systemImageName: { ios: 'face.dashed', android: 'sentiment_excited'},
         text: '表情',
 
         OnEmojis: {
           action: 'returnPrimaryKeyboard',
-          systemImageName: 'arrow.backward',
+          systemImageName: { ios: 'arrow.backward', android: 'arrow_back'},
           text: '返回',
         }
       },
@@ -299,7 +299,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarSelectAllTextButton',
       params: {
         action: { shortcut: '#selectText' },
-        systemImageName: 'selection.pin.in.out',
+        systemImageName: { ios: 'selection.pin.in.out', android: 'select_all'},
         text: '全选',
       },
     },
@@ -307,7 +307,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarCopyTextButton',
       params: {
         action: { shortcut: '#copy' },
-        systemImageName: 'doc.on.doc',
+        systemImageName: { ios: 'doc.on.doc', android: 'content_copy'},
         text: '复制',
       },
     },
@@ -315,7 +315,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarCutTextButton',
       params: {
         action: { shortcut: '#cut' },
-        systemImageName: 'scissors',
+        systemImageName: { ios: 'scissors', android: 'content_cut'},
         text: '剪切',
       },
     },
@@ -323,7 +323,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarPasteTextButton',
       params: {
         action: { shortcut: '#paste' },
-        systemImageName: 'doc.on.clipboard',
+        systemImageName: { ios: 'doc.on.clipboard', android: 'content_paste'},
         text: '粘贴',
       },
     },
@@ -331,7 +331,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarUndoButton',
       params: {
         action: { shortcut: '#undo' },
-        systemImageName: 'arrow.uturn.left',
+        systemImageName: { ios: 'arrow.uturn.left', android: 'undo'},
         text: '撤销',
       },
     },
@@ -339,7 +339,7 @@ local settings = import '../Settings.libsonnet';
       name: 'toolbarRedoButton',
       params: {
         action: { shortcut: '#redo' },
-        systemImageName: 'arrow.uturn.right',
+        systemImageName: { ios: 'arrow.uturn.right', android: 'redo'},
         text: '重做',
       },
     },
@@ -348,7 +348,7 @@ local settings = import '../Settings.libsonnet';
       params: {
         action: 'moveCursorBackward',
         repeatAction: 'moveCursorBackward',
-        systemImageName: 'arrowshape.left',
+        systemImageName: { ios: 'arrowshape.left', android: 'text_select_move_back_character'},
         text: '左移',
       },
     },
@@ -357,7 +357,7 @@ local settings = import '../Settings.libsonnet';
       params: {
         action: 'moveCursorForward',
         repeatAction: 'moveCursorForward',
-        systemImageName: 'arrowshape.right',
+        systemImageName: { ios: 'arrowshape.right', android: 'text_select_move_forward_character'},
         text: '右移',
       },
     },
@@ -388,7 +388,7 @@ local settings = import '../Settings.libsonnet';
         bottom: 1,
       },
       expandButton: {
-        systemImageName: 'chevron.forward',
+        systemImageName: { ios: 'chevron.forward', android: 'chevron_forward'},
         normalColor: colors.toolbarButtonForegroundColor,
         highlightColor: colors.toolbarButtonHighlightedForegroundColor,
         fontSize: fonts.candidateStateButtonFontSize,
@@ -409,21 +409,21 @@ local settings = import '../Settings.libsonnet';
       },
       pageUpButton: {
         action: { shortcut: '#verticalCandidatesPageUp' },
-        systemImageName: 'chevron.up',
+        systemImageName: { ios: 'chevron.up', android: 'keyboard_arrow_up'},
         normalColor: colors.toolbarButtonForegroundColor,
         highlightColor: colors.toolbarButtonHighlightedForegroundColor,
         fontSize: fonts.candidateStateButtonFontSize,
       },
       pageDownButton: {
         action: { shortcut: '#verticalCandidatesPageDown' },
-        systemImageName: 'chevron.down',
+        systemImageName: { ios: 'chevron.down', android: 'keyboard_arrow_down'},
         normalColor: colors.toolbarButtonForegroundColor,
         highlightColor: colors.toolbarButtonHighlightedForegroundColor,
         fontSize: fonts.candidateStateButtonFontSize,
       },
       returnButton: {
         action: { shortcut: '#candidatesBarStateToggle' },
-        systemImageName: 'arrow.backward',
+        systemImageName: { ios: 'arrow.backward', android: 'arrow_back'},
         normalColor: colors.toolbarButtonForegroundColor,
         highlightColor: colors.toolbarButtonHighlightedForegroundColor,
         fontSize: fonts.candidateStateButtonFontSize,

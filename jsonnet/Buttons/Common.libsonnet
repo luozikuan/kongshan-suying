@@ -44,7 +44,7 @@ local settings = import '../Settings.libsonnet';
     name: 'spaceButton',
     params: {
       action: 'space',
-      systemImageName: 'space',
+      systemImageName: { ios: 'space', android: 'space_bar'},
       center: {x: 0.5, y: 0.5},
       notification:
         (if settings.spaceButtonSchemaNameCenter != null then
@@ -67,7 +67,7 @@ local settings = import '../Settings.libsonnet';
     name: 'tabButton',
     params: {
       action: 'tab',
-      systemImageName: 'arrow.right.to.line',
+      systemImageName: { ios: 'arrow.right.to.line', android: 'keyboard_tab'},
     },
   },
 
@@ -100,7 +100,7 @@ local settings = import '../Settings.libsonnet';
       longPress: [
         {
           action: { shortcut: '#换行' },
-          systemImageName: 'return',
+          systemImageName: { ios: 'return', android: 'keyboard_return'},
           text: '换行',
         },
       ],
@@ -125,7 +125,7 @@ local settings = import '../Settings.libsonnet';
     name: 'functionButton',
     params: {
       action: { shortcut: '#selectText' },
-      systemImageName: 'selection.pin.in.out',
+      systemImageName: { ios: 'selection.pin.in.out', android: 'select_all'},
 
       whenKeyboardAction: [
         {
@@ -133,7 +133,7 @@ local settings = import '../Settings.libsonnet';
             shortcut: '#selectText'
           },
           action: { shortcut: '#cut' },
-          systemImageName: 'scissors',
+          systemImageName: { ios: 'scissors', android: 'content_cut'},
         },
       ],
     },
@@ -143,7 +143,7 @@ local settings = import '../Settings.libsonnet';
     name: 'goBackButton',
     params: {
       action: 'returnLastKeyboard',
-      systemImageName: 'arrow.uturn.backward',
+      systemImageName: { ios: 'arrow.uturn.backward', android: 'undo'},
     },
   },
 
@@ -151,7 +151,7 @@ local settings = import '../Settings.libsonnet';
     name: 'gotoPrimaryKeyboardButton',
     params: {
       action: 'returnPrimaryKeyboard',
-      systemImageName: 'arrow.backward',
+      systemImageName: { ios: 'arrow.backward', android: 'arrow_back'},
       text: '返回',
     },
   },
@@ -160,7 +160,7 @@ local settings = import '../Settings.libsonnet';
     name: 'iOSNextKeyboardButton',
     params: {
       action: 'nextKeyboard',
-      systemImageName: 'globe',
+      systemImageName: { ios: 'globe', android: 'language'},
     },
   },
 
@@ -187,7 +187,7 @@ local settings = import '../Settings.libsonnet';
       if settings.iPad then {
         longPress: [
           {
-            systemImageName: 'globe',
+            systemImageName: { ios: 'globe', android: 'language'},
             action: 'nextKeyboard',
             selected: true,
           },

@@ -88,7 +88,7 @@ local settings = import '../Settings.libsonnet';
     name: 'numericSpaceButton',
     params: {
       action: 'space',
-      systemImageName: 'space',
+      systemImageName: { ios: 'space', android: 'space_bar'},
     },
   },
 

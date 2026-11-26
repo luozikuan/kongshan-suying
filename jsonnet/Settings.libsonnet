@@ -118,15 +118,15 @@
     action: 'shift',
 
     uppercased: { systemImageName: 'shift.fill', },
-    capsLocked: { systemImageName: 'capslock.fill', },
+    capsLocked: { systemImageName: { ios: 'capslock.fill', android: 'shift_lock'}, },
 
     whenPreeditChanged: {
       action: { character: "'" },
-      systemImageName: 'square.and.line.vertical.and.square',
+      systemImageName: { ios: 'square.and.line.vertical.and.square', android: 'split_scene'},
       text: '分词',
 
       # action: 'tab',
-      # systemImageName: 'arrow.right.to.line',
+      # systemImageName: { ios: 'arrow.right.to.line', android: 'keyboard_tab'},
       # text: 'Tab',
     },
   },

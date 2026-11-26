@@ -28,7 +28,7 @@ local settings = import '../Settings.libsonnet';
     name: 'pageUp',
     params: {
       action: { shortcut: '#subCollectionPageUp' },
-      systemImageName: 'arrowtriangle.up',
+      systemImageName: { ios: 'arrowtriangle.up', android: 'arrow_upward_alt'},
       text: '上一页',
     },
   },
@@ -37,7 +37,7 @@ local settings = import '../Settings.libsonnet';
     name: 'pageDown',
     params: {
       action: { shortcut: '#subCollectionPageDown' },
-      systemImageName: 'arrowtriangle.down',
+      systemImageName: { ios: 'arrowtriangle.down', android: 'arrow_downward_alt'},
       text: '下一页',
     },
   },

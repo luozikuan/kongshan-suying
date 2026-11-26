@@ -183,19 +183,19 @@ local commonButtons = import './Common.libsonnet';
       longPress: [
         {
           action: { keyboardType: 'symbolic', },
-          systemImageName: 'number',
+          systemImageName: { ios: 'number', android: 'numbers'},
           text: '符号',
         },
         {
           action: { keyboardType: 'numeric', },
-          systemImageName: 'textformat.123',
+          systemImageName: { ios: 'textformat.123', android: '123'},
           text: '数字',
           selected: true,  # 初始选中项
         },
         {
           action: { keyboardType: 'emojis', },
-          // systemImageName: 'face.smiling.inverse', // 这个表情经常会异常反色
-          systemImageName: 'face.dashed',
+          // systemImageName: 'face.smiling.inverse', // ios 这个表情经常会异常反色
+          systemImageName: { ios: 'face.dashed', android: 'sentiment_excited'},
           text: '表情',
         },
       ],

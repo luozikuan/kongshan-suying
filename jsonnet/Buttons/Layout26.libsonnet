@@ -23,7 +23,7 @@ local settings = import '../Settings.libsonnet';
       swipeUp: { action: { character: '1' } },
       swipeDown: {
         action: 'tab',
-        systemImageName: 'arrow.right.to.line'
+        systemImageName: { ios: 'arrow.right.to.line', android: 'keyboard_tab'}
       },
       longPress: [
         { action: { character: 'Q' } },
@@ -143,11 +143,11 @@ local settings = import '../Settings.libsonnet';
       swipeDown: {
         action: { shortcut: '#selectText' },
         text: '全',
-        systemImageName: 'selection.pin.in.out',
+        systemImageName: { ios: 'selection.pin.in.out', android: 'select_all'},
       },
       longPress: [
         { action: { character: 'A' }, selected: true },
-        { action: { shortcut: '#左手模式' }, systemImageName: 'keyboard.onehanded.left' },
+        { action: { shortcut: '#左手模式' }, systemImageName: { ios: 'keyboard.onehanded.left', android: 'mobile_hand_left'} },
       ],
     },
   },
@@ -243,7 +243,7 @@ local settings = import '../Settings.libsonnet';
       swipeUp: { action: { character: '"' } },
       swipeDown: { action: { character: "'" } },
       longPress: [
-        { action: { shortcut: '#右手模式' }, systemImageName: 'keyboard.onehanded.right' },
+        { action: { shortcut: '#右手模式' }, systemImageName: { ios: 'keyboard.onehanded.right', android: 'mobile_hand_right'} },
         { action: { character: 'L' }, selected: true },
       ],
     },
@@ -259,7 +259,7 @@ local settings = import '../Settings.libsonnet';
       swipeDown: {
         action: { shortcut: '#undo' },
         text: '撤',
-        systemImageName: 'arrow.uturn.left'
+        systemImageName: { ios: 'arrow.uturn.left', android: 'undo'}
       },
       longPress: [
         { action: { character: 'Z' } },
@@ -275,7 +275,7 @@ local settings = import '../Settings.libsonnet';
       swipeDown: {
         action: { shortcut: '#cut' },
         text: '剪',
-        systemImageName: 'scissors'
+        systemImageName: { ios: 'scissors', android: 'content_cut'}
       },
       longPress: [
         { action: { character: 'X' } },
@@ -291,7 +291,7 @@ local settings = import '../Settings.libsonnet';
       swipeDown: {
         action: { shortcut: '#copy' },
         text: '复',
-        systemImageName: 'doc.on.doc'
+        systemImageName: { ios: 'doc.on.doc', android: 'content_copy'}
       },
       longPress: [
         { action: { character: 'C' } },
@@ -307,7 +307,7 @@ local settings = import '../Settings.libsonnet';
       swipeDown: {
         action: { shortcut: '#paste' },
         text: '贴',
-        systemImageName: 'doc.on.clipboard'
+        systemImageName: { ios: 'doc.on.clipboard', android: 'content_paste'}
       },
       longPress: [
         { action: { character: 'V' } },

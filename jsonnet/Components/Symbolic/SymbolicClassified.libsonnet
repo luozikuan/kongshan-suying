@@ -78,8 +78,8 @@ local newKeyLayout(isDark=false, isPortrait=true, extraParams={}) =
       isDark,
       symbolicButtons.lockButton.params + {
         foregroundStyle: {
-          unlockButtonForegroundStyle: basicStyle.newSystemButtonForegroundStyle(isDark, { systemImageName: 'lock.open' }),
-          lockButtonForegroundStyle: basicStyle.newSystemButtonForegroundStyle(isDark, { systemImageName: 'lock' }),
+          unlockButtonForegroundStyle: basicStyle.newSystemButtonForegroundStyle(isDark, { systemImageName: { ios: 'lock.open', android: 'lock_open'} }),
+          lockButtonForegroundStyle: basicStyle.newSystemButtonForegroundStyle(isDark, { systemImageName: { ios: 'lock', android: 'lock'} }),
         },
       }))
 

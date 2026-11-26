@@ -82,7 +82,7 @@ local settings = import '../Settings.libsonnet';
       longPress: [
         {
           action: { shortcut: '#左手模式' },
-          systemImageName: 'keyboard.onehanded.left'
+          systemImageName: { ios: 'keyboard.onehanded.left', android: 'mobile_hand_left'}
         },
       ],
     },
@@ -128,7 +128,7 @@ local settings = import '../Settings.libsonnet';
       longPress: [
         {
           action: { shortcut: '#右手模式' },
-          systemImageName: 'keyboard.onehanded.right',
+          systemImageName: { ios: 'keyboard.onehanded.right', android: 'mobile_hand_right'},
         },
       ],
     },
